@@ -1,0 +1,33 @@
+@use '../abstract/colors' as *;
+@use '../abstract/mixins' as *;
+
+.container {
+  max-width: $maw-container;
+  margin: 0 auto;
+  width: 90%;
+}
+
+body {
+  scroll-behavior: smooth;
+  font-family: 'Lato', Helvetica, Arial, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Arimo';
+  font-weight: 600;
+}
+
+p {
+  max-width: 65ch;
+}
+
+a {
+  &:hover {
+    color: currentColor !important;
+  }
+}
