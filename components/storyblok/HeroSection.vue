@@ -196,6 +196,10 @@ section {
     max-height: 550px;
   }
 
+  @include mq(3xl) {
+    max-height: 664px;
+  }
+
   --transition-dur: 550ms;
 
   .left-col {
@@ -215,12 +219,12 @@ section {
 
     @include mq(xl) {
       --left-pt: 8rem;
-      --left-pb: 6rem;
+      --left-pb: 8rem;
     }
 
     @include mq(3xl) {
       --left-pt: 10rem;
-      --left-pb: 8rem;
+      --left-pb: 10rem;
     }
 
     .hero__container {
@@ -265,7 +269,7 @@ section {
     }
 
     @include mq(3xl) {
-      --max-h: 600px;
+      --max-h: 664px;
     }
 
     .right-col__img {

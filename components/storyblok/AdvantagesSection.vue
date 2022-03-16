@@ -1,0 +1,178 @@
+<script>
+import { useStoryblokBridge } from '@storyblok/nuxt';
+import { richtext } from '~/utils/storyblok/storyblok.js';
+
+export default {
+  props: {
+    blok: {
+      type: Object,
+      required: true,
+    },
+  },
+
+  data() {
+    return {
+      story: this.blok,
+      richtext,
+    };
+  },
+
+  mounted() {
+    useStoryblokBridge(this.story._uid, (newStory) => (this.story = newStory));
+  },
+};
+</script>
+
+<template>
+  <section id="advantages" v-editable="story" class="advantages">
+    <!-- <pre>{{ story }}</pre> -->
+    <div class="advantages__content content-advantages">
+      <div class="container content-advantages__container">
+        <h2 class="content-advantages__title">{{ story.title }}</h2>
+
+        <ul class="content-advantages__wrapper">
+          <li v-for="slide in story.slides" :key="slide._uid">
+            <!-- class="content-advantages__card card" -->
+            <component
+              :is="slide.component"
+              v-if="slide.component"
+              :key="slide._uid"
+              :blok="slide"
+            />
+          </li>
+          <!-- /.content-advantages__card card -->
+        </ul>
+        <!-- /.content-advantages__wrapper -->
+        <div class="advantages__bg">
+          <img
+            :src="`${story.bg_img[0].filename}/m/`"
+            alt=""
+            class="advantages__bg-img"
+          />
+        </div>
+        <!-- /.advantages__bg -->
+      </div>
+    </div>
+  </section>
+</template>
+
+<style lang="scss" scoped>
+.advantages {
+  background: $redMy-900;
+
+  border-top: 1px solid white;
+  position: relative;
+
+  @extend %tpl-section;
+
+  // .advantages__bg
+
+  &__bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    z-index: 0;
+
+    // .advantages__bg-img
+
+    &-img {
+      width: 100%;
+      display: block;
+    }
+  }
+
+  .content-advantages {
+    // .content-advantages__container
+    &__container {
+    }
+
+    // .content-advantages__title
+
+    &__title {
+      @extend %tpl-section-title;
+      position: relative;
+      z-index: 1;
+    }
+
+    // .content-advantages__wrapper
+
+    &__wrapper {
+      --min-card-width: 220px;
+      --gap: 25px;
+
+      display: grid;
+      grid-template-columns: repeat(
+        auto-fit,
+        minmax(var(--min-card-width), 1fr)
+      );
+      // grid-auto-rows: 1fr;
+
+      gap: var(--gap);
+      justify-content: space-between;
+      align-content: stretch;
+
+      position: relative;
+      z-index: 10;
+
+      @include mq(xl) {
+        --gap: 48px;
+        --min-card-width: 350px;
+      }
+    }
+  }
+}
+.card {
+  color: white;
+  background: $redMy-800;
+
+  box-shadow: $shadowMy;
+  padding: 36px 20px;
+
+  @include mq(xl) {
+    padding: 42px 26px;
+  }
+
+  // .card__icon
+
+  &__icon {
+    --mb-icon: 20px;
+
+    margin-bottom: var(--mb-icon);
+
+    @include mq(xl) {
+      --mb-icon: 36px;
+    }
+
+    // .card__icon-img
+
+    &-img {
+      font-size: 40px;
+
+      @include mq(xl) {
+        font-size: 60px;
+      }
+    }
+  }
+
+  // .card__title
+
+  &__title {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 100%;
+
+    margin-bottom: 1em;
+
+    position: relative;
+    z-index: 7;
+    text-shadow: 0.1em 0.1em 1px #000;
+  }
+
+  // .card__description
+
+  &__description {
+    opacity: 0.85;
+  }
+}
+</style>

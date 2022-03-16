@@ -48,7 +48,7 @@ export default {
 
     window.addEventListener('resize', () => {
       if (window.innerWidth > 950) {
-        this.tlNav.destroy();
+        this.tlNav.kill();
       }
     });
   },

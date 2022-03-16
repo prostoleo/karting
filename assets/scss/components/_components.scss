@@ -1,0 +1,32 @@
+@use '../abstract/index' as *;
+@use '../base/index' as *;
+
+%tpl-section {
+  --section-pt: 50px;
+  --section-pb: 50px;
+
+  padding-top: var(--section-pt);
+  padding-bottom: var(--section-pb);
+
+  @include mq(xl) {
+    --section-pt: 70px;
+    --section-pb: 70px;
+  }
+}
+
+%tpl-section-title {
+  margin-bottom: 1.67em;
+
+  font-family: 'Arimo', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+
+  color: white;
+
+  @include mq(xl) {
+    font-size: 40px;
+    margin-bottom: 1.5em;
+  }
+}
