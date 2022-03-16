@@ -192,44 +192,85 @@ section {
     gap: var(--col-gap);
   }
 
+  @include mq(xl) {
+    max-height: 550px;
+  }
+
   --transition-dur: 550ms;
 
   .left-col {
     position: relative;
 
+    --left-pt: 6rem;
+    --left-pb: 4rem;
+
     @include mq(lg) {
-      flex: 0 1 40%;
-      padding-top: 6rem;
-      padding-bottom: 4rem;
+      flex: 0 1 39%;
+      padding-top: var(--left-pt);
+      padding-bottom: var(--left-pb);
 
       margin-left: 5%;
       transition: flex-basis var(--transition-dur) ease-in;
     }
 
+    @include mq(xl) {
+      --left-pt: 8rem;
+      --left-pb: 6rem;
+    }
+
+    @include mq(3xl) {
+      --left-pt: 10rem;
+      --left-pb: 8rem;
+    }
+
     .hero__container {
-      margin: 0;
-      width: 100%;
+      @include mq(lg) {
+        margin: 0;
+        width: 100%;
+      }
     }
   }
 
   .right-col {
-    max-height: 400px;
+    --max-h: 400px;
+
+    max-height: var(--max-h);
     @include mq(lg) {
       flex: 1 0 45%;
-      max-height: unset;
+      --max-h: 503px;
 
       overflow: hidden;
 
       transition: flex-basis var(--transition-dur) ease-in;
+
+      &:hover {
+        flex-basis: 54%;
+        transition: flex-basis var(--transition-dur) ease-in;
+      }
     }
 
-    &:hover {
-      flex-basis: 54%;
-      transition: flex-basis var(--transition-dur) ease-in;
+    @include mq(xl) {
+      flex: 1 0 50%;
+
+      --max-h: 550px;
+
+      &:hover {
+        flex-basis: 58%;
+        transition: flex-basis var(--transition-dur) ease-in;
+      }
+    }
+
+    @include mq(2xl) {
+      --max-h: 575px;
+    }
+
+    @include mq(3xl) {
+      --max-h: 600px;
     }
 
     .right-col__img {
       display: block;
+      width: 100%;
       height: 100%;
       object-fit: cover;
 
@@ -262,6 +303,10 @@ section {
     letter-spacing: 0.2em;
 
     color: $orangeMy;
+
+    @include mq(2xl) {
+      font-size: 24px;
+    }
   }
 
   h1 {
@@ -270,10 +315,21 @@ section {
     margin-bottom: 1.125em;
 
     text-transform: uppercase;
+
+    @include mq(2xl) {
+      font-size: 48px;
+      margin-bottom: 0.5em;
+    }
   }
 
   .description {
     margin-bottom: 2.5rem;
+
+    @include mq(2xl) {
+      & > * {
+        font-size: 1.8rem;
+      }
+    }
   }
 
   .for-flag-img {
@@ -316,6 +372,10 @@ section {
     span {
       display: block;
       transform: translateY(-1px);
+
+      @include mq(xl) {
+        font-size: 24px;
+      }
     }
 
     &:hover,

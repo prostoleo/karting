@@ -118,10 +118,10 @@ export default {
 
 <style lang="scss" scoped>
 button.header__burger {
-  --space-burger: 1rem;
+  --space-burger: 16px;
   --dimension: 35px;
   --stroke-height: 2px;
-  --padding-btn: 0.75rem;
+  --padding-btn: 10px;
 
   // width: var(--dimension, 50px);
   // height: var(--dimension, 50px);
@@ -137,6 +137,7 @@ button.header__burger {
   gap: var(--space-burger);
 
   position: relative;
+  z-index: 1;
 
   @include mq(lg) {
     display: none;
@@ -150,7 +151,7 @@ button.header__burger {
     right: var(--padding-btn);
 
     width: calc(100% - var(--padding-btn) * 2);
-    height: 2px;
+    height: var(--stroke-height);
 
     background: white;
 
@@ -345,7 +346,7 @@ button.header__burger {
       span {
         display: block;
         line-height: 100%;
-        transform: translateY(-2px);
+        transform: translateY(-1px);
         z-index: -1;
       }
     }
