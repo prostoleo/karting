@@ -22,7 +22,7 @@ export default {
 </script>
 
 <template>
-  <section class="cta-section">
+  <section v-editable="story" class="cta-section">
     <div class="container cta-section__container">
       <div class="cta-section__content content">
         <h2 class="content__title">{{ story.title }}</h2>
