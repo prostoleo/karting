@@ -41,22 +41,21 @@
         <HeroSection :blok="isComponentFromCMS('HeroSection').content" />
       </div> -->
     </main>
+    <BuefyTest />
     <footer>Footer</footer>
   </div>
 </template>
 
 <script>
 /* eslint-disable vue/no-unused-components */
-import { useStoryblokBridge, useStoryblokApi } from '@storyblok/nuxt';
 import KartSection from '../components/storyblok/KartSection.vue';
 import HeroSection from '~/components/storyblok/HeroSection.vue';
+import FaqSection from '~/components/storyblok/FaqSection.vue';
 import BaseHeader from '~/components/base/BaseHeader.vue';
-console.log('useStoryblokApi: ', useStoryblokApi);
-console.log('useStoryblokBridge: ', useStoryblokBridge);
 
 export default {
   name: 'IndexPage',
-  components: { HeroSection, KartSection, BaseHeader },
+  components: { HeroSection, KartSection, FaqSection, BaseHeader },
 
   async asyncData(context) {
     // // This what would we do in real project
@@ -101,6 +100,7 @@ export default {
   data() {
     return {
       // story: { content: null },
+      isActive: false,
     };
   },
   methods: {
@@ -126,8 +126,16 @@ export default {
 <style lang="scss">
 .site {
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  // grid-template-rows: auto 1fr auto;
+  // ! потом убрать
+  grid-template-rows: auto 1fr 1000px;
 
   min-height: 100vh;
+}
+
+main {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 </style>

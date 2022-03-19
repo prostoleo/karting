@@ -34,10 +34,10 @@ export default {
   css: ['~/assets/fonts/fonts.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: ['~/plugins/uikit.js'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
-  components: true,
+  components: ['~/components', '~/components/base', '~/components/storyblok'],
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
@@ -70,7 +70,8 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/style-resources',
-    ['@nuxtjs/markdownit', { html: true, injected: true }],
+    // ['@nuxtjs/markdownit', { html: true, injected: true }],
+    // ['nuxt-buefy', { css: true, materialDesignIcons: false }],
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

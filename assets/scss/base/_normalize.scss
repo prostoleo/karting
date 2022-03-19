@@ -56,7 +56,7 @@ picture {
 
 /* Inherit fonts for inputs and buttons */
 input,
-button,
+// button,
 textarea,
 select,
 label {
@@ -67,7 +67,7 @@ button {
   display: inline-block;
   cursor: pointer;
   border: none;
-  background-color: transparent;
+  // background-color: transparent;
 }
 
 p {

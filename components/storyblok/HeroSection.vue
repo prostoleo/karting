@@ -115,18 +115,21 @@ export default {
     <div class="left-col">
       <div class="container hero__container">
         <!-- <pre> {{ story }} </pre> -->
-        <h3 class="">
+        <h3 class="hero__subtitle">
           {{ story.subtitle }}
         </h3>
-        <h1 class="">
+        <h1 class="hero__title">
           {{ story.title }}
         </h1>
         <!-- <p v-html="$md.render(story.description)"></p> -->
-        <div v-html="richtext(story.description)" class="description"></div>
+        <div
+          class="hero__description"
+          v-html="richtext(story.description)"
+        ></div>
         <!-- <div>{{ richtext(story.description) }}</div> -->
         <!-- <span>{{ richtext('qwerty') }}</span> -->
 
-        <button ref="heroBtn" class="hero-cta-btn">
+        <button ref="heroBtn" class="hero__btn hero-cta-btn">
           <!-- @mouseenter="animateBtnForward" -->
           <!-- @mouseleave="animateBtnBackward" -->
           <span class="">{{ story.cta }}</span>
@@ -173,6 +176,8 @@ export default {
 section {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+
   gap: 48px;
 
   padding-top: 5rem;
@@ -236,7 +241,7 @@ section {
   }
 
   .right-col {
-    --max-h: 400px;
+    // --max-h: 400px;
 
     max-height: var(--max-h);
     @include mq(lg) {
@@ -298,7 +303,7 @@ section {
     }
   }
 
-  h3 {
+  h3.hero__subtitle {
     margin-bottom: 0.6em;
 
     font-size: 20px;
@@ -313,7 +318,7 @@ section {
     }
   }
 
-  h1 {
+  h1.hero__title {
     font-size: 2rem;
     line-height: 120%;
     margin-bottom: 1.125em;
@@ -326,7 +331,7 @@ section {
     }
   }
 
-  .description {
+  .hero__description {
     margin-bottom: 2.5rem;
 
     @include mq(2xl) {

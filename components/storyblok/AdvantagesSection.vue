@@ -59,9 +59,11 @@ export default {
 <style lang="scss" scoped>
 .advantages {
   background: $redMy-900;
-
-  border-top: 1px solid white;
   position: relative;
+  overflow: hidden;
+
+  // ! потом убрать
+  border-top: 1px solid white;
 
   @extend %tpl-section;
 
@@ -69,15 +71,24 @@ export default {
 
   &__bg {
     position: absolute;
-    top: 0;
-    right: 0;
+    // top: 0;
+    right: -5vw;
+    left: -5vw;
+    bottom: 0;
 
     z-index: 0;
+
+    @include mq(xl) {
+      right: -2vw;
+      left: -2vw;
+    }
 
     // .advantages__bg-img
 
     &-img {
+      object-fit: cover;
       width: 100%;
+      height: 100%;
       display: block;
     }
   }
@@ -107,6 +118,7 @@ export default {
         minmax(var(--min-card-width), 1fr)
       );
       // grid-auto-rows: 1fr;
+      padding: 0;
 
       gap: var(--gap);
       justify-content: space-between;
