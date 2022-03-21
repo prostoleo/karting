@@ -126,9 +126,9 @@ export default {
 <style lang="scss">
 .site {
   display: grid;
-  // grid-template-rows: auto 1fr auto;
+  grid-template-rows: auto 1fr auto;
   // ! потом убрать
-  grid-template-rows: auto 1fr 1000px;
+  // grid-template-rows: auto 1fr 1000px;
 
   min-height: 100vh;
 }
