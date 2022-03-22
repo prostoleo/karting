@@ -27,6 +27,17 @@ export default {
         defer: true,
         src: 'https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js',
       },
+      // <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+      {
+        type: 'module',
+        defer: true,
+        src: 'https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js',
+      },
+      {
+        type: 'module',
+        defer: true,
+        src: 'https://unpkg.com/@lottiefiles/lottie-interactivity@latest/dist/lottie-interactivity.min.js',
+      },
     ],
   },
 
@@ -35,6 +46,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: ['~/plugins/uikit.js'],
+  // '~/plugins/lottie-vue-player.client.js'
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: ['~/components', '~/components/base', '~/components/storyblok'],

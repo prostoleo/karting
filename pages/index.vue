@@ -3,59 +3,22 @@
     <BaseHeader></BaseHeader>
     <main>
       <!-- <pre>{{ content }}</pre> -->
-      <div v-for="story in stories" :key="story.uuid">
-        <!-- <pre>
-          {{ story }}
-        </pre> -->
-        <!-- <pre>{{ story.content.component }}</pre> -->
-        <!-- v-if="story.content.component" -->
-        <!-- <component
-          :is="`HeroSection`"
-          :key="story.uuid"
-          :blok="story.content"
-        /> -->
-        <!-- <component
-          :is="story.content.component"
-          :key="story.uuid"
-          :blok="story.content"
-        /> -->
+      <template v-for="story in stories">
         <component
           :is="story.content.component"
           v-if="story.content.component"
           :key="story.content.uuid"
           :blok="story.content"
         />
-      </div>
-      <!-- <HeroSection :blok="content.stories[0].content" /> -->
-
-      <!-- <pre>
-        {{ content }}
-      </pre> -->
-      <!-- <component
-        :is="story.content.component"
-        v-if="story.content.component"
-        :key="story.content.uuid"
-        :blok="story.content"
-      /> -->
-      <!-- <div v-if="isComponentFromCMS('HeroSection')">
-        <HeroSection :blok="isComponentFromCMS('HeroSection').content" />
-      </div> -->
+      </template>
     </main>
-    <BuefyTest />
     <footer>Footer</footer>
   </div>
 </template>
 
 <script>
-/* eslint-disable vue/no-unused-components */
-import KartSection from '../components/storyblok/KartSection.vue';
-import HeroSection from '~/components/storyblok/HeroSection.vue';
-import FaqSection from '~/components/storyblok/FaqSection.vue';
-import BaseHeader from '~/components/base/BaseHeader.vue';
-
 export default {
   name: 'IndexPage',
-  components: { HeroSection, KartSection, FaqSection, BaseHeader },
 
   async asyncData(context) {
     // // This what would we do in real project
@@ -72,11 +35,11 @@ export default {
         version,
         starts_with: 'home/',
       });
-      console.log('response: ', response);
+      // console.log('response: ', response);
       // const result = await response.json();
       // console.log('result: ', result);
       stories = response.data.stories;
-      console.log('stories: ', stories);
+      // console.log('stories: ', stories);
     } catch (error) {
       if (!response.response) {
         console.error(response);
@@ -96,29 +59,6 @@ export default {
     return {
       stories,
     };
-  },
-  data() {
-    return {
-      // story: { content: null },
-      isActive: false,
-    };
-  },
-  methods: {
-    isComponentFromCMS(compName) {
-      // const blok = this.story.stories.find(
-      const blok = this.stories.find(
-        (storyItem) => storyItem.content.component === compName
-      );
-      console.log('blok: ', blok);
-
-      return blok;
-    },
-
-    findStoryOnId(id) {
-      const foundStory = this.stories.find((story) => story.id === id);
-
-      return foundStory;
-    },
   },
 };
 </script>

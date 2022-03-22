@@ -29,7 +29,7 @@ export default {
     //* для анимации кнопки
     const tlButton = gsap.timeline({ paused: true });
     const heroBtnEl = this.$refs.heroBtn;
-    console.log('heroBtnEl: ', heroBtnEl);
+    // console.log('heroBtnEl: ', heroBtnEl);
 
     tlButton
       .to(heroBtnEl, {

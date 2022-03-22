@@ -55,7 +55,11 @@ export default {
     align-content: center;
     justify-content: flex-start;
 
-    gap: 35px;
+    gap: 15px;
+
+    @include mq(xl) {
+      gap: 35px;
+    }
   }
 
   // .info__item-icon

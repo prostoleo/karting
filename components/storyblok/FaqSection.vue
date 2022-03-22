@@ -23,6 +23,7 @@ export default {
   },
   mounted() {
     useStoryblokBridge(this.story._uid, (newStory) => (this.story = newStory));
+
     //* kart icon animation
     gsap.registerPlugin(ScrollTrigger);
     const FaqSectionEl = document.querySelector('section.faq-section');
@@ -39,7 +40,7 @@ export default {
         start: 'top 30%',
         end: 'bottom 80%',
         // end: '+=500',
-        markers: true,
+        // markers: true,
         scrub: 0.2,
         // yoyo:
       },
