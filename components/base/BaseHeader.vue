@@ -69,7 +69,7 @@ export default {
   <!-- <header class="header bg-redMy-900 text-white py-5"> -->
   <header class="header">
     <div class="container">
-      <div class="header__content flex justify-between items-center">
+      <div class="header__content">
         <div class="header__logo">
           <img src="/ForzaKart.svg" alt="логотип ForzaKart" />
         </div>
@@ -97,7 +97,7 @@ export default {
             </li>
             <!-- /.nav__item -->
             <li class="nav__item nav__item--btn">
-              <button class="">
+              <button class="cta">
                 <span>Забронировать</span>
               </button>
             </li>
@@ -208,6 +208,10 @@ button.header__burger {
   // .header__content
 
   &__content {
+    display: flex;
+    align-items: center;
+
+    justify-content: space-between;
   }
 
   // .header__logo
@@ -219,6 +223,7 @@ button.header__burger {
   // .header__burger
 
   &__burger {
+    background: transparent;
   }
 }
 .nav {
@@ -264,6 +269,7 @@ button.header__burger {
 
     @include mq(lg) {
       flex-direction: row;
+      align-items: center;
     }
   }
 
@@ -326,11 +332,15 @@ button.header__burger {
       margin: 0;
     }
 
-    button {
+    button.cta {
+      display: inline-block;
       padding: 0.75em 1.25em;
-      border: 1px solid currentColor;
-      line-height: 100%;
 
+      color: white;
+      background: transparent;
+      border: 1px solid currentColor;
+
+      line-height: 100%;
       font-weight: 500;
 
       transition: all 150ms ease-in-out;
@@ -346,9 +356,16 @@ button.header__burger {
 
       span {
         display: block;
-        line-height: 100%;
-        transform: translateY(-1px);
         z-index: -1;
+
+        color: inherit;
+
+        font-size: 16px;
+        font-family: 'Lato', Helvetica, sans-serif;
+        line-height: 100%;
+        font-weight: 500;
+
+        transform: translateY(-1px);
       }
     }
   }

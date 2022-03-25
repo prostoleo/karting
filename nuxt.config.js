@@ -97,12 +97,16 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/style-resources',
-    // ['@nuxtjs/markdownit', { html: true, injected: true }],
-    // ['nuxt-buefy', { css: true, materialDesignIcons: false }],
   ],
 
   generate: {
     fallback: true,
+  },
+
+  loadingIndicator: {
+    name: 'fading-circle',
+    color: '#E40D04',
+    background: 'black',
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

@@ -1,5 +1,5 @@
 <template>
-  <section v-editable="story" class="faq-section">
+  <section id="questions" v-editable="story" class="faq-section">
     <div class="container faq-section__container faq-section__content content">
       <h2 class="content__title">{{ story.title }}</h2>
       <div class="content__faq faq">

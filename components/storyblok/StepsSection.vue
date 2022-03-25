@@ -151,15 +151,15 @@ export default {
     const stepsSvgEl = document.querySelector('.steps__svg');
     // const svgEl = stepsSvgEl.querySelector('.icon-inner');
     const pathsEls = Array.from(stepsSvgEl.querySelectorAll('path'));
-    console.log('pathsEls: ', pathsEls);
+    // console.log('pathsEls: ', pathsEls);
 
     //* target element for Intersection
     const sectionEl = document.getElementById('steps');
-    console.log('sectionEl: ', sectionEl);
+    // console.log('sectionEl: ', sectionEl);
 
     //* получаем длинну каждого path
     const pathsLength = pathsEls.map((path) => path.getTotalLength());
-    console.log('pathsLength: ', pathsLength);
+    // console.log('pathsLength: ', pathsLength);
 
     //* обнуляем длины path
     function pathToZero() {
@@ -183,7 +183,7 @@ export default {
         arr.push(curNum);
 
         curNum = parseFloat((curNum + share).toFixed(2));
-        console.log('curNum: ', curNum);
+        // console.log('curNum: ', curNum);
 
         //* если превысили максимальное значение - выходим из цикла
         if (curNum >= max) {

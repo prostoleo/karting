@@ -370,6 +370,7 @@ section {
     color: white;
     background: $redMy-500;
 
+    font-size: 16px;
     font-family: 'Arimo', sans-serif;
     font-weight: 600;
     line-height: 100%;

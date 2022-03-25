@@ -1,4 +1,7 @@
 <template>
+  <!-- <div v-if="$nuxt.$root.$loading.percent !== 0">
+    <nuxt-loader name="fading-circle" background="black" color="#E40D04" />
+  </div> -->
   <div class="site relative">
     <BaseHeader></BaseHeader>
     <main>
@@ -12,14 +15,14 @@
         />
       </template>
     </main>
-    <footer>Footer</footer>
+    <BaseFooter></BaseFooter>
   </div>
 </template>
 
 <script>
+import BaseFooter from '../components/base/BaseFooter.vue';
 export default {
   name: 'IndexPage',
-
   async asyncData(context) {
     // // This what would we do in real project
     const version =
@@ -60,6 +63,18 @@ export default {
       stories,
     };
   },
+  data() {
+    return {
+      isLoading: true,
+    };
+  },
+  mounted() {
+    // console.log('loading', window.$nuxt.$root.$loading.percent);
+    window.addEventListener('load', () => {
+      this.isLoading = false;
+    });
+  },
+  components: { BaseFooter },
 };
 </script>
 

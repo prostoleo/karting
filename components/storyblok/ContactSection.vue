@@ -1,5 +1,5 @@
 <template>
-  <section id="contact" v-editable="story" class="contact">
+  <section id="contacts" v-editable="story" class="contact">
     <div class="container contact__container">
       <div class="contact__content content">
         <h2 class="content__title">{{ story.title }}</h2>
@@ -66,6 +66,7 @@ export default {
   color: black;
 
   @extend %tpl-section;
+  --section-pb: 0;
 
   display: grid;
   gap: 35px;

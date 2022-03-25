@@ -1,5 +1,5 @@
 <template>
-  <section v-editable="blok">карт</section>
+  <section id="karts" v-editable="blok">карт</section>
 </template>
 
 <script>
