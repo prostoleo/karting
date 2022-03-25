@@ -122,6 +122,7 @@ button.header__burger {
   --dimension: 35px;
   --stroke-height: 2px;
   --padding-btn: 10px;
+  --padding-btn-x2: 20px;
 
   // width: var(--dimension, 50px);
   // height: var(--dimension, 50px);
@@ -150,7 +151,7 @@ button.header__burger {
     left: var(--padding-btn);
     right: var(--padding-btn);
 
-    width: calc(100% - var(--padding-btn) * 2);
+    width: calc(100% - var(--padding-btn-x2));
     height: var(--stroke-height);
 
     background: white;

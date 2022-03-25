@@ -1,28 +1,3 @@
-<script>
-import { useStoryblokBridge } from '@storyblok/nuxt';
-import { richtext } from '~/utils/storyblok/storyblok.js';
-
-export default {
-  props: {
-    blok: {
-      type: Object,
-      required: true,
-    },
-  },
-
-  data() {
-    return {
-      story: this.blok,
-      richtext,
-    };
-  },
-
-  mounted() {
-    useStoryblokBridge(this.story._uid, (newStory) => (this.story = newStory));
-  },
-};
-</script>
-
 <template>
   <section id="sales" v-editable="story" class="sales">
     <div class="container sales__container">
@@ -47,6 +22,31 @@ export default {
     <!-- /.container sales__container -->
   </section>
 </template>
+
+<script>
+import { useStoryblokBridge } from '@storyblok/nuxt';
+import { richtext } from '~/utils/storyblok/storyblok.js';
+
+export default {
+  props: {
+    blok: {
+      type: Object,
+      required: true,
+    },
+  },
+
+  data() {
+    return {
+      story: this.blok,
+      richtext,
+    };
+  },
+
+  mounted() {
+    useStoryblokBridge(this.story._uid, (newStory) => (this.story = newStory));
+  },
+};
+</script>
 
 <style lang="scss" scoped>
 .sales {

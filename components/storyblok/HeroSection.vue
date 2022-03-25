@@ -1,3 +1,50 @@
+<template>
+  <section v-editable="story" class="hero">
+    <!-- <BaseHeader /> -->
+    <div class="left-col">
+      <div class="container hero__container">
+        <!-- <pre> {{ story }} </pre> -->
+        <h3 class="hero__subtitle">
+          {{ story.subtitle }}
+        </h3>
+        <h1 class="hero__title">
+          {{ story.title }}
+        </h1>
+        <!-- <p v-html="$md.render(story.description)"></p> -->
+        <div
+          class="hero__description"
+          v-html="richtext(story.description)"
+        ></div>
+        <!-- <div>{{ richtext(story.description) }}</div> -->
+        <!-- <span>{{ richtext('qwerty') }}</span> -->
+
+        <button ref="heroBtn" class="hero__btn hero-cta-btn">
+          <!-- @mouseenter="animateBtnForward" -->
+          <!-- @mouseleave="animateBtnBackward" -->
+          <span class="">{{ story.cta }}</span>
+          <ion-icon class="hero-cta__kart" src="/kart.svg"></ion-icon>
+          <ion-icon class="hero-cta__kart2" src="/kart.svg"></ion-icon>
+        </button>
+
+        <div class="for-flag-img">
+          <img
+            class="flag_img drop-shadow drop-shadow-flag"
+            :src="`${story.flag_img[0].filename}/m/`"
+            alt=""
+          />
+        </div>
+      </div>
+    </div>
+    <div class="right-col">
+      <img
+        class="right-col__img"
+        :src="`${story.hero_bg_img.filename}/m/`"
+        alt=""
+      />
+    </div>
+  </section>
+</template>
+
 <script>
 /* eslint-disable no-unused-vars */
 // eslint-disable-next-line no-unused-vars
@@ -108,53 +155,6 @@ export default {
   },
 };
 </script>
-
-<template>
-  <section v-editable="story" class="hero">
-    <!-- <BaseHeader /> -->
-    <div class="left-col">
-      <div class="container hero__container">
-        <!-- <pre> {{ story }} </pre> -->
-        <h3 class="hero__subtitle">
-          {{ story.subtitle }}
-        </h3>
-        <h1 class="hero__title">
-          {{ story.title }}
-        </h1>
-        <!-- <p v-html="$md.render(story.description)"></p> -->
-        <div
-          class="hero__description"
-          v-html="richtext(story.description)"
-        ></div>
-        <!-- <div>{{ richtext(story.description) }}</div> -->
-        <!-- <span>{{ richtext('qwerty') }}</span> -->
-
-        <button ref="heroBtn" class="hero__btn hero-cta-btn">
-          <!-- @mouseenter="animateBtnForward" -->
-          <!-- @mouseleave="animateBtnBackward" -->
-          <span class="">{{ story.cta }}</span>
-          <ion-icon class="hero-cta__kart" src="/kart.svg"></ion-icon>
-          <ion-icon class="hero-cta__kart2" src="/kart.svg"></ion-icon>
-        </button>
-
-        <div class="for-flag-img">
-          <img
-            class="flag_img drop-shadow drop-shadow-flag"
-            :src="`${story.flag_img[0].filename}/m/`"
-            alt=""
-          />
-        </div>
-      </div>
-    </div>
-    <div class="right-col">
-      <img
-        class="right-col__img"
-        :src="`${story.hero_bg_img.filename}/m/`"
-        alt=""
-      />
-    </div>
-  </section>
-</template>
 
 <style lang="scss" scoped>
 .hero-cta__kart {
@@ -344,12 +344,14 @@ section {
   .for-flag-img {
     display: none;
     --flag-width: 220px;
+    --flag-width-half: calc(var(--flag-width) / 2);
+    --col-gap-minus: calc((var(--col-gap) * -1));
 
     @include mq(lg) {
       display: block;
 
       position: absolute;
-      right: calc((var(--col-gap) * -1) - (var(--flag-width) / 2));
+      right: calc(var(--col-gap-minus) - var(--flag-width-half));
       top: 30%;
       max-width: var(--flag-width);
       z-index: 5;

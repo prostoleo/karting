@@ -1,3 +1,11 @@
+<template>
+  <li v-editable="story" class="sale__item">
+    <img :src="story.icon.filename" alt="" class="sale__item-icon" />
+    <div class="sale__item-content" v-html="richtext(story.text)"></div>
+    <!-- /.sale__item-content -->
+  </li>
+</template>
+
 <script>
 import { useStoryblokBridge } from '@storyblok/nuxt';
 import { richtext } from '~/utils/storyblok/storyblok.js';
@@ -22,14 +30,6 @@ export default {
   },
 };
 </script>
-
-<template>
-  <li v-editable="story" class="sale__item">
-    <img :src="story.icon.filename" alt="" class="sale__item-icon" />
-    <div class="sale__item-content" v-html="richtext(story.text)"></div>
-    <!-- /.sale__item-content -->
-  </li>
-</template>
 
 <style lang="scss" scoped>
 .sale {

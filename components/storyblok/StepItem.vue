@@ -1,3 +1,17 @@
+<template>
+  <div v-editable="story" class="steps__item">
+    <div
+      class="steps__item-color"
+      :style="`background-color: ${story.color}`"
+    ></div>
+    <!-- /.steps__item-color -->
+    <h3 class="steps__item-title">{{ story.title }}</h3>
+    <!-- /.steps__item-title -->
+    <p class="steps__item-subtitle">{{ story.subtitle }}</p>
+    <!-- /.steps__item-subtitle -->
+  </div>
+</template>
+
 <script>
 import { useStoryblokBridge } from '@storyblok/nuxt';
 import { richtext } from '~/utils/storyblok/storyblok.js';
@@ -23,20 +37,6 @@ export default {
 };
 </script>
 
-<template>
-  <div v-editable="story" class="steps__item">
-    <div
-      class="steps__item-color"
-      :style="`background-color: ${story.color}`"
-    ></div>
-    <!-- /.steps__item-color -->
-    <h3 class="steps__item-title">{{ story.title }}</h3>
-    <!-- /.steps__item-title -->
-    <p class="steps__item-subtitle">{{ story.subtitle }}</p>
-    <!-- /.steps__item-subtitle -->
-  </div>
-</template>
-
 <style lang="scss" scoped>
 .steps {
   // .steps__item
@@ -53,46 +53,48 @@ export default {
       'color-round subtitle';
     gap: 5px 15px;
 
-    &:nth-of-type(1) {
-      @include mq(xl) {
-        grid-area: first;
+    @include mq(lg) {
+      &:nth-of-type(1) {
+        @include mq(xl) {
+          grid-area: first;
+        }
       }
-    }
-    &:nth-of-type(2) {
-      @include mq(xl) {
-        grid-area: second;
+      &:nth-of-type(2) {
+        @include mq(xl) {
+          grid-area: second;
+        }
       }
-    }
-    &:nth-of-type(3) {
-      @include mq(xl) {
-        grid-area: third;
+      &:nth-of-type(3) {
+        @include mq(xl) {
+          grid-area: third;
+        }
       }
-    }
-    &:nth-of-type(4) {
-      @include mq(xl) {
-        grid-area: fourth;
+      &:nth-of-type(4) {
+        @include mq(xl) {
+          grid-area: fourth;
+        }
       }
-    }
 
-    &:nth-of-type(2n) {
-      grid-template-columns: 1fr min-content;
-      grid-template-areas:
-        'title color-round'
-        'subtitle color-round';
-      justify-self: flex-end;
-      justify-items: flex-end;
-
-      .steps__item-title {
+      &:nth-of-type(2n) {
+        grid-template-columns: 1fr min-content;
+        grid-template-areas:
+          'title color-round'
+          'subtitle color-round';
         justify-self: flex-end;
-        text-align: right;
-      }
+        justify-items: flex-end;
 
-      .steps__item-subtitle {
-        justify-self: flex-end;
-        text-align: right;
-      }
+        .steps__item-title {
+          justify-self: flex-end;
+          text-align: right;
+        }
 
-      .steps__item-color {
+        .steps__item-subtitle {
+          justify-self: flex-end;
+          text-align: right;
+        }
+
+        .steps__item-color {
+        }
       }
     }
   }

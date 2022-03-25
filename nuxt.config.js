@@ -17,6 +17,11 @@ export default {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     script: [
+      /* {
+        type: 'module',
+        defer: true,
+        src: 'https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js',
+      }, */
       {
         type: 'module',
         defer: true,
@@ -27,17 +32,25 @@ export default {
         defer: true,
         src: 'https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js',
       },
-      // <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
       {
         type: 'module',
-        defer: true,
+        async: true,
         src: 'https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js',
       },
-      {
+
+      /* {
         type: 'module',
         defer: true,
         src: 'https://unpkg.com/@lottiefiles/lottie-interactivity@latest/dist/lottie-interactivity.min.js',
+      }, */
+      /* {
+        type: 'text/partytown',
+        src: 'https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js',
       },
+      {
+        type: 'text/partytown',
+        src: 'https://unpkg.com/@lottiefiles/lottie-interactivity@latest/dist/lottie-interactivity.min.js',
+      }, */
     ],
   },
 
@@ -46,6 +59,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: ['~/plugins/uikit.js'],
+  // * worker for lottie player
+  // '~/plugins/workers.js'
   // '~/plugins/lottie-vue-player.client.js'
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -55,11 +70,11 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
-    'nuxt-windicss',
+    // 'nuxt-windicss',
     [
       '@storyblok/nuxt/module',
       {
-        accessToken: 'ydOEN9F4Nn8zhLWMymAP9Att',
+        accessToken: process.env.STORYBLOK_KEY,
         bridge: true,
         apiOptions: {}, // storyblok-js-client options
         useApiClient: true,
@@ -85,6 +100,10 @@ export default {
     // ['@nuxtjs/markdownit', { html: true, injected: true }],
     // ['nuxt-buefy', { css: true, materialDesignIcons: false }],
   ],
+
+  generate: {
+    fallback: true,
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {

@@ -14,6 +14,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@builder.io/partytown": "^0.5.0",
     "@lottiefiles/vue-lottie-player": "^1.0.5",
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/composition-api": "^0.32.0",
@@ -41,10 +42,10 @@
     "eslint-plugin-nuxt": "^3.1.0",
     "eslint-plugin-vue": "^8.2.0",
     "jest": "^27.4.4",
-    "nuxt-windicss": "^2",
+    "nuxt-windicss": "^2.2.8",
     "prettier": "^2.5.1",
     "sass": "^1.49.9",
-    "sass-loader": "^10.1.1",
+    "sass-loader": "10.1.1",
     "vue-jest": "^3.0.4"
   }
 }

@@ -1,3 +1,19 @@
+<template>
+  <div v-editable="slide" class="content-advantages__card card">
+    <div class="card__icon">
+      <ion-icon
+        :src="`${slide.icon[0].filename}`"
+        alt=""
+        class="card__icon-img"
+        style="color: red"
+      ></ion-icon>
+    </div>
+    <h3 class="card__title">{{ slide.title }}</h3>
+    <div class="card__description" v-html="richtext(slide.description)"></div>
+  </div>
+  <!-- /.content-advantages__card card -->
+</template>
+
 <script>
 import { useStoryblokBridge } from '@storyblok/nuxt';
 import { richtext } from '~/utils/storyblok/storyblok.js';
@@ -22,22 +38,6 @@ export default {
   },
 };
 </script>
-
-<template>
-  <div v-editable="slide" class="content-advantages__card card">
-    <div class="card__icon">
-      <ion-icon
-        :src="`${slide.icon[0].filename}`"
-        alt=""
-        class="card__icon-img"
-        style="color: red"
-      ></ion-icon>
-    </div>
-    <h3 class="card__title">{{ slide.title }}</h3>
-    <div class="card__description" v-html="richtext(slide.description)"></div>
-  </div>
-  <!-- /.content-advantages__card card -->
-</template>
 
 <style lang="scss" scoped>
 .card {

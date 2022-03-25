@@ -1,3 +1,26 @@
+<template>
+  <section v-editable="story" class="faq-section">
+    <div class="container faq-section__container faq-section__content content">
+      <h2 class="content__title">{{ story.title }}</h2>
+      <div class="content__faq faq">
+        <ul uk-accordion="multiple: true" class="faq__list">
+          <template v-for="item in story.kart_items">
+            <component
+              :is="item.component"
+              v-if="item.component"
+              :key="item._uid"
+              :blok="item"
+            />
+          </template>
+        </ul>
+        <div class="faq__icon">
+          <img class="faq__icon-img" :src="story.kart_img.filename" />
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
+
 <script>
 import { useStoryblokBridge } from '@storyblok/nuxt';
 import gsap from 'gsap';
@@ -64,29 +87,6 @@ export default {
   },
 };
 </script>
-
-<template>
-  <section v-editable="story" class="faq-section">
-    <div class="container faq-section__container faq-section__content content">
-      <h2 class="content__title">{{ story.title }}</h2>
-      <div class="content__faq faq">
-        <ul uk-accordion="multiple: true" class="faq__list">
-          <template v-for="item in story.kart_items">
-            <component
-              :is="item.component"
-              v-if="item.component"
-              :key="item._uid"
-              :blok="item"
-            />
-          </template>
-        </ul>
-        <div class="faq__icon">
-          <img class="faq__icon-img" :src="story.kart_img.filename" />
-        </div>
-      </div>
-    </div>
-  </section>
-</template>
 
 <style lang="scss" scoped>
 .faq-section {

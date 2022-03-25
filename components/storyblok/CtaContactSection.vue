@@ -1,26 +1,3 @@
-<script>
-import { useStoryblokBridge } from '@storyblok/nuxt';
-import { richtext } from '~/utils/storyblok/storyblok.js';
-
-export default {
-  props: {
-    blok: {
-      type: Object,
-      required: true,
-    },
-  },
-  data() {
-    return {
-      story: this.blok,
-      richtext,
-    };
-  },
-  mounted() {
-    useStoryblokBridge(this.story._uid, (newStory) => (this.story = newStory));
-  },
-};
-</script>
-
 <template>
   <section v-editable="story" class="cta-section">
     <div class="container cta-section__container">
@@ -70,6 +47,29 @@ export default {
   <!-- /.cta-section -->
 </template>
 
+<script>
+import { useStoryblokBridge } from '@storyblok/nuxt';
+import { richtext } from '~/utils/storyblok/storyblok.js';
+
+export default {
+  props: {
+    blok: {
+      type: Object,
+      required: true,
+    },
+  },
+  data() {
+    return {
+      story: this.blok,
+      richtext,
+    };
+  },
+  mounted() {
+    useStoryblokBridge(this.story._uid, (newStory) => (this.story = newStory));
+  },
+};
+</script>
+
 <style lang="scss" scoped>
 .cta-section {
   background: $gradientMy;
@@ -103,10 +103,11 @@ export default {
 
   &__bg {
     // display: none;
+    --section-pb-minus: calc(var(--section-pb) / -1);
 
     position: absolute;
     // top: 1rem;
-    bottom: calc(var(--section-pb) / -1 + 1rem);
+    bottom: calc(var(--section-pb-minus) + 1rem);
     right: 0;
 
     max-width: 100%;

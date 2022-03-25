@@ -1,3 +1,10 @@
+<template>
+  <a v-editable="story" :href="hrefComp" class="info__item">
+    <ion-icon :src="story.icon.filename" class="info__item-icon"></ion-icon>
+    <span class="info__item-text">{{ story.text }}</span>
+  </a>
+</template>
+
 <script>
 import { useStoryblokBridge } from '@storyblok/nuxt';
 import { richtext } from '~/utils/storyblok/storyblok.js';
@@ -35,13 +42,6 @@ export default {
   },
 };
 </script>
-
-<template>
-  <a v-editable="story" :href="hrefComp" class="info__item">
-    <ion-icon :src="story.icon.filename" class="info__item-icon"></ion-icon>
-    <span class="info__item-text">{{ story.text }}</span>
-  </a>
-</template>
 
 <style lang="scss" scoped>
 .info {

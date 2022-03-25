@@ -1,3 +1,16 @@
+<template>
+  <li v-editable="story" class="faq__item">
+    <a class="uk-accordion-title faq__item-title" href="#">
+      <ion-icon src="/tire.svg"></ion-icon>
+      <h3>{{ story.summary }}</h3>
+    </a>
+    <div
+      class="uk-accordion-content faq__item-content"
+      v-html="richtext(story.details)"
+    ></div>
+  </li>
+</template>
+
 <script>
 import { useStoryblokBridge } from '@storyblok/nuxt';
 import { richtext } from '~/utils/storyblok/storyblok.js';
@@ -20,19 +33,6 @@ export default {
   },
 };
 </script>
-
-<template>
-  <li v-editable="story" class="faq__item">
-    <a class="uk-accordion-title faq__item-title" href="#">
-      <ion-icon src="/tire.svg"></ion-icon>
-      <h3>{{ story.summary }}</h3>
-    </a>
-    <div
-      class="uk-accordion-content faq__item-content"
-      v-html="richtext(story.details)"
-    ></div>
-  </li>
-</template>
 
 <style lang="scss" scoped>
 .faq {
