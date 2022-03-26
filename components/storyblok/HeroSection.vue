@@ -52,6 +52,8 @@ import { useStoryblokBridge, useStoryblokApi } from '@storyblok/nuxt';
 import gsap from 'gsap/all';
 import { richtext } from '~/utils/storyblok/storyblok.js';
 
+// import 
+
 export default {
   props: {
     blok: {
@@ -75,7 +77,7 @@ export default {
 
     //* для анимации кнопки
     const tlButton = gsap.timeline({ paused: true });
-    const heroBtnEl = this.$refs.heroBtn;
+    const heroBtnEl = document.querySelector('.hero-cta-btn');
     // console.log('heroBtnEl: ', heroBtnEl);
 
     tlButton
@@ -152,6 +154,12 @@ export default {
 
       this.tlButton.reverse();
     },
+
+  }
+}
+</script>
+
+    }
   },
 };
 </script>
