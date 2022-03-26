@@ -1,7 +1,8 @@
 <template>
-  <!-- <div v-if="$nuxt.$root.$loading.percent !== 0">
+  <!-- <div v-if="isLoading">
     <nuxt-loader name="fading-circle" background="black" color="#E40D04" />
   </div> -->
+  <!-- v-else -->
   <div class="site relative">
     <BaseHeader></BaseHeader>
     <main>
@@ -91,16 +92,16 @@ export default {
   },
   data() {
     return {
-      isLoading: true,
+      // isLoading: true,
     };
   },
   mounted() {
     // console.log('loading', window.$nuxt.$root.$loading.percent);
-    window.addEventListener('load', () => {
+    /* window.addEventListener('load', () => {
       setTimeout(() => {
         this.isLoading = false;
       }, 1000);
-    });
+    }); */
   },
 };
 </script>
