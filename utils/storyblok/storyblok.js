@@ -1,6 +1,6 @@
-import { useStoryblokApi } from '@storyblok/nuxt';
+// import { useStoryblokApi } from '@storyblok/nuxt';
+import RichTextResolver from 'storyblok-js-client/dist/rich-text-resolver.cjs';
 
 export const richtext = (text) => {
-  const storyblokApi = useStoryblokApi();
-  return storyblokApi.richTextResolver.render(text);
+  return RichTextResolver.render(text);
 };
