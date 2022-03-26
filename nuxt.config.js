@@ -77,7 +77,7 @@ export default {
     [
       '@storyblok/nuxt/module',
       {
-        accessToken: process.env.STORYBLOK_KEY,
+        accessToken: process.env.STORYBLOK_KEY || 'ydOEN9F4Nn8zhLWMymAP9Att',
         bridge: true,
         apiOptions: {}, // storyblok-js-client options
         useApiClient: true,

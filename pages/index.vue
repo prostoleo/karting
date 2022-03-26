@@ -59,6 +59,7 @@ export default {
     // Load the JSON from the API - loadig the home content (index page)
     let stories;
     let response;
+    console.log('context.app.$storyapi: ', context.app.$storyapi);
     try {
       // response = await context.app.$storyapi.get('cdn/stor  ies', {
       response = await context.app.$storyapi.get('cdn/stories', {

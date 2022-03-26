@@ -48,7 +48,7 @@
 <script>
 /* eslint-disable no-unused-vars */
 // eslint-disable-next-line no-unused-vars
-import { useStoryblokBridge, useStoryblokApi } from '@storyblok/nuxt';
+import { useStoryblokBridge } from '@storyblok/nuxt';
 import gsap from 'gsap/all';
 import { richtext } from '~/utils/storyblok/storyblok.js';
 
