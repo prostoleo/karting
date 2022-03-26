@@ -1,3 +1,6 @@
+// eslint-disable-next-line no-unused-vars
+import { dynamicRoutes } from './utils/storyblok/routes';
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
@@ -101,6 +104,8 @@ export default {
 
   generate: {
     fallback: true,
+
+    // routes: dynamicRoutes,
   },
 
   loadingIndicator: {

@@ -20,9 +20,35 @@
 </template>
 
 <script>
-import BaseFooter from '../components/base/BaseFooter.vue';
+import BaseHeader from '../components/base/BaseHeader.vue';
+import HeroSection from '~/components/storyblok/HeroSection.vue';
+const AdvantagesSection = () =>
+  import('../components/storyblok/AdvantagesSection.vue');
+const KartSection = () => import('../components/storyblok/KartSection.vue');
+const CtaContactSection = () =>
+  import('../components/storyblok/CtaContactSection.vue');
+const FaqSection = () => import('../components/storyblok/FaqSection.vue');
+const StepsSection = () => import('../components/storyblok/StepsSection.vue');
+const SalesSection = () => import('../components/storyblok/SalesSection.vue');
+const ContactSection = () =>
+  import('../components/storyblok/ContactSection.vue');
+const BaseFooter = () => import('../components/base/BaseFooter.vue');
+
 export default {
   name: 'IndexPage',
+  components: {
+    BaseHeader,
+    BaseFooter,
+    HeroSection,
+    AdvantagesSection,
+    KartSection,
+    CtaContactSection,
+    FaqSection,
+    StepsSection,
+    ContactSection,
+    SalesSection,
+  },
+
   async asyncData(context) {
     // // This what would we do in real project
     const version =
@@ -71,10 +97,11 @@ export default {
   mounted() {
     // console.log('loading', window.$nuxt.$root.$loading.percent);
     window.addEventListener('load', () => {
-      this.isLoading = false;
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 1000);
     });
   },
-  components: { BaseFooter },
 };
 </script>
 

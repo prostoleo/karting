@@ -29,14 +29,13 @@ import FaqItem from '~/components/storyblok/FaqItem.vue';
 import { richtext } from '~/utils/storyblok/storyblok.js';
 
 export default {
+  components: { FaqItem },
   props: {
     blok: {
       type: Object,
       required: true,
     },
   },
-
-  components: { FaqItem },
 
   data() {
     return {
@@ -60,11 +59,12 @@ export default {
         // start: 'top 40%',
         //* работает
         // end: 'bottom 90%',
-        start: 'top 30%',
+        start: 'top 60%',
         end: 'bottom 80%',
         // end: '+=500',
-        // markers: true,
-        scrub: 0.2,
+        markers: true,
+        // scrub: 0.2,
+        scrub: true,
         // yoyo:
       },
     });

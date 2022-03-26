@@ -72,7 +72,7 @@ export default {
         // start: 'top 40%',
         //* работает
         // end: 'bottom 90%',
-        start: 'top 70%',
+        start: 'top 80%',
         // end: 'bottom 80%',
         // end: '+=500',
         markers: true,

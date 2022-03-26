@@ -124,6 +124,9 @@ export default {};
   }
 }
 .nav {
+  display: flex;
+  justify-content: center;
+
   // .nav__list
 
   &__list {
