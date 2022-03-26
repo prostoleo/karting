@@ -1,20 +1,29 @@
 @font-face {
   font-family: 'Arimo';
-  src: url(./Arimo-Bold.ttf) format('truetype');
+  src: url(./Arimo-Bold.woff2) format('woff2'),
+    url(./Arimo-Bold.woff) format('woff'),
+    url(./Arimo-Bold.ttf) format('truetype');
   font-style: normal;
   font-weight: bold;
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Lato';
-  src: url(./Lato-Regular.ttf) format('truetype');
+  src: url(./Lato-Medium.woff2) format('woff2'),
+    url(./Lato-Medium.woff) format('woff'),
+    url(./Lato-Medium.ttf) format('truetype');
   font-style: normal;
   font-weight: 400;
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Lato';
-  src: url(./Lato-Medium.ttf) format('truetype');
+  src: url(./Lato-Regular.woff2) format('woff2'),
+    url(./Lato-Regular.woff) format('woff'),
+    url(./Lato-Regular.ttf) format('truetype');
   font-style: normal;
   font-weight: 500;
+  font-display: swap;
 }

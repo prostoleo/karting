@@ -28,6 +28,8 @@
     <div class="contact__map">
       <iframe
         src="https://yandex.ru/map-widget/v1/?um=constructor%3A4877ddf58de7e1312e2ae71f27c5288055568326f513e60eba0bc2fdbaec5cd4&amp;source=constructor"
+        title="Мы на карте"
+        loading="lazy"
         width="100%"
         height="500"
         frameborder="0"

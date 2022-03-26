@@ -73,7 +73,12 @@ export default {
         <div class="header__logo">
           <img src="/ForzaKart.svg" alt="логотип ForzaKart" />
         </div>
-        <button ref="menuBurger" class="header__burger" @click="toggleMenu">
+        <button
+          ref="menuBurger"
+          class="header__burger"
+          aria-label="Открыть/закрыть меню"
+          @click="toggleMenu"
+        >
           <span></span>
           <span></span>
         </button>

@@ -31,8 +31,12 @@ export default {
         return `mailto:${this.story.text}`;
       }
 
-      if (this.story.type === 'call') {
+      if (this.story.type === 'phone') {
         return `tel:${this.story.text}`;
+      }
+
+      if (this.story.type === 'address') {
+        return `https://yandex.ru/maps/35/krasnodar/?from=mapframe&ll=39.054265%2C45.034285&mode=usermaps&source=mapframe&um=constructor%3A4877ddf58de7e1312e2ae71f27c5288055568326f513e60eba0bc2fdbaec5cd4&utm_source=mapframe&z=13`;
       }
     },
   },
