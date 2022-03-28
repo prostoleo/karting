@@ -1,7 +1,13 @@
-@use './abstract/index' as *;
-@use './base/index' as *;
-@use './components/index' as *;
-@use './utilities/index' as *;
+// @use './abstract/index' as *;
+// @use './base/index' as *;
+// @use './components/index' as *;
+// @use './utilities/index' as *;
+
+// @import '@/uikit/dist/css/uikit.min.css';
+@import './abstract/index';
+@import './base/index';
+@import './components/index';
+@import './utilities/index';
 
 //* import tire icon;
 // @import '/tire.svg'
@@ -9,7 +15,7 @@
 //todo uikit UI framework
 
 // 1. Your custom variables and variable overwrites.
-$global-color: #fff;
+/* $global-color: #fff;
 $global-emphasis-color: #ffffff;
 $global-link-color: #fff;
 $global-margin: 0;
@@ -33,4 +39,4 @@ $internal-accordion-close-image: '/tire.svg';
 // }
 
 // 4. Import UIkit.
-@import '~uikit/src/scss/uikit-theme.scss';
+@import '~uikit/src/scss/uikit-theme.scss'; */

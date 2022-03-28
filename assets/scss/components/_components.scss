@@ -1,5 +1,7 @@
-@use '../abstract/index' as *;
-@use '../base/index' as *;
+// @use '../abstract/index' as *;
+// @use '../base/index' as *;
+@import '../abstract/index';
+@import '../base/index';
 
 %tpl-section {
   --section-pt: 50px;

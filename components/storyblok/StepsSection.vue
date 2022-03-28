@@ -69,8 +69,9 @@
     <!-- /.container sales__container -->
     <div class="steps-section__photo">
       <img
-        :src="`${story.karts_photo.filename}/m/`"
-        alt=""
+        :src="srcStepsPhoto"
+        :alt="story.karts_photo.alt"
+        loading="lazy"
         class="steps-section__photo-img"
       />
     </div>
@@ -108,6 +109,34 @@ export default {
 
       lottieEl: null,
     };
+  },
+
+  computed: {
+    srcStepsPhoto() {
+      const sectionStepsEl = document.querySelector('section.steps-section');
+      console.log('sectionStepsEl: ', sectionStepsEl);
+
+      if (sectionStepsEl) {
+        let path = null;
+
+        switch (this.$mq) {
+          case 'sm':
+          case '2sm':
+          case 'med':
+          case 'lg':
+            path = `${this.story.karts_photo.filename}/m/${sectionStepsEl.offsetWidth}x0`;
+
+            break;
+
+          default:
+            path = `${this.story.karts_photo.filename}/m/0x${sectionStepsEl.offsetHeight}`;
+            break;
+        }
+        return path;
+      }
+
+      return `${this.story.karts_photo.filename}/m/`;
+    },
   },
 
   mounted() {
@@ -272,8 +301,12 @@ export default {
   // .steps-section__photo
 
   &__photo {
+    max-height: 400px;
+
     @include mq(lg) {
       flex: 0 1 45%;
+
+      max-height: unset;
     }
 
     // .steps-section__photo-img
@@ -281,6 +314,7 @@ export default {
     &-img {
       display: block;
       height: 100%;
+      width: 100%;
 
       object-fit: cover;
       object-position: 30% center;

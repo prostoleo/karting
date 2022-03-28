@@ -3,7 +3,14 @@
     <div class="container footer__container">
       <div class="footer__logo logo-footer">
         <div class="logo-footer__logo">
-          <img src="/ForzaKart.svg" alt="" class="logo-footer__logo-img" />
+          <img
+            loading="lazy"
+            src="/ForzaKart.svg"
+            width="150"
+            height="24"
+            alt="Логотип ForzaKart"
+            class="logo-footer__logo-img"
+          />
         </div>
         <!-- /.logo-footer__logo -->
         <small class="logo-footer__copy">©️ Все права защищены. 2022.</small>
@@ -121,6 +128,8 @@ export default {};
   &__copy {
     font-size: 12px;
     opacity: 0.7;
+
+    color: white;
   }
 }
 .nav {
@@ -151,6 +160,8 @@ export default {};
     padding: 0.5rem 0.75rem;
     font-size: 14px;
     font-weight: 400;
+
+    color: white;
   }
 }
 .btn-footer {

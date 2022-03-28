@@ -1,6 +1,11 @@
 <template>
   <li v-editable="story" class="sale__item">
-    <img :src="story.icon.filename" alt="" class="sale__item-icon" />
+    <img
+      :src="story.icon.filename"
+      :alt="story.icon.alt"
+      loading="lazy"
+      class="sale__item-icon"
+    />
     <div class="sale__item-content" v-html="richtext(story.text)"></div>
     <!-- /.sale__item-content -->
   </li>
@@ -52,6 +57,7 @@ export default {
   // .sale__item-content
 
   &__item-content {
+    color: white;
   }
 }
 </style>

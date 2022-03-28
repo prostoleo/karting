@@ -1,5 +1,5 @@
 <template>
-  <section v-editable="story" class="hero">
+  <section v-editable="story" class="hero" ref="sectionHero">
     <!-- <BaseHeader /> -->
     <div class="left-col">
       <div class="container hero__container">
@@ -22,24 +22,33 @@
           <!-- @mouseenter="animateBtnForward" -->
           <!-- @mouseleave="animateBtnBackward" -->
           <span class="">{{ story.cta }}</span>
-          <ion-icon class="hero-cta__kart" src="/kart.svg"></ion-icon>
-          <ion-icon class="hero-cta__kart2" src="/kart.svg"></ion-icon>
+          <ion-icon
+            class="hero-cta__kart"
+            src="/kart.svg"
+            alt="иконка карта"
+          ></ion-icon>
+          <ion-icon
+            class="hero-cta__kart2"
+            src="/kart.svg"
+            alt="иконка карта"
+          ></ion-icon>
         </button>
 
         <div class="for-flag-img">
           <img
             class="flag_img drop-shadow drop-shadow-flag"
-            :src="`${story.flag_img[0].filename}/m/`"
-            alt=""
+            :src="`${story.flag_img[0].filename}/m/220x0`"
+            :alt="story.flag_img[0].alt"
           />
         </div>
       </div>
     </div>
     <div class="right-col">
+      <!-- :srcset="`${story.hero_bg_img.filename}/m/450x0 450vw, ${story.hero_bg_img.filename}/m/650x0 650vw, ${story.hero_bg_img.filename}/m/0x400 650vw`" -->
       <img
         class="right-col__img"
-        :src="`${story.hero_bg_img.filename}/m/`"
-        alt=""
+        :src="srcHeroBgImg"
+        :alt="story.hero_bg_img.alt"
       />
     </div>
   </section>
@@ -49,10 +58,10 @@
 /* eslint-disable no-unused-vars */
 // eslint-disable-next-line no-unused-vars
 import { useStoryblokBridge } from '@storyblok/nuxt';
-import gsap from 'gsap/all';
+import { gsap } from 'gsap';
 import { richtext } from '~/utils/storyblok/storyblok.js';
 
-// import 
+// import
 
 export default {
   props: {
@@ -71,6 +80,39 @@ export default {
       tlKart2: null,
     };
   },
+
+  computed: {
+    srcHeroBgImg() {
+      const sectionHeroEl = document.querySelector('section.hero');
+
+      // const sectionHeroEl = this.$refs.sectionHero;
+      console.log('sectionHeroEl: ', sectionHeroEl);
+
+      if (sectionHeroEl) {
+        console.log('sectionHeroEl.offsetWidth: ', sectionHeroEl.offsetWidth);
+        console.log('sectionHeroEl.offsetHeight: ', sectionHeroEl.offsetHeight);
+        let path = null;
+
+        switch (this.$mq) {
+          case 'sm':
+          case '2sm':
+          case 'med':
+          case 'lg':
+            path = `${this.story.hero_bg_img.filename}/m/${sectionHeroEl.offsetWidth}x0`;
+
+            break;
+
+          default:
+            path = `${this.story.hero_bg_img.filename}/m/0x${sectionHeroEl.offsetHeight}`;
+            break;
+        }
+        return path;
+      } else {
+        return `${this.story.hero_bg_img.filename}/m/0x500`;
+      }
+    },
+  },
+
   mounted() {
     //* для обновления контента от storyblok
     useStoryblokBridge(this.story._uid, (newStory) => (this.story = newStory));
@@ -78,6 +120,7 @@ export default {
     //* для анимации кнопки
     const tlButton = gsap.timeline({ paused: true });
     const heroBtnEl = document.querySelector('.hero-cta-btn');
+    console.log('heroBtnEl: ', heroBtnEl);
     // console.log('heroBtnEl: ', heroBtnEl);
 
     tlButton
@@ -154,12 +197,6 @@ export default {
 
       this.tlButton.reverse();
     },
-
-  }
-}
-</script>
-
-    }
   },
 };
 </script>
@@ -249,7 +286,8 @@ section {
   }
 
   .right-col {
-    // --max-h: 400px;
+    --max-h: 400px;
+    width: 100%;
 
     max-height: var(--max-h);
     @include mq(lg) {
@@ -341,6 +379,10 @@ section {
 
   .hero__description {
     margin-bottom: 2.5rem;
+
+    p {
+      margin: 0 !important;
+    }
 
     @include mq(2xl) {
       & > * {

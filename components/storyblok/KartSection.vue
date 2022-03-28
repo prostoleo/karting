@@ -3,20 +3,113 @@
     id="karts"
     v-editable="story"
     class="karts"
-    :style="`background-image: url(${story.bg_img.filename}/m/); background-repeat: repeat; background-size: 80px auto; background-blend-mode: screen`"
+    :style="`background-image: url(${story.bg_img.filename}/m/80x0); background-repeat: repeat; background-size: 80px auto; background-blend-mode: screen`"
   >
     <div class="container karts__container">
       <h2 class="karts__title">{{ story.title }}</h2>
       <!-- /.karts__title -->
 
       <div class="karts__content">
+        <div class="glide slider">
+          <div data-glide-el="track" class="glide__track">
+            <!--  -->
+            <!-- uk-child-width-1-4@m  -->
+            <ul class="glide__slides slider__list">
+              <template v-for="slide in story.slides">
+                <li
+                  :key="slide._uid"
+                  class="glide__slide slider__item slide"
+                  tabindex="-1"
+                >
+                  <div class="slide__inner">
+                    <div class="slide__front">
+                      <img
+                        :src="`${slide.kart_img.filename}/m/270x350`"
+                        :alt="slide.kart_img.alt"
+                        width="270"
+                        height="350"
+                        class="slide__front-img"
+                        loading="lazy"
+                      />
+                    </div>
+                    <!-- /.slide__front -->
+                    <div class="slide__back back">
+                      <h3 class="back__title">
+                        {{ slide.title }}
+                      </h3>
+                      <div class="back-row">
+                        <span class="back__name">Тип:</span>
+                        <p class="back__desc">{{ slide.type }}</p>
+                      </div>
+                      <!-- /.slide__back-row -->
+                      <div class="back-row">
+                        <span class="back__name">Резина:</span>
+                        <p class="back__desc">{{ slide.tire }}</p>
+                      </div>
+                      <!-- /.slide__back-row -->
+                      <div class="back-row">
+                        <span class="back__name">Тормоза:</span>
+                        <p class="back__desc">{{ slide.brakes }}</p>
+                      </div>
+                      <!-- /.slide__back-row -->
+                      <div class="back-row">
+                        <span class="back__name">Двигатель:</span>
+                        <p class="back__desc">{{ slide.engine }}</p>
+                      </div>
+                      <!-- /.slide__back-row -->
+                      <div class="back-row">
+                        <span class="back__name">Вес:</span>
+                        <p class="back__desc">{{ slide.weight }}</p>
+                      </div>
+                      <!-- /.slide__back-row -->
+                      <div
+                        v-html="richtext(slide.description)"
+                        class="back-row"
+                      ></div>
+                      <!-- /.slide__back-row -->
+                      <!-- <button class="btn slide__back-btn">Назад</button> -->
+                      <!-- /.btn slide__back-btn -->
+                    </div>
+                    <!-- /.slide__back -->
+                  </div>
+                </li>
+              </template>
+            </ul>
+          </div>
+          <div class="glide__arrows" data-glide-el="controls">
+            <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
+              prev
+            </button>
+            <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
+              next
+            </button>
+          </div>
+          <!-- <div class="glide__bullets" data-glide-el="controls[nav]">
+            <template v-for="(_, index) in story.slides">
+              <button
+                class="glide__bullet"
+                :data-glide-dir="`=${index}`"
+                :key="index"
+              ></button>
+            </template>
+          </div> -->
+        </div>
+      </div>
+      <!-- /.karts__content -->
+    </div>
+    <!-- /.container karts__container -->
+  </section>
+</template>
+
+<script>
+/* <div class="karts__content">
         <div uk-slider>
           <div class="uk-position-relative">
             <div class="uk-slider-container uk-light">
               <!--  -->
               <!-- uk-child-width-1-4@m  -->
               <ul
-                class="uk-child-width-1-2 uk-child-width-1-3@s uk-slider-items"
+                class="uk-child-width-1-1 uk-child-width-1-2@s uk-child-width-1-3@m uk-slider-items"
               >
                 <template v-for="slide in story.slides">
                   <li
@@ -27,9 +120,10 @@
                     <div class="slide__inner">
                       <div class="slide__front">
                         <img
-                          :src="`${slide.kart_img.filename}/m/`"
-                          alt=""
+                          :src="`${slide.kart_img.filename}/m/0x350`"
+                          :alt="slide.kart_img.alt"
                           class="slide__front-img"
+                          loading="lazy"
                         />
                         <!-- <div class="slide__front-footer">
                       <button class="btn slide__front-btn">Подробнее</button>
@@ -87,12 +181,14 @@
                 href="#"
                 uk-slidenav-previous
                 uk-slider-item="previous"
+                aria-label="К предыдущему слайду"
               ></a>
               <a
                 class="uk-position-center-right uk-position-small"
                 href="#"
                 uk-slidenav-next
                 uk-slider-item="next"
+                aria-label="К следующему слайду"
               ></a>
             </div>
 
@@ -102,32 +198,135 @@
                 href="#"
                 uk-slidenav-previous
                 uk-slider-item="previous"
+                aria-label="К предыдущему слайду"
               ></a>
               <a
                 class="uk-position-center-right-out uk-position-small"
                 href="#"
                 uk-slidenav-next
                 uk-slider-item="next"
+                aria-label="К следующему слайду"
               ></a>
             </div>
           </div>
 
           <ul class="uk-slider-nav uk-dotnav uk-flex-center"></ul>
         </div>
-      </div>
-      <!-- /.karts__content -->
-    </div>
-    <!-- /.container karts__container -->
-  </section>
-</template>
+      </div> */
 
-<script>
-/* eslint-disable no-new */
-import { useStoryblokBridge } from '@storyblok/nuxt';
+/* <!-- <div class="karts__content">
+        <div uk-slider>
+          <div class="uk-position-relative">
+            <div class="uk-slider-container uk-light">
+              <!-- uk-child-width-1-4@m  -->
+              <ul
+                class="uk-child-width-expand uk-child-width-1-2@s uk-child-width-1-3@m uk-slider-items"
+              >
+                <template v-for="slide in story.slides">
+                  <li
+                    :key="slide._uid"
+                    class="slider__item slide"
+                    tabindex="-1"
+                  >
+                    <div class="slide__inner">
+                      <div class="slide__front">
+                        <img
+                          :src="`${slide.kart_img.filename}/m/270x350`"
+                          :alt="slide.kart_img.alt"
+                          width="270"
+                          height="350"
+                          class="slide__front-img"
+                          loading="lazy"
+                        />
+                        <!-- <div class="slide__front-footer">
+                      <button class="btn slide__front-btn">Подробнее</button>
+                    </div> -->
+                        <!-- /.slide__front-footer -->
+                      </div>
+                      <!-- /.slide__front -->
+                      <div class="slide__back back">
+                        <h3 class="back__title">
+                          {{ slide.title }}
+                        </h3>
+                        <div class="back-row">
+                          <span class="back__name">Тип:</span>
+                          <p class="back__desc">{{ slide.type }}</p>
+                        </div>
+                        <!-- /.slide__back-row -->
+                        <div class="back-row">
+                          <span class="back__name">Резина:</span>
+                          <p class="back__desc">{{ slide.tire }}</p>
+                        </div>
+                        <!-- /.slide__back-row -->
+                        <div class="back-row">
+                          <span class="back__name">Тормоза:</span>
+                          <p class="back__desc">{{ slide.brakes }}</p>
+                        </div>
+                        <!-- /.slide__back-row -->
+                        <div class="back-row">
+                          <span class="back__name">Двигатель:</span>
+                          <p class="back__desc">{{ slide.engine }}</p>
+                        </div>
+                        <!-- /.slide__back-row -->
+                        <div class="back-row">
+                          <span class="back__name">Вес:</span>
+                          <p class="back__desc">{{ slide.weight }}</p>
+                        </div>
+                        <!-- /.slide__back-row -->
+                        <div
+                          v-html="richtext(slide.description)"
+                          class="back-row"
+                        ></div>
+                        <!-- /.slide__back-row -->
+                        <!-- <button class="btn slide__back-btn">Назад</button> -->
+                        <!-- /.btn slide__back-btn -->
+                      </div>
+                      <!-- /.slide__back -->
+                    </div>
+                  </li>
+                </template>
+              </ul>
+            </div>
 
-// import Glider from 'glider-js/glider';
-// import 'glider-js/glider.min.css';
-import { richtext } from '~/utils/storyblok/storyblok.js';
+            <div class="uk-hidden@s uk-light">
+              <a
+                class="uk-position-center-left uk-position-small"
+                href="#"
+                uk-slidenav-previous
+                uk-slider-item="previous"
+                aria-label="К предыдущему слайду"
+              ></a>
+              <a
+                class="uk-position-center-right uk-position-small"
+                href="#"
+                uk-slidenav-next
+                uk-slider-item="next"
+                aria-label="К следующему слайду"
+              ></a>
+            </div>
+
+            <div class="uk-visible@s">
+              <a
+                class="uk-position-center-left-out uk-position-small"
+                href="#"
+                uk-slidenav-previous
+                uk-slider-item="previous"
+                aria-label="К предыдущему слайду"
+              ></a>
+              <a
+                class="uk-position-center-right-out uk-position-small"
+                href="#"
+                uk-slidenav-next
+                uk-slider-item="next"
+                aria-label="К следующему слайду"
+              ></a>
+            </div>
+          </div>
+
+          <ul class="uk-slider-nav uk-dotnav uk-flex-center"></ul>
+        </div>
+      </div> -->
+      <!-- /.karts__content --> */
 
 /* <div class="glider-contain karts__slider slider">
           <ul class="glider slider__list">
@@ -193,6 +392,19 @@ import { richtext } from '~/utils/storyblok/storyblok.js';
           <button aria-label="Next" class="glider-next">»</button>
           <div role="tablist" class="glider-dots dots"></div>
         </div> */
+// eslint-disable-next-line no-unused-vars
+import Glide, {
+  Controls,
+  Breakpoints,
+  Swipe,
+} from '@glidejs/glide/dist/glide.modular.esm';
+
+/* eslint-disable no-new */
+import { useStoryblokBridge } from '@storyblok/nuxt';
+
+// import Glider from 'glider-js/glider';
+// import 'glider-js/glider.min.css';
+import { richtext } from '~/utils/storyblok/storyblok.js';
 
 export default {
   props: {
@@ -222,79 +434,10 @@ export default {
   mounted() {
     useStoryblokBridge(this.story.id, (newStory) => (this.story = newStory));
 
-    //* slider
-    /* new Glider(document.querySelector('.glider'), {
-      // `auto` allows automatic responsive
-      // width calculations
-      slidesToShow: '3',
-      slidesToScroll: 'auto',
-
-      // should have been named `itemMinWidth`
-      // slides grow to fit the container viewport
-      // ignored unless `slidesToShow` is set to `auto`
-      // itemWidth: undefined,
-
-      // if true, slides wont be resized to fit viewport
-      // requires `itemWidth` to be set
-      // * this may cause fractional slides
-      exactWidth: false,
-
-      // speed aggravator - higher is slower
-      duration: 0.5,
-
-      // dot container element or selector
-      dots: '.dots',
-
-      // arrow container elements or selector
-      arrows: {
-        prev: document.querySelector('.glider-prev'),
-        // may also pass element directly
-        next: document.querySelector('.glider-next'),
-      },
-
-      // allow mouse dragging
-      draggable: true,
-      // how much to scroll with each mouse delta
-      dragVelocity: 3.3,
-
-      // use any custom easing function
-      // compatible with most easing plugins
-      // eslint-disable-next-line object-shorthand
-      easing: function (x, t, b, c, d) {
-        return c * (t /= d) * t + b;
-      },
-
-      // event control
-      scrollPropagate: false,
-      eventPropagate: true,
-
-      // Force centering slide after scroll event
-      scrollLock: true,
-      // how long to wait after scroll event before locking
-      // if too low, it might interrupt normal scrolling
-      scrollLockDelay: 150,
-
-      // Force centering slide after resize event
-      resizeLock: true,
-
-      // Glider.js breakpoints are mobile-first
-      responsive: [
-        {
-          breakpoint: 900,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 1,
-          },
-        },
-        {
-          breakpoint: 575,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 1,
-          },
-        },
-      ],
-    }); */
+    // eslint-disable-next-line no-unused-vars
+    const gl = new Glide('.glide', {
+      perView: 3,
+    }).mount({ Controls, Breakpoints, Swipe });
   },
 };
 </script>
@@ -374,11 +517,14 @@ div.glider-track {
     // gap: 20px;
     // padding: 20px 5px !important;
     // overflow-x: hidden;
+
+    display: flex;
   }
 
   // .slider__item
 
   &__item {
+    width: 100%;
     max-width: 270px;
     margin: 5px 10px;
   }
@@ -504,6 +650,8 @@ div.glider-track {
 
     backface-visibility: hidden;
     background: $redMy-800;
+
+    color: white;
 
     transform: rotateY(180deg);
 

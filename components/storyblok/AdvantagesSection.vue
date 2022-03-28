@@ -20,8 +20,8 @@
         <!-- /.content-advantages__wrapper -->
         <div class="advantages__bg">
           <img
-            :src="`${story.bg_img[0].filename}/m/`"
-            alt=""
+            :src="srcAdvantagesBg"
+            :alt="story.bg_img[0].alt"
             class="advantages__bg-img"
           />
         </div>
@@ -50,6 +50,18 @@ export default {
     };
   },
 
+  computed: {
+    srcAdvantagesBg() {
+      const advantagesSectionEl = this.$refs.advantagesSection;
+      // `${story.bg_img[0].filename}/m/`
+      if (advantagesSectionEl) {
+        return `${this.story.bg_img[0].filename}/m/0x${advantagesSectionEl.offsetHeight}`;
+      }
+
+      return `${this.story.bg_img[0].filename}/m/`;
+    },
+  },
+
   mounted() {
     useStoryblokBridge(this.story._uid, (newStory) => (this.story = newStory));
   },
@@ -75,6 +87,7 @@ export default {
     right: -5vw;
     left: -5vw;
     bottom: 0;
+    top: 0;
 
     z-index: 0;
 

@@ -1,14 +1,10 @@
 *,
 *::after,
 *::before {
-  margin: 0;
-  padding: 0;
-
   box-sizing: border-box;
 }
 
 html {
-  // font-size: 62.5%;
   min-height: 100vh;
   overflow-x: hidden !important;
   scroll-behavior: smooth !important;
@@ -57,7 +53,6 @@ picture {
 
 /* Inherit fonts for inputs and buttons */
 input,
-// button,
 textarea,
 select,
 label {
@@ -68,7 +63,6 @@ button {
   display: inline-block;
   cursor: pointer;
   border: none;
-  // background-color: transparent;
 }
 
 p {

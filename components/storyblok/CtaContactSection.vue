@@ -8,7 +8,7 @@
           <div class="form__inputs">
             <div class="form__row">
               <input id="input-name" type="text" class="form__row-input" />
-              <label for="#input-name" class="form__row-label">Ваше имя</label>
+              <label for="input-name" class="form__row-label">Ваше имя</label>
               <!-- /.form__row-label -->
             </div>
             <!-- /.form__row -->
@@ -17,7 +17,7 @@
                 id="input-phone"
                 type="text"
                 class="form__row-input"
-              /><label for="#input-phone" class="form__row-label"
+              /><label for="input-phone" class="form__row-label"
                 >Ваш телефон</label
               >
               <!-- /.form__row-label -->
@@ -36,7 +36,7 @@
       <div class="cta-section__bg">
         <img
           :src="`${story.kart_image.filename}`"
-          alt=""
+          :alt="story.kart_image.alt"
           class="cta-section__bg-img"
         />
       </div>

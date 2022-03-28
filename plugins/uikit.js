@@ -1,8 +1,9 @@
 import Vue from 'vue';
 
 import UIkit from 'uikit';
+// import 'uikit/dist/js/components/slider.min.js';
 // import Accordion from 'uikit/dist/js/components/'
-import 'uikit/dist/css/uikit-core.min.css';
+// import 'uikit/dist/css/uikit-core.min.css';
 
 // import 'uikit/build/util';
 

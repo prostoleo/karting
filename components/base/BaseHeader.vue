@@ -71,7 +71,12 @@ export default {
     <div class="container">
       <div class="header__content">
         <div class="header__logo">
-          <img src="/ForzaKart.svg" alt="логотип ForzaKart" />
+          <img
+            src="/ForzaKart.svg"
+            width="150"
+            height="24"
+            alt="логотип ForzaKart"
+          />
         </div>
         <button
           ref="menuBurger"
@@ -290,6 +295,7 @@ button.header__burger {
 
     display: block;
     padding: 0.5em var(--pad-x);
+    color: white;
 
     // outline: 1px solid green;
     transform: scale(1) translateX(0);

@@ -1,5 +1,7 @@
-@use '../abstract/colors' as *;
-@use '../abstract/mixins' as *;
+// @use '../abstract/colors' as *;
+// @use '../abstract/mixins' as *;
+@import '../abstract/colors';
+@import '../abstract/mixins';
 
 .container {
   max-width: $maw-container;

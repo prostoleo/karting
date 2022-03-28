@@ -1,6 +1,3 @@
-// eslint-disable-next-line no-unused-vars
-import { dynamicRoutes } from './utils/storyblok/routes';
-
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
@@ -10,7 +7,7 @@ export default {
   head: {
     title: 'karting-krasnodar',
     htmlAttrs: {
-      lang: 'en',
+      lang: 'ru',
     },
     meta: [
       { charset: 'utf-8' },
@@ -23,7 +20,50 @@ export default {
       },
       { name: 'format-detection', content: 'telephone=no' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'preconnect',
+        href: 'https://api.storyblok.com',
+      },
+      {
+        rel: 'preconnect',
+        href: 'https://a.storyblok.com',
+      },
+      {
+        rel: 'preconnect',
+        href: 'https://app.storyblok.com',
+      },
+      /* <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Arimo:wght@700&family=Lato:wght@400;500&display=swap" rel="stylesheet"></link> */
+
+      /* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.13.4/css/uikit.min.css" integrity="sha512-F69u2HnuOWB/48ncdmkVOpdYwQPZmzF5YbOiUBKfbR24zt93bpDurJnXTY8gwBSHmHhsF2wKv84uhwkiwRdk+A==" crossorigin="anonymous" referrerpolicy="no-referrer" /> */
+      /* {
+        rel: 'stylesheet',
+        href: 'https://cdnjs.cloudflare.com/ajax/libs/uikit/3.13.4/css/uikit.min.css',
+        integrity:
+          'sha512-F69u2HnuOWB/48ncdmkVOpdYwQPZmzF5YbOiUBKfbR24zt93bpDurJnXTY8gwBSHmHhsF2wKv84uhwkiwRdk+A==',
+        crossorigin: 'anonymous',
+        referrerpolicy: 'no-referrer',
+      }, */
+      {
+        rel: 'preload',
+        href: './Arimo-Bold.woff2',
+        as: 'font',
+      },
+      {
+        rel: 'preload',
+        href: './Lato-Medium.woff2',
+        as: 'font',
+      },
+      {
+        rel: 'preload',
+        href: './Lato-Regular.woff2',
+        as: 'font',
+      },
+    ],
     script: [
       /* {
         type: 'module',
@@ -40,10 +80,18 @@ export default {
         defer: true,
         src: 'https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js',
       },
+      /* < src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.13.4/js/uikit.min.js" integrity="sha512-o8CK0J43tUy+UMv1pgLI3neZyc8/gH4qqREvpBMb1geAv3bcKnJIdRvxUMGZQK+4gf6qixaK6NiNwW2Esa9BZg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> */
+      /* {
+        src: 'https://cdnjs.cloudflare.com/ajax/libs/uikit/3.13.4/js/uikit.min.js',
+        integrity:
+          'sha512-o8CK0J43tUy+UMv1pgLI3neZyc8/gH4qqREvpBMb1geAv3bcKnJIdRvxUMGZQK+4gf6qixaK6NiNwW2Esa9BZg==',
+        crossorigin: 'anonymous',
+        referrerpolicy: 'no-referrer',
+      }, */
       {
         type: 'module',
         async: true,
-        src: 'https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js',
+        src: 'https://unpkg.com/@lottiefiles/lottie-player@1.5.6/dist/lottie-player.js',
       },
 
       /* {
@@ -66,7 +114,8 @@ export default {
   css: ['~/assets/fonts/fonts.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/uikit.js'],
+  plugins: [],
+  // '~/plugins/uikit.js'
   // * worker for lottie player
   // '~/plugins/workers.js'
   // '~/plugins/lottie-vue-player.client.js'
@@ -103,9 +152,32 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios',
+    // '@nuxtjs/critters',
     '@nuxtjs/style-resources',
+    'nuxt-mq',
   ],
+
+  mq: {
+    defaultBreakpoint: 'sm',
+    breakpoints: {
+      sm: 450,
+      '2sm': 650,
+      med: 768,
+      lg: 950,
+      xl: 1200,
+      '2xl': 1400,
+      '3xl': 1600,
+      '4xl': 1800,
+    },
+  },
+
+  /* critters: {
+    // Options passed directly to critters: https://github.com/GoogleChromeLabs/critters#critters-2
+    config: {
+      // Default: 'media'
+      preload: 'swap',
+    },
+  }, */
 
   generate: {
     fallback: true,
@@ -119,6 +191,10 @@ export default {
     background: 'black',
   },
 
+  server: {
+    host: '0.0.0.0', // default: localhost
+  },
+
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
@@ -127,6 +203,6 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    extractCSS: true,
+    // extractCSS: true,
   },
 };

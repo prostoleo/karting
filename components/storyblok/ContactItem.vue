@@ -1,6 +1,11 @@
 <template>
   <a v-editable="story" :href="hrefComp" class="info__item">
-    <ion-icon :src="story.icon.filename" class="info__item-icon"></ion-icon>
+    <ion-icon
+      :src="story.icon.filename"
+      :alt="story.icon.alt"
+      loading="lazy"
+      class="info__item-icon"
+    ></ion-icon>
     <span class="info__item-text">{{ story.text }}</span>
   </a>
 </template>

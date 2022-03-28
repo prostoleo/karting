@@ -14,7 +14,11 @@
           </template>
         </ul>
         <div class="faq__icon">
-          <img class="faq__icon-img" :src="story.kart_img.filename" />
+          <img
+            class="faq__icon-img"
+            :src="story.kart_img.filename"
+            :alt="story.kart_img.alt"
+          />
         </div>
       </div>
     </div>
@@ -23,8 +27,8 @@
 
 <script>
 import { useStoryblokBridge } from '@storyblok/nuxt';
-import gsap from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import FaqItem from '~/components/storyblok/FaqItem.vue';
 import { richtext } from '~/utils/storyblok/storyblok.js';
 

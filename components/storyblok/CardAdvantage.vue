@@ -3,7 +3,7 @@
     <div class="card__icon">
       <ion-icon
         :src="`${slide.icon[0].filename}`"
-        alt=""
+        :alt="slide.icon[0].alt"
         class="card__icon-img"
         style="color: red"
       ></ion-icon>

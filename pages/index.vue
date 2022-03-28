@@ -22,15 +22,15 @@
 
 <script>
 import BaseHeader from '../components/base/BaseHeader.vue';
-import HeroSection from '~/components/storyblok/HeroSection.vue';
-const AdvantagesSection = () =>
-  import('../components/storyblok/AdvantagesSection.vue');
-const KartSection = () => import('../components/storyblok/KartSection.vue');
-const CtaContactSection = () =>
-  import('../components/storyblok/CtaContactSection.vue');
-const FaqSection = () => import('../components/storyblok/FaqSection.vue');
-const StepsSection = () => import('../components/storyblok/StepsSection.vue');
-const SalesSection = () => import('../components/storyblok/SalesSection.vue');
+import HeroSection from '../components/storyblok/HeroSection.vue';
+import AdvantagesSection from '../components/storyblok/AdvantagesSection.vue';
+// const AdvantagesSection = () =>
+//   import('../components/storyblok/AdvantagesSection.vue');
+import KartSection from '../components/storyblok/KartSection.vue';
+import CtaContactSection from '../components/storyblok/CtaContactSection.vue';
+import FaqSection from '../components/storyblok/FaqSection.vue';
+import StepsSection from '../components/storyblok/StepsSection.vue';
+import SalesSection from '../components/storyblok/SalesSection.vue';
 const ContactSection = () =>
   import('../components/storyblok/ContactSection.vue');
 const BaseFooter = () => import('../components/base/BaseFooter.vue');
