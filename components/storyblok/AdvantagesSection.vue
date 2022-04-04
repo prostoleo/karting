@@ -20,7 +20,7 @@
         <!-- /.content-advantages__wrapper -->
         <div class="advantages__bg">
           <img
-            :src="srcAdvantagesBg"
+            :src="`${story.bg_img[0].filename}/m/500x0`"
             :alt="story.bg_img[0].alt"
             class="advantages__bg-img"
           />
@@ -51,7 +51,7 @@ export default {
   },
 
   computed: {
-    srcAdvantagesBg() {
+    /* srcAdvantagesBg() {
       const advantagesSectionEl = this.$refs.advantagesSection;
       // `${story.bg_img[0].filename}/m/`
       if (advantagesSectionEl) {
@@ -59,7 +59,7 @@ export default {
       }
 
       return `${this.story.bg_img[0].filename}/m/`;
-    },
+    }, */
   },
 
   mounted() {
@@ -86,14 +86,25 @@ export default {
     // top: 0;
     right: -5vw;
     left: -5vw;
-    bottom: 0;
+    // bottom: 0;
     top: 0;
 
     z-index: 0;
 
-    @include mq(xl) {
-      right: -2vw;
-      left: -2vw;
+    /* display: none;
+
+    @include mq(med) {
+      display: block;
+    } */
+
+    @include mq(lg) {
+      max-width: 600px;
+
+      top: unset;
+      left: unset;
+      right: -5vw;
+      // left: -2vw;
+      bottom: 0;
     }
 
     // .advantages__bg-img

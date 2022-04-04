@@ -38,6 +38,24 @@ export default {
       /* <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@700&family=Lato:wght@400;500&display=swap" rel="stylesheet"></link> */
+      {
+        rel: 'preconnect',
+        href: 'https://fonts.gstatic.com',
+        crossorigin: true,
+      },
+      /* { rel: 'preconnect', href: 'https://fonts.googleapis.com' }, */
+      {
+        rel: 'preload',
+        as: 'style',
+        href: 'https://fonts.googleapis.com/css2?family=Arimo:wght@700&family=Lato:wght@400;500&display=swap',
+      },
+
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Arimo:wght@700&family=Lato:wght@400;500&display=swap',
+        media: 'print',
+        onload: "this.media='all'",
+      },
 
       /* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.13.4/css/uikit.min.css" integrity="sha512-F69u2HnuOWB/48ncdmkVOpdYwQPZmzF5YbOiUBKfbR24zt93bpDurJnXTY8gwBSHmHhsF2wKv84uhwkiwRdk+A==" crossorigin="anonymous" referrerpolicy="no-referrer" /> */
       /* {
@@ -48,20 +66,40 @@ export default {
         crossorigin: 'anonymous',
         referrerpolicy: 'no-referrer',
       }, */
-      {
+      /* {
         rel: 'preload',
-        href: './Arimo-Bold.woff2',
+        href: './_nuxt/fonts/Arimo-Bold.woff2',
         as: 'font',
       },
       {
         rel: 'preload',
-        href: './Lato-Medium.woff2',
+        href: './_nuxt/fonts/Lato-Medium.woff2',
         as: 'font',
       },
       {
         rel: 'preload',
-        href: './Lato-Regular.woff2',
+        href: './_nuxt/fonts/Lato-Regular.woff2',
         as: 'font',
+      }, */
+      {
+        rel: 'preload',
+        href: 'https://a.storyblok.com/f/150258/1100x714/01eda8a916/hero-right-bg-min.jpg/m/0x200',
+        as: 'image',
+      },
+      {
+        rel: 'preload',
+        href: 'https://a.storyblok.com/f/150258/1100x714/01eda8a916/hero-right-bg-min.jpg/m/0x300',
+        as: 'image',
+      },
+      {
+        rel: 'preload',
+        href: 'https://a.storyblok.com/f/150258/1100x714/01eda8a916/hero-right-bg-min.jpg/m/0x500',
+        as: 'image',
+      },
+      {
+        rel: 'preload',
+        href: 'https://a.storyblok.com/f/150258/791x571/2ee75e03c1/track-clipart-logo-14-1-min.png/m/600x0',
+        as: 'image',
       },
     ],
     script: [
@@ -111,7 +149,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['~/assets/fonts/fonts.css'],
+  // css: ['~/assets/fonts/fonts.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
@@ -127,7 +165,8 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
-    // 'nuxt-windicss',
+    'nuxt-windicss',
+    'nuxt-compress',
     [
       '@storyblok/nuxt/module',
       {
@@ -155,7 +194,56 @@ export default {
     // '@nuxtjs/critters',
     '@nuxtjs/style-resources',
     'nuxt-mq',
+    'nuxt-precompress',
+    /* [
+      'nuxt-compress',
+      {
+        gzip: {
+          threshold: 8192,
+        },
+        brotli: {
+          threshold: 8192,
+        },
+      },
+    ], */
   ],
+
+  nuxtPrecompress: {
+    enabled: true, // Enable in production
+    report: false, // set true to turn one console messages during module init
+    test: /\.(js|css|html|txt|xml|svg)$/, // files to compress on build
+    // Serving options
+    middleware: {
+      // You can disable middleware if you serve static files using nginx...
+      enabled: true,
+      // Enable if you have .gz or .br files in /static/ folder
+      enabledStatic: true,
+      // Priority of content-encodings, first matched with request Accept-Encoding will me served
+      encodingsPriority: ['br', 'gzip'],
+    },
+
+    // build time compression settings
+    gzip: {
+      // should compress to gzip?
+      enabled: true,
+      // compression config
+      // https://www.npmjs.com/package/compression-webpack-plugin
+      filename: '[path].gz[query]', // middleware will look for this filename
+      threshold: 10240,
+      minRatio: 0.8,
+      compressionOptions: { level: 9 },
+    },
+    brotli: {
+      // should compress to brotli?
+      enabled: true,
+      // compression config
+      // https://www.npmjs.com/package/compression-webpack-plugin
+      filename: '[path].br[query]', // middleware will look for this filename
+      compressionOptions: { level: 11 },
+      threshold: 10240,
+      minRatio: 0.8,
+    },
+  },
 
   mq: {
     defaultBreakpoint: 'sm',

@@ -38,6 +38,7 @@
           :src="`${story.kart_image.filename}`"
           :alt="story.kart_image.alt"
           class="cta-section__bg-img"
+          loading="lazy"
         />
       </div>
       <!-- /.cta-section__bg -->

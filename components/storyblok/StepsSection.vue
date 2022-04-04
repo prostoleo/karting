@@ -85,8 +85,10 @@ import { useStoryblokBridge } from '@storyblok/nuxt';
 
 // import lottierPlayer from '@lottiefiles/lottie-player';
 
-import gsap from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
+// eslint-disable-next-line no-unused-vars
+import { gsap } from 'gsap';
+// eslint-disable-next-line no-unused-vars
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import { richtext } from '~/utils/storyblok/storyblok.js';
 
@@ -319,15 +321,18 @@ export default {
       object-fit: cover;
       object-position: 30% center;
 
-      filter: grayscale(100%);
-      transform: scale(1, 1);
-      transition: transform 150ms ease-in, filter 150ms ease-in 150ms;
+      @include mq(lg) {
+        filter: grayscale(100%);
+        transform: scale(1, 1);
+        transition: transform 150ms ease-in, filter 150ms ease-in 150ms;
 
-      &:hover {
-        filter: grayscale(0);
-        transform: scale(1.075, 1.075);
+        &:hover,
+        &:active {
+          filter: grayscale(0);
+          transform: scale(1.075, 1.075);
 
-        transition: filter 150ms ease-in, transform 150ms ease-in 150ms;
+          transition: filter 150ms ease-in, transform 150ms ease-in 150ms;
+        }
       }
     }
   }

@@ -10,89 +10,107 @@
       <!-- /.karts__title -->
 
       <div class="karts__content">
-        <div class="glide slider">
+        <div class="slider glide">
           <div data-glide-el="track" class="glide__track">
             <!--  -->
-            <!-- uk-child-width-1-4@m  -->
             <ul class="glide__slides slider__list">
-              <template v-for="slide in story.slides">
-                <li
-                  :key="slide._uid"
-                  class="glide__slide slider__item slide"
-                  tabindex="-1"
-                >
-                  <div class="slide__inner">
-                    <div class="slide__front">
-                      <img
-                        :src="`${slide.kart_img.filename}/m/270x350`"
-                        :alt="slide.kart_img.alt"
-                        width="270"
-                        height="350"
-                        class="slide__front-img"
-                        loading="lazy"
-                      />
-                    </div>
-                    <!-- /.slide__front -->
-                    <div class="slide__back back">
-                      <h3 class="back__title">
+              <li
+                v-for="slide in story.slides"
+                :key="slide._uid"
+                class="glide__slide slider__item slide"
+                tabindex="-1"
+              >
+                <div class="slide__inner">
+                  <div class="slide__front">
+                    <img
+                      :src="`${slide.kart_img.filename}/m/0x250`"
+                      :alt="slide.kart_img.alt"
+                      height="250"
+                      class="slide__front-img"
+                      loading="lazy"
+                    />
+                    <div class="slide__front-footer">
+                      <h3 class="slide__front-title">
                         {{ slide.title }}
                       </h3>
-                      <div class="back-row">
-                        <span class="back__name">Тип:</span>
-                        <p class="back__desc">{{ slide.type }}</p>
-                      </div>
-                      <!-- /.slide__back-row -->
-                      <div class="back-row">
-                        <span class="back__name">Резина:</span>
-                        <p class="back__desc">{{ slide.tire }}</p>
-                      </div>
-                      <!-- /.slide__back-row -->
-                      <div class="back-row">
-                        <span class="back__name">Тормоза:</span>
-                        <p class="back__desc">{{ slide.brakes }}</p>
-                      </div>
-                      <!-- /.slide__back-row -->
-                      <div class="back-row">
-                        <span class="back__name">Двигатель:</span>
-                        <p class="back__desc">{{ slide.engine }}</p>
-                      </div>
-                      <!-- /.slide__back-row -->
-                      <div class="back-row">
-                        <span class="back__name">Вес:</span>
-                        <p class="back__desc">{{ slide.weight }}</p>
-                      </div>
-                      <!-- /.slide__back-row -->
-                      <div
-                        v-html="richtext(slide.description)"
-                        class="back-row"
-                      ></div>
-                      <!-- /.slide__back-row -->
-                      <!-- <button class="btn slide__back-btn">Назад</button> -->
-                      <!-- /.btn slide__back-btn -->
                     </div>
-                    <!-- /.slide__back -->
                   </div>
-                </li>
-              </template>
+                  <!-- /.slide__front -->
+                  <div class="slide__back back">
+                    <h3 class="back__title">
+                      {{ slide.title }}
+                    </h3>
+                    <div class="back-row">
+                      <span class="back__name">Тип:</span>
+                      <p class="back__desc">{{ slide.type }}</p>
+                    </div>
+                    <!-- /.slide__back-row -->
+                    <div class="back-row">
+                      <span class="back__name">Резина:</span>
+                      <p class="back__desc">{{ slide.tire }}</p>
+                    </div>
+                    <!-- /.slide__back-row -->
+                    <div class="back-row">
+                      <span class="back__name">Тормоза:</span>
+                      <p class="back__desc">{{ slide.brakes }}</p>
+                    </div>
+                    <!-- /.slide__back-row -->
+                    <div class="back-row">
+                      <span class="back__name">Двигатель:</span>
+                      <p class="back__desc">{{ slide.engine }}</p>
+                    </div>
+                    <!-- /.slide__back-row -->
+                    <div class="back-row">
+                      <span class="back__name">Вес:</span>
+                      <p class="back__desc">{{ slide.weight }}</p>
+                    </div>
+                    <!-- /.slide__back-row -->
+                    <div
+                      v-html="richtext(slide.description)"
+                      class="back-row"
+                    ></div>
+                    <!-- /.slide__back-row -->
+                    <!-- <button class="btn slide__back-btn">Назад</button> -->
+                    <!-- /.btn slide__back-btn -->
+                  </div>
+                  <!-- /.slide__back -->
+                </div>
+              </li>
             </ul>
           </div>
           <div class="glide__arrows" data-glide-el="controls">
-            <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
-              prev
+            <button
+              class="glide__arrow glide__arrow--left"
+              data-glide-dir="<"
+              aria-label="К предыдущему слайду"
+            >
+              <ion-icon
+                :src="story.arrow_img.filename"
+                :alt="story.arrow_img.alt"
+                class="glide__arrow-img"
+              ></ion-icon>
             </button>
-            <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
-              next
+            <button
+              class="glide__arrow glide__arrow--right"
+              data-glide-dir=">"
+              aria-label="К следующему слайду"
+            >
+              <ion-icon
+                :src="story.arrow_img.filename"
+                :alt="story.arrow_img.alt"
+                class="glide__arrow-img"
+              ></ion-icon>
             </button>
           </div>
-          <!-- <div class="glide__bullets" data-glide-el="controls[nav]">
-            <template v-for="(_, index) in story.slides">
-              <button
-                class="glide__bullet"
-                :data-glide-dir="`=${index}`"
-                :key="index"
-              ></button>
-            </template>
-          </div> -->
+          <div class="glide__bullets" data-glide-el="controls[nav]">
+            <button
+              v-for="(_, index) in story.slides"
+              :key="index"
+              class="glide__bullet"
+              :data-glide-dir="`=${index}`"
+              :aria-label="`К слайду номер ${index + 1}`"
+            ></button>
+          </div>
         </div>
       </div>
       <!-- /.karts__content -->
@@ -102,6 +120,7 @@
 </template>
 
 <script>
+/* eslint-disable no-unused-vars */
 /* <div class="karts__content">
         <div uk-slider>
           <div class="uk-position-relative">
@@ -392,11 +411,102 @@
           <button aria-label="Next" class="glider-next">»</button>
           <div role="tablist" class="glider-dots dots"></div>
         </div> */
+
+/* <div class="glide slider">
+          <div data-glide-el="track" class="glide__track">
+            <!--  -->
+            <ul class="glide__slides slider__list">
+              <li
+                v-for="slide in story.slides"
+                :key="slide._uid"
+                class="glide__slide slider__item slide"
+                tabindex="-1"
+              >
+                <div class="slide__inner">
+                  <div class="slide__front">
+                    <img
+                      :src="`${slide.kart_img.filename}/m/270x350`"
+                      :alt="slide.kart_img.alt"
+                      width="270"
+                      height="350"
+                      class="slide__front-img"
+                      loading="lazy"
+                    />
+                  </div>
+                  <!-- /.slide__front -->
+                  <div class="slide__back back">
+                    <h3 class="back__title">
+                      {{ slide.title }}
+                    </h3>
+                    <div class="back-row">
+                      <span class="back__name">Тип:</span>
+                      <p class="back__desc">{{ slide.type }}</p>
+                    </div>
+                    <!-- /.slide__back-row -->
+                    <div class="back-row">
+                      <span class="back__name">Резина:</span>
+                      <p class="back__desc">{{ slide.tire }}</p>
+                    </div>
+                    <!-- /.slide__back-row -->
+                    <div class="back-row">
+                      <span class="back__name">Тормоза:</span>
+                      <p class="back__desc">{{ slide.brakes }}</p>
+                    </div>
+                    <!-- /.slide__back-row -->
+                    <div class="back-row">
+                      <span class="back__name">Двигатель:</span>
+                      <p class="back__desc">{{ slide.engine }}</p>
+                    </div>
+                    <!-- /.slide__back-row -->
+                    <div class="back-row">
+                      <span class="back__name">Вес:</span>
+                      <p class="back__desc">{{ slide.weight }}</p>
+                    </div>
+                    <!-- /.slide__back-row -->
+                    <div
+                      v-html="richtext(slide.description)"
+                      class="back-row"
+                    ></div>
+                    <!-- /.slide__back-row -->
+                    <!-- <button class="btn slide__back-btn">Назад</button> -->
+                    <!-- /.btn slide__back-btn -->
+                  </div>
+                  <!-- /.slide__back -->
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="glide__arrows" data-glide-el="controls">
+            <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
+              <ion-icon
+                :src="slide.arrow_img.filename"
+                :alt="slide.arrow_img.alt"
+                class="glide__arrow-img"
+              ></ion-icon>
+            </button>
+            <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
+              <ion-icon
+                :src="slide.arrow_img.filename"
+                :alt="slide.arrow_img.alt"
+                class="glide__arrow-img"
+              ></ion-icon>
+            </button>
+          </div>
+          <div class="glide__bullets" data-glide-el="controls[nav]">
+            <button
+              v-for="(_, index) in story.slides"
+              :key="index"
+              class="glide__bullet"
+              :data-glide-dir="`=${index}`"
+            ></button>
+          </div>
+        </div> */
+
 // eslint-disable-next-line no-unused-vars
 import Glide, {
-  Controls,
-  Breakpoints,
   Swipe,
+  Breakpoints,
+  Controls,
 } from '@glidejs/glide/dist/glide.modular.esm';
 
 /* eslint-disable no-new */
@@ -434,20 +544,134 @@ export default {
   mounted() {
     useStoryblokBridge(this.story.id, (newStory) => (this.story = newStory));
 
+    console.log('document: ', document);
+    const glideEl = document.querySelector('.glide');
+    console.log('glideEl: ', glideEl);
+
     // eslint-disable-next-line no-unused-vars
-    const gl = new Glide('.glide', {
+    const gl = new Glide(glideEl, {
+      type: 'carousel',
       perView: 3,
+      focusAt: 'center',
+      startAt: 3,
+      // gap: 20,
+
+      breakpoints: {
+        550: {
+          perView: 1,
+        },
+        768: {
+          perView: 2,
+        },
+      },
     }).mount({ Controls, Breakpoints, Swipe });
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.uk-dotnav {
+/* .uk-dotnav {
   margin-top: 25px;
 
   display: flex;
   justify-content: center;
+} */
+
+.glide {
+  position: relative;
+
+  &__track {
+    overflow-x: hidden;
+    display: flex;
+
+    padding: 0 10px;
+  }
+
+  // .glide__slides
+  &__slides {
+  }
+  // .glide__slide
+  &__slide {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  // .glide__arrows
+
+  &__arrows {
+  }
+
+  // .glide__arrow
+
+  &__arrow {
+    --w-arrow: 50px;
+    --p-arrow: 10px;
+    --fz-arrow: calc(var(--w-arrow) - var(--p-arrow));
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--p-arrow);
+
+    position: absolute;
+    top: 100%;
+    left: -5%;
+
+    transform: translate(0%, -50%);
+
+    background: transparent;
+
+    @include mq(med) {
+      top: 50%;
+    }
+
+    // .glide__arrow-img
+
+    &-img {
+      font-size: var(--fz-arrow);
+      color: white;
+    }
+
+    // .glide__arrow--left
+
+    &--left {
+    }
+
+    // .glide__arrow--right
+
+    &--right {
+      left: unset;
+      right: -5%;
+
+      transform: translate(0%, -50%) rotate(180deg);
+    }
+  }
+  --bullet-w: 15px;
+
+  &__bullets {
+    margin-top: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  }
+
+  &__bullet {
+    width: var(--bullet-w);
+    height: var(--bullet-w);
+
+    border-radius: 50%;
+
+    background: white;
+    opacity: 0.5;
+    transition: opacity 0.05s ease-in;
+
+    &--active {
+      opacity: 1;
+      transition: opacity 0.2s ease-in;
+    }
+  }
 }
 
 .slider-arrow {
@@ -504,9 +728,9 @@ export default {
 .container {
 }
 
-div.glider-track {
-  display: flex;
+.glide {
 }
+
 .glider-contain {
 }
 .slider {
@@ -519,14 +743,15 @@ div.glider-track {
     // overflow-x: hidden;
 
     display: flex;
+    gap: 10px;
   }
 
   // .slider__item
 
   &__item {
     width: 100%;
-    max-width: 270px;
-    margin: 5px 10px;
+    // max-width: 270px;
+    // margin: 5px 10px;
   }
 
   .glider-prev,
@@ -558,6 +783,7 @@ div.glider-track {
 .slide {
   background: $redMy-800;
   box-shadow: $shadowMy;
+  margin: 20px 0;
 
   // margin-left: 10px;
   // margin-right: 10px;
@@ -581,8 +807,10 @@ div.glider-track {
   }
 
   &__inner {
-    perspective: 1000px;
+    height: 100%;
+
     position: relative;
+    perspective: 1000px;
     transform-style: preserve-3d;
     transition: transform 600ms ease-in;
   }
@@ -593,6 +821,9 @@ div.glider-track {
     height: 100%;
 
     backface-visibility: hidden;
+
+    display: grid;
+    grid-template-rows: 1fr auto;
   }
 
   // .slide__front-img
@@ -601,18 +832,29 @@ div.glider-track {
     display: block;
 
     width: 100%;
-    height: 350px;
+    height: 100%;
+    // height: 350px;
     object-fit: cover;
   }
 
   // .slide__front-footer
 
   &__front-footer {
-    padding: 1rem;
+    padding: 2.25rem 1rem;
 
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  // .slide__front-title
+
+  &__front-title {
+    font-size: 16px;
+    font-weight: 700;
+
+    color: white;
+
+    text-align: center;
   }
 
   // .slide__front-btn
@@ -654,6 +896,21 @@ div.glider-track {
     color: white;
 
     transform: rotateY(180deg);
+
+    &::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: var(--scroll-bar-bg-color, #fef);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--scroll-bar-color, lightgrey);
+      border-radius: 20px;
+      border: 3px solid var(--scroll-bar-bg-color, gray);
+    }
 
     // .slide__back-list
 

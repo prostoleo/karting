@@ -47,7 +47,17 @@ export default {
     this.tlNav = tlNav;
 
     window.addEventListener('resize', () => {
-      if (window.innerWidth > 950) {
+      // xl: 1200,
+      // '2xl': 1400,
+      // '3xl': 1600,
+      // '4xl': 1800,
+      /* const lgScreenCondition = this.$mq === 'lg';
+      const xlScreenCondition = this.$mq === 'xl';
+      const xl2ScreenCondition = this.$mq === '2xl';
+      const xl3ScreenCondition = this.$mq === '3xl';
+      const xl4ScreenCondition = this.$mq === '4xl'; */
+
+      if (this.$mq === 'lg+') {
         this.tlNav.kill();
       }
     });
@@ -60,6 +70,13 @@ export default {
 
       // about toggle gsap animation - https://greensock.com/forums/topic/26236-toggle-animation/#:~:text=The%20easiest%20way%20to%20toggle,toggle%20the%20reversed()%20state.
       this.tlNav.reversed(!this.tlNav.reversed());
+    },
+
+    closeMenu() {
+      this.$refs.menuBurger.classList.remove('active');
+      this.$refs.overlay.classList.add('hidden');
+
+      this.tlNav.reverse();
     },
   },
 };
@@ -91,23 +108,29 @@ export default {
         <nav class="nav shadow shadow-md shadow-light-100 lg: shadow-none">
           <ul class="nav__list">
             <li class="nav__item">
-              <a href="#advantages" class="nav__link">Преимущества</a>
+              <a href="#advantages" class="nav__link" @click="closeMenu"
+                >Преимущества</a
+              >
             </li>
             <!-- /.nav__item -->
             <li class="nav__item">
-              <a href="#karts" class="nav__link">Карты</a>
+              <a href="#karts" class="nav__link" @click="closeMenu">Карты</a>
             </li>
             <!-- /.nav__item -->
             <li class="nav__item">
-              <a href="#questions" class="nav__link">Вопросы</a>
+              <a href="#questions" class="nav__link" @click="closeMenu"
+                >Вопросы</a
+              >
             </li>
             <!-- /.nav__item -->
             <li class="nav__item">
-              <a href="#contacts" class="nav__link">Контакты</a>
+              <a href="#contacts" class="nav__link" @click="closeMenu"
+                >Контакты</a
+              >
             </li>
             <!-- /.nav__item -->
             <li class="nav__item nav__item--btn">
-              <button class="cta">
+              <button class="cta" @click="closeMenu">
                 <span>Забронировать</span>
               </button>
             </li>

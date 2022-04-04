@@ -133,8 +133,10 @@ export default {};
   }
 }
 .nav {
-  display: flex;
-  justify-content: center;
+  @include mq(2sm) {
+    display: flex;
+    justify-content: center;
+  }
 
   // .nav__list
 
@@ -162,6 +164,10 @@ export default {};
     font-weight: 400;
 
     color: white;
+
+    &:hover {
+      opacity: 0.8;
+    }
   }
 }
 .btn-footer {
@@ -185,6 +191,10 @@ export default {};
     color: white;
 
     border: 1px solid white;
+
+    &:hover {
+      opacity: 0.8;
+    }
   }
 }
 .btn {

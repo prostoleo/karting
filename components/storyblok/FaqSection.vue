@@ -196,6 +196,8 @@ export default {
       font-size: 80px;
       width: 80px;
 
+      color: white;
+
       position: relative;
       z-index: 7;
 

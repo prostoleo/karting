@@ -26,11 +26,13 @@
             class="hero-cta__kart"
             src="/kart.svg"
             alt="иконка карта"
+            loading="lazy"
           ></ion-icon>
           <ion-icon
             class="hero-cta__kart2"
             src="/kart.svg"
             alt="иконка карта"
+            loading="lazy"
           ></ion-icon>
         </button>
 
@@ -39,17 +41,34 @@
             class="flag_img drop-shadow drop-shadow-flag"
             :src="`${story.flag_img[0].filename}/m/220x0`"
             :alt="story.flag_img[0].alt"
+            loading="lazy"
           />
         </div>
       </div>
     </div>
     <div class="right-col">
       <!-- :srcset="`${story.hero_bg_img.filename}/m/450x0 450vw, ${story.hero_bg_img.filename}/m/650x0 650vw, ${story.hero_bg_img.filename}/m/0x400 650vw`" -->
-      <img
-        class="right-col__img"
-        :src="srcHeroBgImg"
-        :alt="story.hero_bg_img.alt"
-      />
+      <mq-layout mq="sm">
+        <img
+          class="right-col__img"
+          :src="`${story.hero_bg_img.filename}/m/0x200`"
+          :alt="story.hero_bg_img.alt"
+        />
+      </mq-layout>
+      <mq-layout :mq="['2sm', 'med']">
+        <img
+          class="right-col__img"
+          :src="`${story.hero_bg_img.filename}/m/0x300`"
+          :alt="story.hero_bg_img.alt"
+        />
+      </mq-layout>
+      <mq-layout mq="lg+" style="height: 100%">
+        <img
+          class="right-col__img"
+          :src="`${story.hero_bg_img.filename}/m/0x500`"
+          :alt="story.hero_bg_img.alt"
+        />
+      </mq-layout>
     </div>
   </section>
 </template>
@@ -82,7 +101,7 @@ export default {
   },
 
   computed: {
-    srcHeroBgImg() {
+    /* srcHeroBgImg() {
       const sectionHeroEl = document.querySelector('section.hero');
 
       // const sectionHeroEl = this.$refs.sectionHero;
@@ -110,7 +129,7 @@ export default {
       } else {
         return `${this.story.hero_bg_img.filename}/m/0x500`;
       }
-    },
+    }, */
   },
 
   mounted() {
@@ -118,6 +137,7 @@ export default {
     useStoryblokBridge(this.story._uid, (newStory) => (this.story = newStory));
 
     //* для анимации кнопки
+
     const tlButton = gsap.timeline({ paused: true });
     const heroBtnEl = document.querySelector('.hero-cta-btn');
     console.log('heroBtnEl: ', heroBtnEl);
@@ -136,47 +156,48 @@ export default {
     this.tlButton = tlButton;
 
     //* для анимации карта
-    // const tlKart = gsap.timeline({ paused: true });
-    const tlKart = gsap.timeline({});
-    const kartIconEl = heroBtnEl.querySelector('.hero-cta__kart');
+    if (this.$mq.match(/med|lg|xl|2xl|3xl|4xl/gm)) {
+      // const tlKart = gsap.timeline({ paused: true });
+      const tlKart = gsap.timeline({});
+      const kartIconEl = heroBtnEl.querySelector('.hero-cta__kart');
 
-    tlKart
-      .set(kartIconEl, {
-        // opacity: 0,
-        x: -100,
-        yPercent: -50,
-        scaleX: -1,
-      })
-      .to(kartIconEl, {
-        x: 410,
-        duration: 1.45,
-        repeat: -1,
-        repeatDelay: 0.55,
-      });
+      tlKart
+        .set(kartIconEl, {
+          // opacity: 0,
+          x: -100,
+          yPercent: -50,
+          scaleX: -1,
+        })
+        .to(kartIconEl, {
+          x: 410,
+          duration: 1.45,
+          repeat: -1,
+          repeatDelay: 0.55,
+        });
 
-    this.tlKart = tlKart;
+      this.tlKart = tlKart;
 
-    //* для анимации карта2
-    // const tlKart2 = gsap.timeline({ paused: true });
-    const tlKart2 = gsap.timeline({});
-    const kartIconEl2 = heroBtnEl.querySelector('.hero-cta__kart2');
+      //* для анимации карта2
+      // const tlKart2 = gsap.timeline({ paused: true });
+      const tlKart2 = gsap.timeline({});
+      const kartIconEl2 = heroBtnEl.querySelector('.hero-cta__kart2');
 
-    tlKart2
-      .set(kartIconEl2, {
-        // opacity: 0,
-        x: 100,
-        yPercent: -50,
-        scaleX: 1,
-      })
-      .to(kartIconEl2, {
-        x: -410,
-        duration: 2.15,
-        repeat: -1,
-        repeatDelay: 0.75,
-      });
+      tlKart2
+        .set(kartIconEl2, {
+          // opacity: 0,
+          x: 100,
+          yPercent: -50,
+          scaleX: 1,
+        })
+        .to(kartIconEl2, {
+          x: -410,
+          duration: 2.15,
+          repeat: -1,
+          repeatDelay: 0.75,
+        });
 
-    this.tlKart2 = tlKart2;
-
+      this.tlKart2 = tlKart2;
+    }
     //* для анимации
   },
   methods: {
@@ -208,6 +229,12 @@ export default {
   left: 0%;
 
   font-size: 2.5rem;
+
+  display: none;
+
+  @include mq(med) {
+    display: block;
+  }
 }
 .hero-cta__kart2 {
   position: absolute;
@@ -216,6 +243,12 @@ export default {
 
   font-size: 2rem;
   opacity: 0.85;
+
+  display: none;
+
+  @include mq(med) {
+    display: block;
+  }
 }
 
 section {
@@ -290,6 +323,13 @@ section {
     width: 100%;
 
     max-height: var(--max-h);
+
+    /* display: none;
+
+    @include mq(med) {
+      display: block;
+    } */
+
     @include mq(lg) {
       flex: 1 0 45%;
       --max-h: 503px;
@@ -448,48 +488,6 @@ section {
       transform: scale(1.075);
       transition: all 150ms ease-in-out;
     }
-
-    &::before,
-    &::after {
-      content: '';
-      position: absolute;
-      left: 0%;
-      bottom: 0%;
-
-      width: 4rem;
-      height: 4px;
-
-      transform-origin: center center;
-
-      background: linear-gradient(to right, #f2709c, #ff9472);
-      z-index: 5;
-      transform: rotate(-65deg);
-
-      display: none;
-
-      // animation: bright-line 1200ms ease-in 150ms infinite forwards;
-    }
-
-    &::after {
-      right: 0%;
-      top: 0%;
-      left: unset;
-      bottom: unset;
-
-      background: linear-gradient(to right, #232526, #414345);
-      transform: rotate(-45deg);
-      animation: none;
-    }
-  }
-}
-
-@keyframes bright-line {
-  from {
-    transform: translate(-1rem, 2rem) rotate(-37deg);
-  }
-
-  to {
-    transform: translate(10rem, -5rem) rotate(-37deg);
   }
 }
 </style>

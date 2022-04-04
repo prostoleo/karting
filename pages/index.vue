@@ -23,6 +23,7 @@
 <script>
 import BaseHeader from '../components/base/BaseHeader.vue';
 import HeroSection from '../components/storyblok/HeroSection.vue';
+
 import AdvantagesSection from '../components/storyblok/AdvantagesSection.vue';
 // const AdvantagesSection = () =>
 //   import('../components/storyblok/AdvantagesSection.vue');
@@ -31,6 +32,7 @@ import CtaContactSection from '../components/storyblok/CtaContactSection.vue';
 import FaqSection from '../components/storyblok/FaqSection.vue';
 import StepsSection from '../components/storyblok/StepsSection.vue';
 import SalesSection from '../components/storyblok/SalesSection.vue';
+import QuizSection from '@/components/storyblok/QuizSection.vue';
 const ContactSection = () =>
   import('../components/storyblok/ContactSection.vue');
 const BaseFooter = () => import('../components/base/BaseFooter.vue');
@@ -41,6 +43,7 @@ export default {
     BaseHeader,
     BaseFooter,
     HeroSection,
+    QuizSection,
     AdvantagesSection,
     KartSection,
     CtaContactSection,
