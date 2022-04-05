@@ -27,7 +27,8 @@
     <!-- /.container contact__container -->
     <div class="contact__map">
       <iframe
-        src="https://yandex.ru/map-widget/v1/?um=constructor%3A4877ddf58de7e1312e2ae71f27c5288055568326f513e60eba0bc2fdbaec5cd4&amp;source=constructor"
+        ref="iframeMap"
+        data-src="https://yandex.ru/map-widget/v1/?um=constructor%3A4877ddf58de7e1312e2ae71f27c5288055568326f513e60eba0bc2fdbaec5cd4&amp;source=constructor"
         title="Мы на карте"
         loading="lazy"
         width="100%"
@@ -59,6 +60,10 @@ export default {
 
   mounted() {
     useStoryblokBridge(this.story._uid, (newStory) => (this.story = newStory));
+
+    const mapEl = this.$refs.iframeMap;
+
+    mapEl.setAttribute('src', mapEl.dataset.src);
   },
 };
 </script>

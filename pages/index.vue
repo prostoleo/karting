@@ -33,6 +33,7 @@ import FaqSection from '../components/storyblok/FaqSection.vue';
 import StepsSection from '../components/storyblok/StepsSection.vue';
 import SalesSection from '../components/storyblok/SalesSection.vue';
 import QuizSection from '@/components/storyblok/QuizSection.vue';
+import BaseLoader from '~/components/base/BaseLoader.vue';
 const ContactSection = () =>
   import('../components/storyblok/ContactSection.vue');
 const BaseFooter = () => import('../components/base/BaseFooter.vue');
@@ -51,6 +52,7 @@ export default {
     StepsSection,
     ContactSection,
     SalesSection,
+    BaseLoader,
   },
 
   async asyncData(context) {
@@ -62,7 +64,7 @@ export default {
     // Load the JSON from the API - loadig the home content (index page)
     let stories;
     let response;
-    console.log('context.app.$storyapi: ', context.app.$storyapi);
+    // console.log('context.app.$storyapi: ', context.app.$storyapi);
     try {
       // response = await context.app.$storyapi.get('cdn/stor  ies', {
       response = await context.app.$storyapi.get('cdn/stories', {
@@ -100,12 +102,18 @@ export default {
     };
   },
   mounted() {
-    // console.log('loading', window.$nuxt.$root.$loading.percent);
-    /* window.addEventListener('load', () => {
-      setTimeout(() => {
-        this.isLoading = false;
-      }, 1000);
-    }); */
+    this.$nextTick(() => {
+      this.$nuxt.$loading.start();
+    });
+
+    //* nuxtReady - https://github.com/nuxt/nuxt.js/issues/1154
+    // eslint-disable-next-line nuxt/no-env-in-hooks
+    if (process.browser) {
+      window.onNuxtReady((app) => {
+        console.log('Nuxt ready!');
+        setTimeout(() => this.$nuxt.$loading.finish(), 1000);
+      });
+    }
   },
 };
 </script>

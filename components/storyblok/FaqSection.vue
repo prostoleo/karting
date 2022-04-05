@@ -153,6 +153,8 @@ export default {
     max-width: var(--max-w);
     width: 100%;
 
+    list-style: none;
+
     @include mq(med) {
       margin: 0 auto 0 0;
     }

@@ -544,9 +544,9 @@ export default {
   mounted() {
     useStoryblokBridge(this.story.id, (newStory) => (this.story = newStory));
 
-    console.log('document: ', document);
+    // console.log('document: ', document);
     const glideEl = document.querySelector('.glide');
-    console.log('glideEl: ', glideEl);
+    // console.log('glideEl: ', glideEl);
 
     // eslint-disable-next-line no-unused-vars
     const gl = new Glide(glideEl, {

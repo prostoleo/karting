@@ -10,15 +10,30 @@
         <!-- /.header__subtitle -->
       </div>
       <!-- /.quiz-section__header header -->
-      <div id="quiz" class="quiz-section__content"></div>
+      <div
+        id="quiz-wrapper"
+        class="quiz-section__content content mt-12 bg-white shadow shadow-lg shadow-dark-50/10 shadow rounded-md min-h-80 overflow-hidden"
+      >
+        <div
+          class="content-sale bg-orange-500 p-5 flex items-center justify-center text-lg"
+        >
+          <span class="text-center"
+            >Скидка <b>10%</b><br />
+            при бронировании онлайн</span
+          >
+        </div>
+        <div class="content-wrapper"></div>
+      </div>
       <div class="quiz-section__kart">
         <!-- <img
           src="https://a.storyblok.com/f/150258/525x349/fb0630f6c4/quiz-kart.png"
           class="quiz-section__kart-img"
         /> -->
         <img
-          :src="story.kart_img.filename"
+          ref="kartImg"
+          :data-src="`${story.kart_img.filename}/m/300x0`"
           :alt="story.kart_img.alt"
+          loading="lazy"
           class="quiz-section__kart-img"
         />
       </div>
@@ -30,6 +45,8 @@
 </template>
 
 <script>
+// import '@/assets/quiz/assets/index.b944bb25';
+// import '@/assets/quiz/assets/vendor.d6682b4f';
 /* <div class="quiz-section__header header">
         <h2 class="header__title">{{ story.title }}</h2>
         <!-- /.header__title -->
@@ -50,6 +67,7 @@
       <!-- /.quiz-section__kart --> */
 
 import { richtext } from '~/utils/storyblok/storyblok';
+// import quiz from '@/assets/quiz/assets/index.b944bb25';
 
 export default {
   props: {
@@ -64,6 +82,12 @@ export default {
       story: this.blok,
       richtext,
     };
+  },
+
+  mounted() {
+    const kartImgEl = this.$refs.kartImg;
+
+    kartImgEl.setAttribute('src', kartImgEl.dataset.src);
   },
 };
 </script>
@@ -121,6 +145,7 @@ export default {
 
   &__subtitle {
     text-align: center;
+    opacity: 0.75;
   }
 }
 </style>

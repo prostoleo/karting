@@ -55,8 +55,9 @@
 
             <lottie-player
               id="lottiePlayer"
+              ref="lottiePlayer"
               class="block-content__lottie"
-              src="https://assets10.lottiefiles.com/packages/lf20_clmd2mj6.json"
+              data-src="https://assets10.lottiefiles.com/packages/lf20_clmd2mj6.json"
               background="transparent"
               speed="0.65"
               style="width: 300px; height: 300px"
@@ -68,12 +69,30 @@
     </div>
     <!-- /.container sales__container -->
     <div class="steps-section__photo">
-      <img
-        :src="srcStepsPhoto"
-        :alt="story.karts_photo.alt"
-        loading="lazy"
-        class="steps-section__photo-img"
-      />
+      <mq-layout mq="sm" style="height: 100%">
+        <img
+          class="steps-section__photo-img"
+          loading="lazy"
+          :src="`${story.karts_photo.filename}/m/0x200`"
+          :alt="story.karts_photo.alt"
+        />
+      </mq-layout>
+      <mq-layout :mq="['2sm', 'med']" style="height: 100%">
+        <img
+          class="steps-section__photo-img"
+          loading="lazy"
+          :src="`${story.karts_photo.filename}/m/0x300`"
+          :alt="story.karts_photo.alt"
+        />
+      </mq-layout>
+      <mq-layout mq="lg+" style="height: 100%">
+        <img
+          class="steps-section__photo-img"
+          loading="lazy"
+          :src="`${story.karts_photo.filename}/m/0x600`"
+          :alt="story.karts_photo.alt"
+        />
+      </mq-layout>
     </div>
     <!-- /.steps-section__photo -->
   </section>
@@ -113,38 +132,14 @@ export default {
     };
   },
 
-  computed: {
-    srcStepsPhoto() {
-      const sectionStepsEl = document.querySelector('section.steps-section');
-      console.log('sectionStepsEl: ', sectionStepsEl);
-
-      if (sectionStepsEl) {
-        let path = null;
-
-        switch (this.$mq) {
-          case 'sm':
-          case '2sm':
-          case 'med':
-          case 'lg':
-            path = `${this.story.karts_photo.filename}/m/${sectionStepsEl.offsetWidth}x0`;
-
-            break;
-
-          default:
-            path = `${this.story.karts_photo.filename}/m/0x${sectionStepsEl.offsetHeight}`;
-            break;
-        }
-        return path;
-      }
-
-      return `${this.story.karts_photo.filename}/m/`;
-    },
-  },
+  computed: {},
 
   mounted() {
     useStoryblokBridge(this.story._uid, (newStory) => (this.story = newStory));
 
     const lottiePlayerEl = document.querySelector('#lottiePlayer');
+
+    lottiePlayerEl.setAttribute('src', lottiePlayerEl.dataset.src);
 
     this.lottieEl = lottiePlayerEl;
 

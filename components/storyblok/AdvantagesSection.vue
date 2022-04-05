@@ -87,7 +87,7 @@ export default {
     right: -5vw;
     left: -5vw;
     // bottom: 0;
-    top: 0;
+    top: calc(var(--section-pt, -50px) * -1);
 
     z-index: 0;
 

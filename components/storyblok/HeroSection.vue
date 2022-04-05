@@ -1,5 +1,5 @@
 <template>
-  <section v-editable="story" class="hero" ref="sectionHero">
+  <section ref="sectionHero" v-editable="story" class="hero">
     <!-- <BaseHeader /> -->
     <div class="left-col">
       <div class="container hero__container">
@@ -140,7 +140,7 @@ export default {
 
     const tlButton = gsap.timeline({ paused: true });
     const heroBtnEl = document.querySelector('.hero-cta-btn');
-    console.log('heroBtnEl: ', heroBtnEl);
+    // console.log('heroBtnEl: ', heroBtnEl);
     // console.log('heroBtnEl: ', heroBtnEl);
 
     tlButton
@@ -252,11 +252,11 @@ export default {
 }
 
 section {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   align-items: flex-start;
 
-  gap: 48px;
+  gap: 48px; */
 
   padding-top: 5rem;
   color: white;
@@ -269,7 +269,7 @@ section {
 
   @include mq(lg) {
     padding-top: 0;
-
+    display: flex;
     flex-direction: row;
     align-items: stretch;
     gap: var(--col-gap);
@@ -324,6 +324,8 @@ section {
 
     max-height: var(--max-h);
 
+    margin-top: 48px;
+
     /* display: none;
 
     @include mq(med) {
@@ -331,6 +333,7 @@ section {
     } */
 
     @include mq(lg) {
+      margin-top: 0;
       flex: 1 0 45%;
       --max-h: 503px;
 

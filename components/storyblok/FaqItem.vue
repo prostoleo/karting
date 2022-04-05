@@ -4,7 +4,10 @@
       <ion-icon src="/tire.svg"></ion-icon>
       <h3>{{ story.summary }}</h3>
     </button>
-    <div v-html="richtext(story.details)" class="panel faq__item-content"></div>
+    <div
+      class="custom-panel faq__item-content"
+      v-html="richtext(story.details)"
+    ></div>
     <!-- <a class="uk-accordion-title faq__item-title" href="#">
       <ion-icon src="/tire.svg"></ion-icon>
       <h3>{{ story.summary }}</h3>
@@ -64,7 +67,7 @@ export default {
         );
         const PaddingInnerCompSt =
           FaqStyles.getPropertyValue('--padding-inner');
-        console.log('PaddingInnerCompSt: ', PaddingInnerCompSt);
+        // console.log('PaddingInnerCompSt: ', PaddingInnerCompSt);
 
         panel.style.maxHeight = `${
           panel.scrollHeight + parseInt(PaddingInnerCompSt) * 2
@@ -78,6 +81,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+/* .panel {
+  p {
+    margin: 0;
+  }
+
+  border-radius: 0;
+  box-shadow: none;
+} */
+
 .faq {
   --padding-inner: 14px;
   --transition-dur: 150ms;
@@ -140,7 +152,7 @@ export default {
       color: $redMy-900;
       font-size: 20px;
       font-weight: 700;
-      margin: 0;
+      margin: 0 !important;
       text-align: left;
 
       @include mq(lg) {

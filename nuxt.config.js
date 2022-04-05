@@ -1,3 +1,7 @@
+// eslint-disable-next-line import/default
+/* import quiz from './assets/quiz/assets/index.b944bb25';
+console.log('quiz: ', quiz); */
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
@@ -131,6 +135,20 @@ export default {
         async: true,
         src: 'https://unpkg.com/@lottiefiles/lottie-player@1.5.6/dist/lottie-player.js',
       },
+      /* {
+        type: 'module',
+        crossorigin: true,
+        src: 
+        
+      }, */
+
+      /* <script
+			type="module"
+			crossorigin
+			src="/quiz/assets/index.c12a0073.js"
+			defer
+		></script>
+		<link rel="modulepreload" href="/quiz/assets/vendor.749cf4e8.js" defer /> */
 
       /* {
         type: 'module',
@@ -152,7 +170,8 @@ export default {
   // css: ['~/assets/fonts/fonts.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: ['~/plugins/buefy.js'],
+  // '~/plugins/quiz.js'
   // '~/plugins/uikit.js'
   // * worker for lottie player
   // '~/plugins/workers.js'
@@ -204,6 +223,13 @@ export default {
         brotli: {
           threshold: 8192,
         },
+      },
+    ], */
+    /* [
+      'nuxt-buefy',
+      {
+        // buefy options
+        materialDesignIcons: false,
       },
     ], */
   ],
@@ -273,11 +299,13 @@ export default {
     // routes: dynamicRoutes,
   },
 
-  loadingIndicator: {
+  loading: '@/components/base/BaseLoader.vue',
+
+  /* loadingIndicator: {
     name: 'fading-circle',
     color: '#E40D04',
     background: 'black',
-  },
+  }, */
 
   server: {
     host: '0.0.0.0', // default: localhost
