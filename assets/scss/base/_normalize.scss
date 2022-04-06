@@ -55,6 +55,10 @@ picture {
   display: block;
 }
 
+img:not([src]):not([srcset]) {
+  visibility: hidden;
+}
+
 /* Inherit fonts for inputs and buttons */
 input,
 // button,

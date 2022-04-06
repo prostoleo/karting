@@ -13,19 +13,31 @@
             />
           </template>
         </ul>
-        <div class="faq__icon">
+        <mq-layout mq="med" class="faq__icon">
           <img
-            class="faq__icon-img"
-            :src="story.kart_img.filename"
+            class="faq__icon-img lazy"
+            loading="lazy"
+            :data-src="`${story.kart_img.filename}/m/80x0`"
+            width="80"
             :alt="story.kart_img.alt"
           />
-        </div>
+        </mq-layout>
+        <mq-layout mq="lg+" class="faq__icon">
+          <img
+            class="faq__icon-img lazy"
+            loading="lazy"
+            :data-src="`${story.kart_img.filename}/m/100x0`"
+            width="100"
+            :alt="story.kart_img.alt"
+          />
+        </mq-layout>
       </div>
     </div>
   </section>
 </template>
 
 <script>
+import LazyLoad from 'vanilla-lazyload';
 import { useStoryblokBridge } from '@storyblok/nuxt';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -49,6 +61,9 @@ export default {
   },
   mounted() {
     useStoryblokBridge(this.story._uid, (newStory) => (this.story = newStory));
+
+    // eslint-disable-next-line no-unused-vars
+    const ll = new LazyLoad({});
 
     //* kart icon animation
     gsap.registerPlugin(ScrollTrigger);
@@ -197,6 +212,7 @@ export default {
       object-fit: contain;
       font-size: 80px;
       width: 80px;
+      aspect-ratio: 20 / 27;
 
       color: white;
 

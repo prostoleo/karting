@@ -30,10 +30,11 @@ import AdvantagesSection from '../components/storyblok/AdvantagesSection.vue';
 import KartSection from '../components/storyblok/KartSection.vue';
 import CtaContactSection from '../components/storyblok/CtaContactSection.vue';
 import FaqSection from '../components/storyblok/FaqSection.vue';
-import StepsSection from '../components/storyblok/StepsSection.vue';
+// import StepsSection from '../components/storyblok/StepsSection.vue';
 import SalesSection from '../components/storyblok/SalesSection.vue';
 import QuizSection from '@/components/storyblok/QuizSection.vue';
 import BaseLoader from '~/components/base/BaseLoader.vue';
+const StepsSection = () => import('../components/storyblok/StepsSection.vue');
 const ContactSection = () =>
   import('../components/storyblok/ContactSection.vue');
 const BaseFooter = () => import('../components/base/BaseFooter.vue');
@@ -102,18 +103,17 @@ export default {
     };
   },
   mounted() {
-    this.$nextTick(() => {
+    /* this.$nextTick(() => {
       this.$nuxt.$loading.start();
-    });
-
+    }); */
     //* nuxtReady - https://github.com/nuxt/nuxt.js/issues/1154
     // eslint-disable-next-line nuxt/no-env-in-hooks
-    if (process.browser) {
+    /* if (process.browser) {
       window.onNuxtReady((app) => {
-        console.log('Nuxt ready!');
-        setTimeout(() => this.$nuxt.$loading.finish(), 1000);
+        // console.log('Nuxt ready!');
+        setTimeout(() => this.$nuxt.$loading.finish(), 100);
       });
-    }
+    } */
   },
 };
 </script>

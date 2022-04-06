@@ -40,6 +40,8 @@
           <img
             class="flag_img drop-shadow drop-shadow-flag"
             :src="`${story.flag_img[0].filename}/m/220x0`"
+            width="220"
+            height="189"
             :alt="story.flag_img[0].alt"
             loading="lazy"
           />
@@ -48,24 +50,50 @@
     </div>
     <div class="right-col">
       <!-- :srcset="`${story.hero_bg_img.filename}/m/450x0 450vw, ${story.hero_bg_img.filename}/m/650x0 650vw, ${story.hero_bg_img.filename}/m/0x400 650vw`" -->
-      <mq-layout mq="sm">
+      <mq-layout :mq="['sm', '2sm', 'med']">
         <img
           class="right-col__img"
-          :src="`${story.hero_bg_img.filename}/m/0x200`"
+          :src="`${story.hero_bg_img.filename}/m/0x400`"
+          height="400"
           :alt="story.hero_bg_img.alt"
         />
       </mq-layout>
-      <mq-layout :mq="['2sm', 'med']">
+      <!-- <mq-layout :mq="['2sm', 'med']">
         <img
           class="right-col__img"
           :src="`${story.hero_bg_img.filename}/m/0x300`"
           :alt="story.hero_bg_img.alt"
         />
-      </mq-layout>
-      <mq-layout mq="lg+" style="height: 100%">
+      </mq-layout> -->
+      <mq-layout mq="lg" style="height: 100%">
         <img
           class="right-col__img"
-          :src="`${story.hero_bg_img.filename}/m/0x500`"
+          :src="`${story.hero_bg_img.filename}/m/0x550`"
+          height="503"
+          :alt="story.hero_bg_img.alt"
+        />
+      </mq-layout>
+      <mq-layout mq="xl" style="height: 100%">
+        <img
+          class="right-col__img"
+          :src="`${story.hero_bg_img.filename}/m/0x550`"
+          height="550"
+          :alt="story.hero_bg_img.alt"
+        />
+      </mq-layout>
+      <mq-layout mq="2xl" style="height: 100%">
+        <img
+          class="right-col__img"
+          :src="`${story.hero_bg_img.filename}/m/0x550`"
+          height="575"
+          :alt="story.hero_bg_img.alt"
+        />
+      </mq-layout>
+      <mq-layout mq="3xl+" style="height: 100%">
+        <img
+          class="right-col__img"
+          :src="`${story.hero_bg_img.filename}/m/0x550`"
+          height="664"
           :alt="story.hero_bg_img.alt"
         />
       </mq-layout>
@@ -369,8 +397,11 @@ section {
     .right-col__img {
       display: block;
       width: 100%;
-      height: 100%;
+      // height: 100%;
+      height: var(--max-h);
       object-fit: cover;
+
+      aspect-ratio: 16 / 9;
 
       transition: all 200ms ease-in;
 

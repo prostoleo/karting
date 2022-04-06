@@ -16,6 +16,7 @@
               ></ion-icon> -->
               <!-- <img :src="story.road_svg.filename" class="steps__svg" /> -->
               <svg
+                v-if="showSvg"
                 id="road-icon"
                 class="steps__svg"
                 width="597"
@@ -41,7 +42,6 @@
                   stroke-linejoin="round"
                 />
               </svg>
-
               <template v-for="step in story.step_items">
                 <component
                   :is="step.component"
@@ -53,15 +53,17 @@
               <!-- /.steps__item -->
             </div>
 
-            <lottie-player
-              id="lottiePlayer"
-              ref="lottiePlayer"
-              class="block-content__lottie"
-              data-src="https://assets10.lottiefiles.com/packages/lf20_clmd2mj6.json"
-              background="transparent"
-              speed="0.65"
-              style="width: 300px; height: 300px"
-            ></lottie-player>
+            <mq-layout mq="lg+" style="height: 100%">
+              <lottie-player
+                id="lottiePlayer"
+                ref="lottiePlayer"
+                class="block-content__lottie lazy"
+                src="https://assets10.lottiefiles.com/packages/lf20_clmd2mj6.json"
+                background="transparent"
+                speed="0.65"
+                style="width: 300px; height: 300px"
+              ></lottie-player>
+            </mq-layout>
           </div>
         </div>
       </div>
@@ -71,25 +73,25 @@
     <div class="steps-section__photo">
       <mq-layout mq="sm" style="height: 100%">
         <img
-          class="steps-section__photo-img"
+          class="steps-section__photo-img lazy"
           loading="lazy"
-          :src="`${story.karts_photo.filename}/m/0x200`"
+          :data-src="`${story.karts_photo.filename}/m/0x200`"
           :alt="story.karts_photo.alt"
         />
       </mq-layout>
       <mq-layout :mq="['2sm', 'med']" style="height: 100%">
         <img
-          class="steps-section__photo-img"
+          class="steps-section__photo-img lazy"
           loading="lazy"
-          :src="`${story.karts_photo.filename}/m/0x300`"
+          :data-src="`${story.karts_photo.filename}/m/0x300`"
           :alt="story.karts_photo.alt"
         />
       </mq-layout>
       <mq-layout mq="lg+" style="height: 100%">
         <img
-          class="steps-section__photo-img"
+          class="steps-section__photo-img lazy"
           loading="lazy"
-          :src="`${story.karts_photo.filename}/m/0x600`"
+          :data-src="`${story.karts_photo.filename}/m/0x600`"
           :alt="story.karts_photo.alt"
         />
       </mq-layout>
@@ -99,10 +101,10 @@
 </template>
 
 <script>
+import LazyLoad from 'vanilla-lazyload';
+
 /* eslint-disable import/default */
 import { useStoryblokBridge } from '@storyblok/nuxt';
-
-// import lottierPlayer from '@lottiefiles/lottie-player';
 
 // eslint-disable-next-line no-unused-vars
 import { gsap } from 'gsap';
@@ -111,10 +113,13 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import { richtext } from '~/utils/storyblok/storyblok.js';
 
+// import lottierPlayer from '@lottiefiles/lottie-player';
+const lottierPlayer = () => import('@lottiefiles/lottie-player');
+
 export default {
-  /* components: {
+  components: {
     lottierPlayer,
-  }, */
+  },
 
   props: {
     blok: {
@@ -132,126 +137,180 @@ export default {
     };
   },
 
-  computed: {},
+  computed: {
+    showSvg() {
+      if (this.$mq.includes('xl')) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+  },
 
   mounted() {
     useStoryblokBridge(this.story._uid, (newStory) => (this.story = newStory));
 
-    const lottiePlayerEl = document.querySelector('#lottiePlayer');
-
-    lottiePlayerEl.setAttribute('src', lottiePlayerEl.dataset.src);
-
-    this.lottieEl = lottiePlayerEl;
-
-    //* animation lottie +
-    gsap.registerPlugin(ScrollTrigger);
-    const StepsSectionEl = document.querySelector('section.steps-section');
-
-    const that = this;
-
-    gsap.timeline({
-      // paused: true,
-      scrollTrigger: {
-        trigger: StepsSectionEl,
-        start: 'top 30%',
-        end: `+=${StepsSectionEl.offsetHeight}`,
-
-        onEnter() {
-          that.lottieEl.play();
-        },
-        onEnterBack() {
-          that.lottieEl.play();
-        },
-
-        onLeave() {
-          that.lottieEl.stop();
-        },
-        onLeaveBack() {
-          that.lottieEl.stop();
-        },
-      },
+    // eslint-disable-next-line no-unused-vars
+    const ll = new LazyLoad({
+      callback_enter: this.callback_enter,
+      callback_exit: this.callback_exit,
+      callback_cancel: this.callback_cancel,
+      callback_loading: this.callback_loading,
+      callback_loaded: this.callback_loaded,
+      callback_error: this.callback_error,
+      callback_finish: this.callback_finish,
     });
 
-    // =================
-    // todo road icon animation
-    const stepsSvgEl = document.querySelector('.steps__svg');
-    // const svgEl = stepsSvgEl.querySelector('.icon-inner');
-    const pathsEls = Array.from(stepsSvgEl.querySelectorAll('path'));
-    // console.log('pathsEls: ', pathsEls);
+    //* lazyload of lottieplayer
+    const lottiePlayerEl = document.querySelector('#lottiePlayer');
 
-    //* target element for Intersection
-    const sectionEl = document.getElementById('steps');
-    // console.log('sectionEl: ', sectionEl);
+    if (lottiePlayerEl) {
+      this.lottieEl = lottiePlayerEl;
 
-    //* получаем длинну каждого path
-    const pathsLength = pathsEls.map((path) => path.getTotalLength());
-    // console.log('pathsLength: ', pathsLength);
+      //* animation lottie +
+      gsap.registerPlugin(ScrollTrigger);
+      const StepsSectionEl = document.querySelector('section.steps-section');
 
-    //* обнуляем длины path
-    function pathToZero() {
-      pathsEls.forEach((pathEl, i) => {
-        pathEl.style.strokeDasharray = pathsLength[i] + ' ' + pathsLength[i];
-        pathEl.style.strokeDashoffset = pathsLength[i];
+      const that = this;
+
+      gsap.timeline({
+        // paused: true,
+        scrollTrigger: {
+          trigger: StepsSectionEl,
+          start: 'top 30%',
+          end: `+=${StepsSectionEl.offsetHeight}`,
+
+          onEnter() {
+            that.lottieEl.play();
+          },
+          onEnterBack() {
+            that.lottieEl.play();
+          },
+
+          onLeave() {
+            that.lottieEl.stop();
+          },
+          onLeaveBack() {
+            that.lottieEl.stop();
+          },
+        },
       });
-    }
 
-    //* функция для получения массива входов
-    function getThresholdArray(min, max, percent) {
-      const arr = [];
+      // =================
+      // todo road icon animation
+      const stepsSvgEl = document.querySelector('.steps__svg');
+      // const svgEl = stepsSvgEl.querySelector('.icon-inner');
+      const pathsEls = Array.from(stepsSvgEl.querySelectorAll('path'));
+      // console.log('pathsEls: ', pathsEls);
 
-      const diff = max - min;
-      const share = percent / 100;
-      const n = Math.round(diff / share);
+      //* target element for Intersection
+      // const sectionEl = document.getElementById('steps');
+      // console.log('sectionEl: ', sectionEl);
 
-      let curNum = min;
+      //* получаем длинну каждого path
+      const pathsLength = pathsEls.map((path) => path.getTotalLength());
+      // console.log('pathsLength: ', pathsLength);
 
-      for (let i = 0; i < n; i++) {
-        arr.push(curNum);
-
-        curNum = parseFloat((curNum + share).toFixed(2));
-        // console.log('curNum: ', curNum);
-
-        //* если превысили максимальное значение - выходим из цикла
-        if (curNum >= max) {
-          break;
-        }
-      }
-
-      return arr;
-    }
-
-    //* intersectionObserver
-    const options = {
-      root: null,
-      rootMargin: '-5%',
-      threshold: getThresholdArray(0.1, 1, 5),
-    };
-
-    const handlerObserver = (entries, observer) => {
-      // console.log('entries: ', entries);
-      // console.log('observer: ', observer);
-
-      // if (entries[0].isIntersecting && entries[0].intersectionRatio > 0.3) {
-      if (entries[0].isIntersecting && entries[0].intersectionRatio > 0) {
+      //* обнуляем длины path
+      function pathToZero() {
         pathsEls.forEach((pathEl, i) => {
-          const drawLength = entries[0].intersectionRatio * pathsLength[i];
-
-          pathEl.style.strokeDashoffset = pathsLength[i] - drawLength;
+          pathEl.style.strokeDasharray = pathsLength[i] + ' ' + pathsLength[i];
+          pathEl.style.strokeDashoffset = pathsLength[i];
         });
-      } else {
-        pathToZero();
       }
-    };
 
-    const observer = new IntersectionObserver(handlerObserver, options);
+      //* функция для получения массива входов
+      function getThresholdArray(min, max, percent) {
+        const arr = [];
 
-    // observer.observe(sectionEl.querySelector('.block-content'));
-    observer.observe(sectionEl.querySelector('#lottiePlayer'));
+        const diff = max - min;
+        const share = percent / 100;
+        const n = Math.round(diff / share);
+
+        let curNum = min;
+
+        for (let i = 0; i < n; i++) {
+          arr.push(curNum);
+
+          curNum = parseFloat((curNum + share).toFixed(2));
+          // console.log('curNum: ', curNum);
+
+          //* если превысили максимальное значение - выходим из цикла
+          if (curNum >= max) {
+            break;
+          }
+        }
+
+        return arr;
+      }
+
+      //* intersectionObserver
+      const options = {
+        root: null,
+        rootMargin: '-5%',
+        threshold: getThresholdArray(0.1, 1, 5),
+      };
+
+      const handlerObserver = (entries, observer) => {
+        // console.log('entries: ', entries);
+        // console.log('observer: ', observer);
+
+        // if (entries[0].isIntersecting && entries[0].intersectionRatio > 0.3) {
+        if (entries[0].isIntersecting && entries[0].intersectionRatio > 0) {
+          pathsEls.forEach((pathEl, i) => {
+            const drawLength = entries[0].intersectionRatio * pathsLength[i];
+
+            pathEl.style.strokeDashoffset = pathsLength[i] - drawLength;
+          });
+        } else {
+          pathToZero();
+        }
+      };
+
+      const observer = new IntersectionObserver(handlerObserver, options);
+
+      // observer.observe(sectionEl.querySelector('.block-content'));
+
+      observer.observe(this.lottieEl);
+    }
   },
 
   methods: {
     playLottie() {
       this.lottieEl.play();
+    },
+
+    logElementEvent(eventName, element) {
+      console.log(
+        Date.now(),
+        eventName,
+        element,
+        element.getAttribute('data-src')
+      );
+    },
+
+    callback_enter(element) {
+      this.logElementEvent('🔑 ENTERED', element);
+    },
+    callback_exit(element) {
+      this.logElementEvent('🚪 EXITED', element);
+    },
+    callback_loading(element) {
+      this.logElementEvent('⌚ LOADING', element);
+    },
+    callback_loaded(element) {
+      this.logElementEvent('👍 LOADED', element);
+    },
+    callback_error(element) {
+      this.logElementEvent('💀 ERROR', element);
+      element.src =
+        'https://via.placeholder.com/440x560/?text=Error+Placeholder';
+    },
+    callback_finish() {
+      this.logElementEvent('✔️ FINISHED', document.documentElement);
+    },
+    callback_cancel(element) {
+      this.logElementEvent('🔥 CANCEL', element);
     },
   },
 };

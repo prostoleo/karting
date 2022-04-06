@@ -4,9 +4,9 @@
       <div class="quiz-section__header header">
         <h2 class="header__title">{{ story.title }}</h2>
         <!-- /.header__title -->
-        <h4 class="header__subtitle">
+        <h3 class="header__subtitle">
           {{ story.subtitle }}
-        </h4>
+        </h3>
         <!-- /.header__subtitle -->
       </div>
       <!-- /.quiz-section__header header -->
@@ -32,9 +32,11 @@
         <img
           ref="kartImg"
           :data-src="`${story.kart_img.filename}/m/300x0`"
+          width="300"
+          height="200"
           :alt="story.kart_img.alt"
           loading="lazy"
-          class="quiz-section__kart-img"
+          class="quiz-section__kart-img lazy"
         />
       </div>
       <!-- :alt="story.img.alt" -->
@@ -45,6 +47,7 @@
 </template>
 
 <script>
+import LazyLoad from 'vanilla-lazyload';
 // import '@/assets/quiz/assets/index.b944bb25';
 // import '@/assets/quiz/assets/vendor.d6682b4f';
 /* <div class="quiz-section__header header">
@@ -85,9 +88,11 @@ export default {
   },
 
   mounted() {
-    const kartImgEl = this.$refs.kartImg;
+    // const kartImgEl = this.$refs.kartImg;
 
-    kartImgEl.setAttribute('src', kartImgEl.dataset.src);
+    //* lazyload
+    // eslint-disable-next-line no-unused-vars
+    const ll = new LazyLoad({});
   },
 };
 </script>

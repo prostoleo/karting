@@ -23,10 +23,10 @@
                 <div class="slide__inner">
                   <div class="slide__front">
                     <img
-                      :src="`${slide.kart_img.filename}/m/0x250`"
+                      :data-src="`${slide.kart_img.filename}/m/0x250`"
                       :alt="slide.kart_img.alt"
                       height="250"
-                      class="slide__front-img"
+                      class="slide__front-img lazy"
                       loading="lazy"
                     />
                     <div class="slide__front-footer">
@@ -501,6 +501,7 @@
             ></button>
           </div>
         </div> */
+import LazyLoad from 'vanilla-lazyload';
 
 // eslint-disable-next-line no-unused-vars
 import Glide, {
@@ -544,6 +545,18 @@ export default {
   mounted() {
     useStoryblokBridge(this.story.id, (newStory) => (this.story = newStory));
 
+    //* lazyload of images
+    // eslint-disable-next-line no-unused-vars
+    const ll = new LazyLoad({
+      callback_enter: this.callback_enter,
+      callback_exit: this.callback_exit,
+      callback_cancel: this.callback_cancel,
+      callback_loading: this.callback_loading,
+      callback_loaded: this.callback_loaded,
+      callback_error: this.callback_error,
+      callback_finish: this.callback_finish,
+    });
+
     // console.log('document: ', document);
     const glideEl = document.querySelector('.glide');
     // console.log('glideEl: ', glideEl);
@@ -565,6 +578,33 @@ export default {
         },
       },
     }).mount({ Controls, Breakpoints, Swipe });
+  },
+
+  logElementEvent(eventName, element) {
+    console.log(Date.now(), eventName, element.getAttribute('data-src'));
+  },
+
+  callback_enter(element) {
+    this.logElementEvent('🔑 ENTERED', element);
+  },
+  callback_exit(element) {
+    this.logElementEvent('🚪 EXITED', element);
+  },
+  callback_loading(element) {
+    this.logElementEvent('⌚ LOADING', element);
+  },
+  callback_loaded(element) {
+    this.logElementEvent('👍 LOADED', element);
+  },
+  callback_error(element) {
+    this.logElementEvent('💀 ERROR', element);
+    element.src = 'https://via.placeholder.com/440x560/?text=Error+Placeholder';
+  },
+  callback_finish() {
+    this.logElementEvent('✔️ FINISHED', document.documentElement);
+  },
+  callback_cancel(element) {
+    this.logElementEvent('🔥 CANCEL', element);
   },
 };
 </script>
@@ -731,8 +771,6 @@ export default {
 .glide {
 }
 
-.glider-contain {
-}
 .slider {
   // .slider__list
 
@@ -752,31 +790,6 @@ export default {
     width: 100%;
     // max-width: 270px;
     // margin: 5px 10px;
-  }
-
-  .glider-prev,
-  .glider-next {
-    color: white;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  .glider-prev {
-  }
-  .glider-next {
-  }
-  div.glider-dot.dots {
-    & > button.glider-dot {
-      background: inherit !important;
-      color: inherit !important;
-      opacity: 0.5 !important;
-
-      &.active {
-        background: inherit !important;
-        color: inherit !important;
-        opacity: 1 !important;
-      }
-    }
   }
 }
 

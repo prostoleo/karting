@@ -85,7 +85,7 @@ export default {
         href: './_nuxt/fonts/Lato-Regular.woff2',
         as: 'font',
       }, */
-      {
+      /* {
         rel: 'preload',
         href: 'https://a.storyblok.com/f/150258/1100x714/01eda8a916/hero-right-bg-min.jpg/m/0x200',
         as: 'image',
@@ -94,10 +94,15 @@ export default {
         rel: 'preload',
         href: 'https://a.storyblok.com/f/150258/1100x714/01eda8a916/hero-right-bg-min.jpg/m/0x300',
         as: 'image',
+      }, */
+      {
+        rel: 'preload',
+        href: 'https://a.storyblok.com/f/150258/1100x714/01eda8a916/hero-right-bg-min.jpg/m/0x400',
+        as: 'image',
       },
       {
         rel: 'preload',
-        href: 'https://a.storyblok.com/f/150258/1100x714/01eda8a916/hero-right-bg-min.jpg/m/0x500',
+        href: 'https://a.storyblok.com/f/150258/1100x714/01eda8a916/hero-right-bg-min.jpg/m/0x550',
         as: 'image',
       },
       {
@@ -130,11 +135,11 @@ export default {
         crossorigin: 'anonymous',
         referrerpolicy: 'no-referrer',
       }, */
-      {
+      /* {
         type: 'module',
-        async: true,
+        defer: true,
         src: 'https://unpkg.com/@lottiefiles/lottie-player@1.5.6/dist/lottie-player.js',
-      },
+      }, */
       /* {
         type: 'module',
         crossorigin: true,
@@ -170,7 +175,7 @@ export default {
   // css: ['~/assets/fonts/fonts.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/buefy.js'],
+  plugins: ['~/plugins/buefy.js', '~/plugins/vanilla-lazyload.js'],
   // '~/plugins/quiz.js'
   // '~/plugins/uikit.js'
   // * worker for lottie player
@@ -319,6 +324,6 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    // extractCSS: true,
+    extractCSS: true,
   },
 };
