@@ -57,7 +57,7 @@
               <lottie-player
                 id="lottiePlayer"
                 ref="lottiePlayer"
-                class="block-content__lottie lazy"
+                class="block-content__lottie"
                 src="https://assets10.lottiefiles.com/packages/lf20_clmd2mj6.json"
                 background="transparent"
                 speed="0.65"
@@ -111,14 +111,15 @@ import { gsap } from 'gsap';
 // eslint-disable-next-line no-unused-vars
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+import LottiePlayer from '@lottiefiles/lottie-player';
 import { richtext } from '~/utils/storyblok/storyblok.js';
 
-// import lottierPlayer from '@lottiefiles/lottie-player';
-const lottierPlayer = () => import('@lottiefiles/lottie-player');
+// const lottierPlayer = () => import('@lottiefiles/lottie-player');
 
 export default {
   components: {
-    lottierPlayer,
+    // LottiePlayer: () => import('@lottiefiles/lottie-player'),
+    LottiePlayer,
   },
 
   props: {
@@ -152,13 +153,13 @@ export default {
 
     // eslint-disable-next-line no-unused-vars
     const ll = new LazyLoad({
-      callback_enter: this.callback_enter,
+      /* callback_enter: this.callback_enter,
       callback_exit: this.callback_exit,
       callback_cancel: this.callback_cancel,
       callback_loading: this.callback_loading,
       callback_loaded: this.callback_loaded,
       callback_error: this.callback_error,
-      callback_finish: this.callback_finish,
+      callback_finish: this.callback_finish, */
     });
 
     //* lazyload of lottieplayer
@@ -178,7 +179,7 @@ export default {
         scrollTrigger: {
           trigger: StepsSectionEl,
           start: 'top 30%',
-          end: `+=${StepsSectionEl.offsetHeight}`,
+          end: `+=${StepsSectionEl.offsetHeight * 1.5}`,
 
           onEnter() {
             that.lottieEl.play();
@@ -276,11 +277,10 @@ export default {
   },
 
   methods: {
-    playLottie() {
-      this.lottieEl.play();
-    },
-
-    logElementEvent(eventName, element) {
+    /* playLottie() {
+      this.lottieEl && this.lottieEl.play();
+    }, */
+    /* logElementEvent(eventName, element) {
       console.log(
         Date.now(),
         eventName,
@@ -311,7 +311,7 @@ export default {
     },
     callback_cancel(element) {
       this.logElementEvent('🔥 CANCEL', element);
-    },
+    }, */
   },
 };
 </script>

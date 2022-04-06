@@ -13,31 +13,21 @@
             />
           </template>
         </ul>
-        <mq-layout mq="med" class="faq__icon">
+
+        <div class="faq__icon">
           <img
-            class="faq__icon-img lazy"
-            loading="lazy"
-            :data-src="`${story.kart_img.filename}/m/80x0`"
-            width="80"
-            :alt="story.kart_img.alt"
-          />
-        </mq-layout>
-        <mq-layout mq="lg+" class="faq__icon">
-          <img
-            class="faq__icon-img lazy"
-            loading="lazy"
-            :data-src="`${story.kart_img.filename}/m/100x0`"
+            class="faq__icon-img"
+            :src="`${story.kart_img.filename}/m/100x0`"
             width="100"
             :alt="story.kart_img.alt"
           />
-        </mq-layout>
+        </div>
       </div>
     </div>
   </section>
 </template>
 
 <script>
-import LazyLoad from 'vanilla-lazyload';
 import { useStoryblokBridge } from '@storyblok/nuxt';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -59,50 +49,33 @@ export default {
       richtext,
     };
   },
+
   mounted() {
     useStoryblokBridge(this.story._uid, (newStory) => (this.story = newStory));
-
-    // eslint-disable-next-line no-unused-vars
-    const ll = new LazyLoad({});
 
     //* kart icon animation
     gsap.registerPlugin(ScrollTrigger);
     const FaqSectionEl = document.querySelector('section.faq-section');
-    const KartIconEl = FaqSectionEl.querySelector('.faq__icon-img');
-    const tlKartIcon = gsap.timeline({
-      // paused: true,
-      scrollTrigger: {
-        trigger: FaqSectionEl,
-        // start: 'top 20%',
-        //* работает
-        // start: 'top 40%',
-        //* работает
-        // end: 'bottom 90%',
-        start: 'top 60%',
-        end: 'bottom 80%',
-        // end: '+=500',
-        markers: true,
-        // scrub: 0.2,
-        scrub: true,
-        // yoyo:
-      },
-    });
-    tlKartIcon.fromTo(
-      KartIconEl,
-      {
-        // yPercent: 200,
-        // y: `-${FaqSectionEl.offsetHeight}`,
-        yPercent: -500,
-        // duration: 3.5,
-        // ease: 'Power1.easeIn()',
-      },
-      {
-        // y: `250`,
-        // y: `${KartIconEl.offsetHeight}`,
-        // y: `${FaqSectionEl.offsetHeight / 2.25}`,
-        yPercent: 320,
-      }
-    );
+    const KartIconEl = FaqSectionEl.querySelector('.faq__icon');
+
+    if (KartIconEl) {
+      const tlKartIcon = gsap.timeline({
+        scrollTrigger: {
+          trigger: FaqSectionEl,
+          start: 'top center',
+          scrub: true,
+        },
+      });
+      tlKartIcon.fromTo(
+        KartIconEl,
+        {
+          yPercent: -550,
+        },
+        {
+          yPercent: 320,
+        }
+      );
+    }
   },
 };
 </script>

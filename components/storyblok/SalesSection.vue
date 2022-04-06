@@ -67,17 +67,10 @@ export default {
       // paused: true,
       scrollTrigger: {
         trigger: SalesSectionEl,
-        // start: 'top 20%',
-        //* работает
-        // start: 'top 40%',
-        //* работает
-        // end: 'bottom 90%',
-        start: 'top 80%',
-        // end: 'bottom 80%',
-        // end: '+=500',
+        start: 'top 40%',
         markers: true,
 
-        toggleActions: 'play play play reset',
+        toggleActions: 'play reverse play reset',
       },
       ease: 'Power3.easeIn',
     });
@@ -94,8 +87,8 @@ export default {
         duration: 0.35,
       }) */
       .to(cubeOrangeEl, {
-        xPercent: -350,
-        yPercent: 350,
+        xPercent: -355,
+        yPercent: 355,
         duration: 0.55,
       })
       .to(

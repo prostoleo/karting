@@ -548,13 +548,13 @@ export default {
     //* lazyload of images
     // eslint-disable-next-line no-unused-vars
     const ll = new LazyLoad({
-      callback_enter: this.callback_enter,
+      /* callback_enter: this.callback_enter,
       callback_exit: this.callback_exit,
       callback_cancel: this.callback_cancel,
       callback_loading: this.callback_loading,
       callback_loaded: this.callback_loaded,
       callback_error: this.callback_error,
-      callback_finish: this.callback_finish,
+      callback_finish: this.callback_finish, */
     });
 
     // console.log('document: ', document);
@@ -580,7 +580,7 @@ export default {
     }).mount({ Controls, Breakpoints, Swipe });
   },
 
-  logElementEvent(eventName, element) {
+  /* logElementEvent(eventName, element) {
     console.log(Date.now(), eventName, element.getAttribute('data-src'));
   },
 
@@ -605,7 +605,7 @@ export default {
   },
   callback_cancel(element) {
     this.logElementEvent('🔥 CANCEL', element);
-  },
+  }, */
 };
 </script>
 
