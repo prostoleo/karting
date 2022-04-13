@@ -60,6 +60,7 @@
 
 <script>
 import LazyLoad from 'vanilla-lazyload';
+import maskPhone from '@/assets/form/mask-phone.js';
 // import { mapGetters } from 'vuex';
 // import '@/assets/quiz/assets/index.b944bb25';
 // import '@/assets/quiz/assets/vendor.d6682b4f';
@@ -82,8 +83,8 @@ import LazyLoad from 'vanilla-lazyload';
       </div>
       <!-- /.quiz-section__kart --> */
 
-import CustomProgress from '../quiz/CustomProgress.vue';
-import QuizWrapper from '../quiz/QuizWrapper.vue';
+import CustomProgress from '@/components/quiz/CustomProgress.vue';
+import QuizWrapper from '@/components/quiz/QuizWrapper.vue';
 import { richtext } from '~/utils/storyblok/storyblok';
 // import quiz from '@/assets/quiz/assets/index.b944bb25';
 
@@ -111,6 +112,9 @@ export default {
   },
 
   mounted() {
+    //* для маски телефона
+    maskPhone();
+
     // const kartImgEl = this.$refs.kartImg;
     //* lazyload
     // eslint-disable-next-line no-unused-vars

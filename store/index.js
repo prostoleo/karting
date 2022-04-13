@@ -181,9 +181,6 @@ export const mutations = {
   incrementActiveIndex(state) {
     if (getters.getKartsOptions !== getters.getActiveIndex) state.activeIndex++;
   },
-  decreaseActiveIndex(state) {
-    state.activeIndex--;
-  },
 
   changeChosenOptionOnActiveIndex(state, data) {
     console.log('data: ', data);
@@ -196,27 +193,6 @@ export const mutations = {
       return;
     }
     state.data[state.activeIndex].chosenOption = data;
-  },
-  resetChosenOptionOnActiveIndex(state) {
-    // console.log('data: ', data);
-    const chosenOption = state.data[state.activeIndex].chosenOption;
-    console.log('chosenOption: ', chosenOption);
-
-    if (Array.isArray(chosenOption)) {
-      state.data[state.activeIndex].chosenOption = chosenOption.filter(
-        (opt, i) => i !== state.activeIndex - 1
-      );
-
-      return;
-    }
-
-    if (typeof chosenOption === 'string') {
-      state.data[state.activeIndex].chosenOption = '';
-    }
-
-    if (typeof chosenOption.getMonth === 'function') {
-      state.data[state.activeIndex].chosenOption = '';
-    }
   },
 
   setKartsOptions(state, info) {

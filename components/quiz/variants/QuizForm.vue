@@ -41,6 +41,7 @@
 </template>
 
 <script>
+import maskPhone from '@/assets/form/mask-phone.js';
 // eslint-disable-next-line no-unused-vars
 import { SendQuiz } from '@/assets/sendMail/sendMail';
 
@@ -90,6 +91,11 @@ export default {
       return isError;
     },
   },
+
+  mounted() {
+    maskPhone();
+  },
+
   methods: {
     validateInput(type, $event) {
       if (type === 'name') {
@@ -231,7 +237,7 @@ export default {
 
   &__inputs {
     display: grid;
-    gap: 1.5rem;
+    gap: 2.25rem;
   }
 
   // .form__row
@@ -241,6 +247,8 @@ export default {
 
     width: 100%;
   }
+
+  --clr-input: mix($greyMy, $blackMy, 50%);
 
   // .form__row-input
 
@@ -283,7 +291,7 @@ export default {
 
     transform: translate(0, calc(var(--font-size) / -2));
 
-    color: $greyMy;
+    color: var(--clr-input);
     opacity: 0.8;
 
     pointer-events: none;

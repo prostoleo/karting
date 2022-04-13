@@ -94,7 +94,7 @@
 
 import { useStoryblokBridge } from '@storyblok/nuxt';
 import { richtext } from '~/utils/storyblok/storyblok.js';
-import maskPhone from '@/assets/form/mask-phone.js';
+
 import { SendMail } from '@/assets/sendMail/sendMail';
 
 // const inputsArr = ['name', 'phone'];
@@ -154,8 +154,6 @@ export default {
   },
   mounted() {
     useStoryblokBridge(this.story._uid, (newStory) => (this.story = newStory));
-    //* для маски телефона
-    maskPhone();
   },
   methods: {
     validateInput(type, $event) {

@@ -17,17 +17,17 @@
 </template>
 
 <script>
-import BaseHeader from '../components/base/BaseHeader.vue';
-import HeroSection from '../components/storyblok/HeroSection.vue';
+import BaseHeader from '@/components/base/BaseHeader.vue';
+import HeroSection from '@/components/storyblok/HeroSection.vue';
 
-import AdvantagesSection from '../components/storyblok/AdvantagesSection.vue';
+import AdvantagesSection from '@/components/storyblok/AdvantagesSection.vue';
 // const AdvantagesSection = () =>
 //   import('../components/storyblok/AdvantagesSection.vue');
-import KartSection from '../components/storyblok/KartSection.vue';
-import CtaContactSection from '../components/storyblok/CtaContactSection.vue';
-import FaqSection from '../components/storyblok/FaqSection.vue';
+import KartSection from '@/components/storyblok/KartSection.vue';
+import CtaContactSection from '@/components/storyblok/CtaContactSection.vue';
+import FaqSection from '@/components/storyblok/FaqSection.vue';
 // import StepsSection from '../components/storyblok/StepsSection.vue';
-import SalesSection from '../components/storyblok/SalesSection.vue';
+import SalesSection from '@/components/storyblok/SalesSection.vue';
 // import QuizSection from '@/components/storyblok/QuizSection.vue';
 import BaseLoader from '~/components/base/BaseLoader.vue';
 const QuizSection = () => import('../components/storyblok/QuizSection.vue');
@@ -164,6 +164,7 @@ export default {
   },
   mounted() {
     this.$store.commit('setKartsOptions', this.passingKarts);
+
     /* this.$nextTick(() => {
       // this.$nuxt.$loading.start();
       // console.log('this.$buefy: ', this.$buefy);

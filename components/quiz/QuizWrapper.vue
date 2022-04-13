@@ -19,12 +19,6 @@
     </div>
 
     <div class="mt-5 mx-auto w-max">
-      <button
-        class="mr-4 border border-solid px-[1em] py-[0.5em] border-red-500 text-red-500 text-lg"
-        @click="toPrevQuestion"
-      >
-        К предыдущему
-      </button>
       <QuizNextBtn class="" @btn-click="toNextQuestion">
         Cледующий вопрос
       </QuizNextBtn>
@@ -63,11 +57,6 @@ export default {
   },
 
   methods: {
-    toPrevQuestion() {
-      this.$store.commit('resetChosenOptionOnActiveIndex');
-      this.$store.commit('decreaseActiveIndex');
-    },
-
     toNextQuestion() {
       // console.log('zzz');
       if (!this.getCurDataOption) {
