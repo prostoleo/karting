@@ -1,0 +1,13 @@
+@import '../abstract/index';
+
+$datepicker-background-color: lighten($greyMy, 50%);
+$datepicker-radius: 20px;
+$datepicker-shadow: 3px 3px 5px rgba(33, 33, 33, 0.15);
+$datepicker-header-color: hsl(0, 0%, 27%);
+$datepicker-today-border: solid 1px rgba($orangeMy, 0.55);
+$datepicker-item-color: darken($orangeMy, 20%);
+$datepicker-item-disabled-color: hsl(0, 2%, 75%);
+$datepicker-item-hover-color: white;
+$datepicker-item-hover-background-color: lighten($orangeMy, 20%);
+$datepicker-item-selected-color: white;
+$datepicker-item-selected-background-color: $orangeMy;

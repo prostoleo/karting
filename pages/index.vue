@@ -1,12 +1,7 @@
 <template>
-  <!-- <div v-if="isLoading">
-    <nuxt-loader name="fading-circle" background="black" color="#E40D04" />
-  </div> -->
-  <!-- v-else -->
   <div class="site relative">
     <BaseHeader></BaseHeader>
     <main>
-      <!-- <pre>{{ content }}</pre> -->
       <template v-for="story in stories">
         <component
           :is="story.content.component"
@@ -14,6 +9,7 @@
           :key="story.content.uuid"
           :blok="story.content"
         />
+        <!-- :karts="isPassKarts(story)" -->
       </template>
     </main>
     <BaseFooter></BaseFooter>
@@ -32,12 +28,44 @@ import CtaContactSection from '../components/storyblok/CtaContactSection.vue';
 import FaqSection from '../components/storyblok/FaqSection.vue';
 // import StepsSection from '../components/storyblok/StepsSection.vue';
 import SalesSection from '../components/storyblok/SalesSection.vue';
-import QuizSection from '@/components/storyblok/QuizSection.vue';
+// import QuizSection from '@/components/storyblok/QuizSection.vue';
 import BaseLoader from '~/components/base/BaseLoader.vue';
+const QuizSection = () => import('../components/storyblok/QuizSection.vue');
 const StepsSection = () => import('../components/storyblok/StepsSection.vue');
 const ContactSection = () =>
   import('../components/storyblok/ContactSection.vue');
 const BaseFooter = () => import('../components/base/BaseFooter.vue');
+
+// eslint-disable-next-line no-unused-vars
+const customIconConfig = {
+  customIconPacks: {
+    ionicons: {
+      sizes: {
+        default: 'is-size-5',
+        'is-small': '',
+        'is-medium': 'is-size-3',
+        'is-large': 'is-size-1',
+      },
+      iconPrefix: 'ion-md-',
+      internalIcons: {
+        check: 'checkmark',
+        information: 'information',
+        'check-circle': 'checkmark-circle-outline',
+        alert: 'alert',
+        'alert-circle': 'alert',
+        'arrow-up': 'arrow-up',
+        'chevron-right': 'arrow-forward',
+        'chevron-left': 'arrow-back',
+        'chevron-down': 'arrow-down',
+        eye: 'eye',
+        'eye-off': 'eye-off',
+        'menu-down': 'arrow-dropdown',
+        'menu-up': 'arrow-dropup',
+        'close-circle': 'close-circle-outline',
+      },
+    },
+  },
+};
 
 export default {
   name: 'IndexPage',
@@ -54,6 +82,12 @@ export default {
     ContactSection,
     SalesSection,
     BaseLoader,
+  },
+
+  provide() {
+    return {
+      karts: this.passingKarts,
+    };
   },
 
   async asyncData(context) {
@@ -76,6 +110,7 @@ export default {
       // const result = await response.json();
       // console.log('result: ', result);
       stories = response.data.stories;
+
       // console.log('stories: ', stories);
     } catch (error) {
       if (!response.response) {
@@ -102,9 +137,37 @@ export default {
       // isLoading: true,
     };
   },
+
+  computed: {
+    passingKarts() {
+      const kartSectionInfo = this.stories.find(
+        (story) => story.content.component === 'KartSection'
+      );
+
+      const infoToPass = kartSectionInfo.content.slides.map((slide) => {
+        return {
+          type: slide.type,
+          title: slide.title,
+          kart_img: slide.kart_img,
+        };
+      });
+
+      // console.log('infoToPass: ', infoToPass);
+
+      return infoToPass;
+    },
+  },
+
+  created() {
+    // console.log('this.$buefy: ', this.$buefy);
+    // this.$buefy.config.setOptions(customIconConfig);
+  },
   mounted() {
+    this.$store.commit('setKartsOptions', this.passingKarts);
     /* this.$nextTick(() => {
-      this.$nuxt.$loading.start();
+      // this.$nuxt.$loading.start();
+      // console.log('this.$buefy: ', this.$buefy);
+      this.$buefy.config.setOptions(customIconConfig);
     }); */
     //* nuxtReady - https://github.com/nuxt/nuxt.js/issues/1154
     // eslint-disable-next-line nuxt/no-env-in-hooks
@@ -115,10 +178,20 @@ export default {
       });
     } */
   },
+
+  methods: {
+    /* noti() {
+      console.log('zzz');
+      this.$uikit.notification({ message: 'Notification message' });
+    }, */
+  },
 };
 </script>
 
 <style lang="scss">
+@import 'https://cdn.jsdelivr.net/npm/@mdi/font@5.8.55/css/materialdesignicons.min.css';
+
+// @import url('@/assets/scss/uikit.scss');
 .site {
   display: grid;
   grid-template-rows: auto 1fr auto;

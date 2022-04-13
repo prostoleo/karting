@@ -1,12 +1,13 @@
 <template>
   <div v-editable="slide" class="content-advantages__card card">
     <div class="card__icon">
+      <!-- <pre>{{ slide.icon[0].filename }}</pre> -->
       <ion-icon
         :src="`${slide.icon[0].filename}`"
-        :alt="slide.icon[0].alt"
         class="card__icon-img"
-        style="color: red"
       ></ion-icon>
+      <!-- :alt="slide.icon[0].alt" -->
+      <!-- style="color: red" -->
     </div>
     <h3 class="card__title">{{ slide.title }}</h3>
     <div class="card__description" v-html="richtext(slide.description)"></div>
@@ -40,6 +41,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+// @import 'https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css';
 .card {
   height: 100%;
 

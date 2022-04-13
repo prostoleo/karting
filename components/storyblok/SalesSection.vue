@@ -64,11 +64,10 @@ export default {
     const that = this;
 
     const tlCube = gsap.timeline({
-      // paused: true,
       scrollTrigger: {
         trigger: SalesSectionEl,
         start: 'top 40%',
-        markers: true,
+        // markers: true,
 
         toggleActions: 'play reverse play reset',
       },

@@ -110,6 +110,18 @@ export default {
         href: 'https://a.storyblok.com/f/150258/791x571/2ee75e03c1/track-clipart-logo-14-1-min.png/m/600x0',
         as: 'image',
       },
+
+      // material icnos for buefy
+      /* {
+        rel: 'preload',
+        // href: 'https://cdn.jsdelivr.net/npm/@mdi/font@5.8.55/css/materialdesignicons.min.css',
+        href: 'https://unpkg.com/@mdi/font@5.8.55/css/materialdesignicons.min.css',
+        as: 'stylesheet',
+      }, */
+      {
+        rel: 'preload',
+        href: 'https://assets10.lottiefiles.com/packages/lf20_clmd2mj6.json',
+      },
     ],
     script: [
       /* {
@@ -117,6 +129,7 @@ export default {
         defer: true,
         src: 'https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js',
       }, */
+
       {
         type: 'module',
         defer: true,
@@ -127,6 +140,16 @@ export default {
         defer: true,
         src: 'https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js',
       },
+      /* {
+        type: 'module',
+        defer: true,
+        src: 'https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js',
+      },
+      {
+        nomodule: true,
+        defer: true,
+        src: 'https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js',
+      }, */
       /* < src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.13.4/js/uikit.min.js" integrity="sha512-o8CK0J43tUy+UMv1pgLI3neZyc8/gH4qqREvpBMb1geAv3bcKnJIdRvxUMGZQK+4gf6qixaK6NiNwW2Esa9BZg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> */
       /* {
         src: 'https://cdnjs.cloudflare.com/ajax/libs/uikit/3.13.4/js/uikit.min.js',
@@ -146,28 +169,6 @@ export default {
         src: 
         
       }, */
-
-      /* <script
-			type="module"
-			crossorigin
-			src="/quiz/assets/index.c12a0073.js"
-			defer
-		></script>
-		<link rel="modulepreload" href="/quiz/assets/vendor.749cf4e8.js" defer /> */
-
-      /* {
-        type: 'module',
-        defer: true,
-        src: 'https://unpkg.com/@lottiefiles/lottie-interactivity@latest/dist/lottie-interactivity.min.js',
-      }, */
-      /* {
-        type: 'text/partytown',
-        src: 'https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js',
-      },
-      {
-        type: 'text/partytown',
-        src: 'https://unpkg.com/@lottiefiles/lottie-interactivity@latest/dist/lottie-interactivity.min.js',
-      }, */
     ],
   },
 
@@ -175,7 +176,11 @@ export default {
   // css: ['~/assets/fonts/fonts.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/buefy.js', '~/plugins/vanilla-lazyload.js'],
+  plugins: [
+    '~/plugins/buefy.js',
+    '~/plugins/vanilla-lazyload.js',
+    // '~/plugins/uikit.js',
+  ],
   // '~/plugins/quiz.js'
   // '~/plugins/uikit.js'
   // * worker for lottie player
@@ -200,12 +205,12 @@ export default {
         useApiClient: true,
       },
     ],
-    [
+    /* [
       '@pinia/nuxt',
       {
         disableVuex: true,
       },
-    ],
+    ], */
   ],
 
   styleResources: {
@@ -218,7 +223,7 @@ export default {
     // '@nuxtjs/critters',
     '@nuxtjs/style-resources',
     'nuxt-mq',
-    'nuxt-precompress',
+    // 'nuxt-precompress',
     /* [
       'nuxt-compress',
       {
@@ -239,7 +244,7 @@ export default {
     ], */
   ],
 
-  nuxtPrecompress: {
+  /* nuxtPrecompress: {
     enabled: true, // Enable in production
     report: false, // set true to turn one console messages during module init
     test: /\.(js|css|html|txt|xml|svg)$/, // files to compress on build
@@ -274,7 +279,7 @@ export default {
       threshold: 10240,
       minRatio: 0.8,
     },
-  },
+  }, */
 
   mq: {
     defaultBreakpoint: 'sm',

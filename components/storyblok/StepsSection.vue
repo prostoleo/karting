@@ -135,6 +135,8 @@ export default {
       richtext,
 
       lottieEl: null,
+      pathLottie:
+        'https://assets10.lottiefiles.com/packages/lf20_clmd2mj6.json',
     };
   },
 
@@ -196,17 +198,21 @@ export default {
           },
         },
       });
+    }
 
-      // =================
-      // todo road icon animation
-      const stepsSvgEl = document.querySelector('.steps__svg');
-      // const svgEl = stepsSvgEl.querySelector('.icon-inner');
+    // =================
+    // todo road icon animation
+    const stepsSvgEl = document.querySelector('.steps__svg');
+    // const svgEl = stepsSvgEl.querySelector('.icon-inner');
+    //* target element for Intersection
+    const sectionEl = document.getElementById('steps');
+
+    // console.log('pathsEls: ', pathsEls);
+
+    // console.log('sectionEl: ', sectionEl);
+
+    if (stepsSvgEl && sectionEl) {
       const pathsEls = Array.from(stepsSvgEl.querySelectorAll('path'));
-      // console.log('pathsEls: ', pathsEls);
-
-      //* target element for Intersection
-      // const sectionEl = document.getElementById('steps');
-      // console.log('sectionEl: ', sectionEl);
 
       //* получаем длинну каждого path
       const pathsLength = pathsEls.map((path) => path.getTotalLength());
@@ -272,7 +278,7 @@ export default {
 
       // observer.observe(sectionEl.querySelector('.block-content'));
 
-      observer.observe(this.lottieEl);
+      observer.observe(sectionEl);
     }
   },
 

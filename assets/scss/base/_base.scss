@@ -6,12 +6,12 @@
 .container {
   max-width: $maw-container;
   margin: 0 auto;
-  width: 90%;
+  width: 90% !important;
 }
 
 body {
   scroll-behavior: smooth;
-  font-family: 'Lato', Helvetica, Arial, sans-serif;
+  font-family: 'Lato', Helvetica, Arial, sans-serif !important;
 }
 
 h1,
@@ -20,7 +20,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Arimo', Helvetica, Arial, sans-serif;
+  font-family: 'Arimo', Helvetica, Arial, sans-serif !important;
   font-weight: 600;
 }
 
