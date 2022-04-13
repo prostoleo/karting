@@ -1,5 +1,8 @@
 @import '../abstract/index';
 
+$link-visited: $greyMy;
+$label-weight: 600;
+
 $datepicker-background-color: lighten($greyMy, 50%);
 $datepicker-radius: 20px;
 $datepicker-shadow: 3px 3px 5px rgba(33, 33, 33, 0.15);

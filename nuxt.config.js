@@ -39,15 +39,13 @@ export default {
         rel: 'preconnect',
         href: 'https://app.storyblok.com',
       },
-      /* <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Arimo:wght@700&family=Lato:wght@400;500&display=swap" rel="stylesheet"></link> */
+
       {
         rel: 'preconnect',
         href: 'https://fonts.gstatic.com',
         crossorigin: true,
       },
-      /* { rel: 'preconnect', href: 'https://fonts.googleapis.com' }, */
+
       {
         rel: 'preload',
         as: 'style',
@@ -61,40 +59,6 @@ export default {
         onload: "this.media='all'",
       },
 
-      /* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.13.4/css/uikit.min.css" integrity="sha512-F69u2HnuOWB/48ncdmkVOpdYwQPZmzF5YbOiUBKfbR24zt93bpDurJnXTY8gwBSHmHhsF2wKv84uhwkiwRdk+A==" crossorigin="anonymous" referrerpolicy="no-referrer" /> */
-      /* {
-        rel: 'stylesheet',
-        href: 'https://cdnjs.cloudflare.com/ajax/libs/uikit/3.13.4/css/uikit.min.css',
-        integrity:
-          'sha512-F69u2HnuOWB/48ncdmkVOpdYwQPZmzF5YbOiUBKfbR24zt93bpDurJnXTY8gwBSHmHhsF2wKv84uhwkiwRdk+A==',
-        crossorigin: 'anonymous',
-        referrerpolicy: 'no-referrer',
-      }, */
-      /* {
-        rel: 'preload',
-        href: './_nuxt/fonts/Arimo-Bold.woff2',
-        as: 'font',
-      },
-      {
-        rel: 'preload',
-        href: './_nuxt/fonts/Lato-Medium.woff2',
-        as: 'font',
-      },
-      {
-        rel: 'preload',
-        href: './_nuxt/fonts/Lato-Regular.woff2',
-        as: 'font',
-      }, */
-      /* {
-        rel: 'preload',
-        href: 'https://a.storyblok.com/f/150258/1100x714/01eda8a916/hero-right-bg-min.jpg/m/0x200',
-        as: 'image',
-      },
-      {
-        rel: 'preload',
-        href: 'https://a.storyblok.com/f/150258/1100x714/01eda8a916/hero-right-bg-min.jpg/m/0x300',
-        as: 'image',
-      }, */
       {
         rel: 'preload',
         href: 'https://a.storyblok.com/f/150258/1100x714/01eda8a916/hero-right-bg-min.jpg/m/0x400',
@@ -111,25 +75,13 @@ export default {
         as: 'image',
       },
 
-      // material icnos for buefy
-      /* {
-        rel: 'preload',
-        // href: 'https://cdn.jsdelivr.net/npm/@mdi/font@5.8.55/css/materialdesignicons.min.css',
-        href: 'https://unpkg.com/@mdi/font@5.8.55/css/materialdesignicons.min.css',
-        as: 'stylesheet',
-      }, */
       {
         rel: 'preload',
         href: 'https://assets10.lottiefiles.com/packages/lf20_clmd2mj6.json',
       },
     ],
+    style: [],
     script: [
-      /* {
-        type: 'module',
-        defer: true,
-        src: 'https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js',
-      }, */
-
       {
         type: 'module',
         defer: true,

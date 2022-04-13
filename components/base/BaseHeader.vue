@@ -10,6 +10,7 @@ export default {
 
   mounted() {
     const tlNav = gsap.timeline({ paused: true });
+    const ctaHeader = document.querySelector('.nav__item--btn a');
 
     tlNav
       .set('a.nav__link', {
@@ -33,7 +34,7 @@ export default {
         ease: 'Back.easeOut.config(1.2)',
       })
       .to(
-        '.nav__item button',
+        ctaHeader,
         {
           opacity: 1,
           yPercent: 0,
@@ -130,9 +131,14 @@ export default {
             </li>
             <!-- /.nav__item -->
             <li class="nav__item nav__item--btn">
-              <button class="cta" @click="closeMenu">
+              <a
+                id="cta-header"
+                href="#quiz-section"
+                class="cta"
+                @click="closeMenu"
+              >
                 <span>Забронировать</span>
-              </button>
+              </a>
             </li>
             <!-- /.nav__item -->
           </ul>
@@ -366,7 +372,7 @@ button.header__burger {
       margin: 0;
     }
 
-    button.cta {
+    a.cta {
       display: inline-block;
       padding: 0.75em 1.25em;
 

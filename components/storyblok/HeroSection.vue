@@ -18,7 +18,7 @@
         <!-- <div>{{ richtext(story.description) }}</div> -->
         <!-- <span>{{ richtext('qwerty') }}</span> -->
 
-        <button ref="heroBtn" class="hero__btn hero-cta-btn">
+        <a ref="heroBtn" href="#quiz-section" class="hero__btn hero-cta-btn">
           <!-- @mouseenter="animateBtnForward" -->
           <!-- @mouseleave="animateBtnBackward" -->
           <span class="">{{ story.cta }}</span>
@@ -34,7 +34,7 @@
             alt="иконка карта"
             loading="lazy"
           ></ion-icon>
-        </button>
+        </a>
 
         <div class="for-flag-img">
           <img
@@ -488,7 +488,8 @@ section {
     }
   }
 
-  button.hero-cta-btn {
+  a.hero-cta-btn {
+    display: inline-block;
     padding: 1rem 36px;
 
     color: white;

@@ -63,7 +63,7 @@ export default {
 
 <style lang="scss">
 //todo import sass datepicker
-@import '@/assets/scss/buefy/index';
+// @import '@/assets/scss/buefy/index';
 
 .timepicker .dropdown-content .control .select {
   margin: 0;

@@ -84,10 +84,52 @@ export default {
 
 <style lang="scss">
 //todo import sass datepicker
-@import '@/assets/scss/buefy/index';
+// @import '@/assets/scss/buefy/index';
+
+.input:active,
+.input:focus,
+.is-active.input,
+.is-active.textarea,
+.is-focused.input,
+.is-focused.textarea,
+.select select.is-active,
+.select select.is-focused,
+.select select:active,
+.select select:focus,
+.taginput .is-active.taginput-container.is-focusable,
+.taginput .is-focused.taginput-container.is-focusable,
+.taginput .taginput-container.is-focusable:active,
+.taginput .taginput-container.is-focusable:focus,
+.textarea:active,
+.textarea:focus {
+  border-color: $orangeMy;
+  box-shadow: 0 0 0 0.125em rgba($orangeMy, 25%);
+}
+
+.datepicker .dropdown .input[readonly].is-active,
+.datepicker .dropdown .input[readonly].is-focused,
+.datepicker .dropdown .input[readonly]:active,
+.datepicker .dropdown .input[readonly]:focus,
+.datepicker .dropdown-trigger .input[readonly].is-active,
+.datepicker .dropdown-trigger .input[readonly].is-focused,
+.datepicker .dropdown-trigger .input[readonly]:active,
+.datepicker .dropdown-trigger .input[readonly]:focus {
+  box-shadow: 0 0 0 0.125em rgba($orangeMy, 25%);
+}
 
 .select:not(.is-multiple):not(.is-loading)::after {
   border-color: $orangeMy;
+}
+
+.datepicker .datepicker-table .datepicker-body .datepicker-cell {
+  &.is-today {
+    border: 1px solid $orangeMy !important;
+  }
+
+  &.is-selected {
+    background-color: $orangeMy !important;
+    color: #fff;
+  }
 }
 
 header.datepicker-header {

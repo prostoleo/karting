@@ -49,7 +49,7 @@
       </div>
       <!-- /.footer__nav -->
       <div class="footer__btn btn-footer">
-        <button class="btn btn-footer__btn">Забронировать</button>
+        <a href="#quiz-section" class="btn btn-footer__btn">Забронировать</a>
         <!-- /.btn btn-footer__btn -->
       </div>
       <!-- /.footer__btn -->
@@ -166,6 +166,7 @@ export default {};
     color: white;
 
     &:hover {
+      color: white !important;
       opacity: 0.8;
     }
   }
@@ -193,6 +194,7 @@ export default {};
     border: 1px solid white;
 
     &:hover {
+      color: white !important;
       opacity: 0.8;
     }
   }

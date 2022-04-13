@@ -258,9 +258,6 @@ export default {
   --section-pt: 20px;
   --section-pb: 120px;
 
-  // ! потом убрать
-  outline: 1px solid white;
-
   position: relative;
   overflow: hidden;
 
