@@ -130,25 +130,15 @@ export default {
   },
   computed: {
     isErrorNameShown() {
-      // console.log(
-      //   'this.formData.name.touched && this.formData.name.error: ',
-      //   this.formData.name.touched && this.formData.name.error
-      // );
       return this.formData.name.touched && this.formData.name.error;
     },
     isErrorPhoneShown() {
-      // console.log(
-      //   'this.formData.phone.touched && this.formData.phone.error: ',
-      //   this.formData.phone.touched && this.formData.phone.error
-      // );
       return this.formData.phone.touched && this.formData.phone.error;
     },
     isTotalError() {
       const isError = Object.values(this.formData).some((val) => {
-        // console.log('val: ', val);
         return val.error === true;
       });
-      // console.log('isError: ', isError);
       return isError;
     },
   },
@@ -187,18 +177,15 @@ export default {
           name: this.formData.name.value,
           phone: this.formData.phone.value,
         };
-        console.log('dataToSubmit: ', dataToSubmit);
         const start = parseInt(new Date());
 
         this.$nuxt.$loading.start();
         const response = await SendMail(dataToSubmit);
-        console.log('response: ', response);
         this.$nuxt.$loading.finish();
 
         const end = parseInt(new Date());
 
         const diff = Math.round((end - start) / 1000);
-        // console.log('diff: ', diff);
 
         if (diff >= 15) {
           throw new Error(' превышено время на запрос');
@@ -211,19 +198,11 @@ export default {
         }
 
         this.successMsg();
-        /* this.successMsgActive = true;
-        setTimeout(() => {
-          this.successMsgActive = false;
-        }, 3500); */
         this.formData.name.value = this.formData.phone.value = '';
       } catch (error) {
         console.warn(`💣💣💣, произошла ошибка ${error?.message ?? error}`);
         this.$nuxt.$loading.finish();
         this.errorMsg();
-        /* this.errorMsgActive = true;
-        setTimeout(() => {
-          this.errorMsgActive = false;
-        }, 3500); */
         this.formData.name.value = this.formData.phone.value = '';
       }
     },

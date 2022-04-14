@@ -5,16 +5,9 @@
         <div class="content__text">
           <h2 class="content__title">
             {{ story.title }}
-            <!-- @mouseleave="playLottie" -->
           </h2>
           <div class="content__block block-content">
             <div class="block-content__steps steps">
-              <!--  -->
-              <!-- <ion-icon
-                :src="story.road_svg.filename"
-                class="steps__svg"
-              ></ion-icon> -->
-              <!-- <img :src="story.road_svg.filename" class="steps__svg" /> -->
               <svg
                 v-if="showSvg"
                 id="road-icon"
@@ -74,7 +67,6 @@
       <mq-layout mq="sm" style="height: 100%">
         <img
           class="steps-section__photo-img lazy"
-          loading="lazy"
           :data-src="`${story.karts_photo.filename}/m/0x200`"
           :alt="story.karts_photo.alt"
         />
@@ -82,7 +74,6 @@
       <mq-layout :mq="['2sm', 'med']" style="height: 100%">
         <img
           class="steps-section__photo-img lazy"
-          loading="lazy"
           :data-src="`${story.karts_photo.filename}/m/0x300`"
           :alt="story.karts_photo.alt"
         />
@@ -90,7 +81,6 @@
       <mq-layout mq="lg+" style="height: 100%">
         <img
           class="steps-section__photo-img lazy"
-          loading="lazy"
           :data-src="`${story.karts_photo.filename}/m/0x600`"
           :alt="story.karts_photo.alt"
         />
@@ -101,24 +91,20 @@
 </template>
 
 <script>
+/* eslint-disable import/default */
+/* eslint-disable no-unused-vars */
 import LazyLoad from 'vanilla-lazyload';
 
-/* eslint-disable import/default */
 import { useStoryblokBridge } from '@storyblok/nuxt';
 
-// eslint-disable-next-line no-unused-vars
 import { gsap } from 'gsap';
-// eslint-disable-next-line no-unused-vars
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import LottiePlayer from '@lottiefiles/lottie-player';
 import { richtext } from '~/utils/storyblok/storyblok.js';
 
-// const lottierPlayer = () => import('@lottiefiles/lottie-player');
-
 export default {
   components: {
-    // LottiePlayer: () => import('@lottiefiles/lottie-player'),
     LottiePlayer,
   },
 
@@ -153,16 +139,8 @@ export default {
   mounted() {
     useStoryblokBridge(this.story._uid, (newStory) => (this.story = newStory));
 
-    // eslint-disable-next-line no-unused-vars
-    const ll = new LazyLoad({
-      /* callback_enter: this.callback_enter,
-      callback_exit: this.callback_exit,
-      callback_cancel: this.callback_cancel,
-      callback_loading: this.callback_loading,
-      callback_loaded: this.callback_loaded,
-      callback_error: this.callback_error,
-      callback_finish: this.callback_finish, */
-    });
+    // eslint-disable-next-line no-new
+    const ll = new LazyLoad({});
 
     //* lazyload of lottieplayer
     const lottiePlayerEl = document.querySelector('#lottiePlayer');
@@ -177,7 +155,6 @@ export default {
       const that = this;
 
       gsap.timeline({
-        // paused: true,
         scrollTrigger: {
           trigger: StepsSectionEl,
           start: 'top 30%',
@@ -207,16 +184,11 @@ export default {
     //* target element for Intersection
     const sectionEl = document.getElementById('steps');
 
-    // console.log('pathsEls: ', pathsEls);
-
-    // console.log('sectionEl: ', sectionEl);
-
     if (stepsSvgEl && sectionEl) {
       const pathsEls = Array.from(stepsSvgEl.querySelectorAll('path'));
 
       //* получаем длинну каждого path
       const pathsLength = pathsEls.map((path) => path.getTotalLength());
-      // console.log('pathsLength: ', pathsLength);
 
       //* обнуляем длины path
       function pathToZero() {
@@ -240,7 +212,6 @@ export default {
           arr.push(curNum);
 
           curNum = parseFloat((curNum + share).toFixed(2));
-          // console.log('curNum: ', curNum);
 
           //* если превысили максимальное значение - выходим из цикла
           if (curNum >= max) {
@@ -259,10 +230,6 @@ export default {
       };
 
       const handlerObserver = (entries, observer) => {
-        // console.log('entries: ', entries);
-        // console.log('observer: ', observer);
-
-        // if (entries[0].isIntersecting && entries[0].intersectionRatio > 0.3) {
         if (entries[0].isIntersecting && entries[0].intersectionRatio > 0) {
           pathsEls.forEach((pathEl, i) => {
             const drawLength = entries[0].intersectionRatio * pathsLength[i];
@@ -276,48 +243,8 @@ export default {
 
       const observer = new IntersectionObserver(handlerObserver, options);
 
-      // observer.observe(sectionEl.querySelector('.block-content'));
-
       observer.observe(sectionEl);
     }
-  },
-
-  methods: {
-    /* playLottie() {
-      this.lottieEl && this.lottieEl.play();
-    }, */
-    /* logElementEvent(eventName, element) {
-      console.log(
-        Date.now(),
-        eventName,
-        element,
-        element.getAttribute('data-src')
-      );
-    },
-
-    callback_enter(element) {
-      this.logElementEvent('🔑 ENTERED', element);
-    },
-    callback_exit(element) {
-      this.logElementEvent('🚪 EXITED', element);
-    },
-    callback_loading(element) {
-      this.logElementEvent('⌚ LOADING', element);
-    },
-    callback_loaded(element) {
-      this.logElementEvent('👍 LOADED', element);
-    },
-    callback_error(element) {
-      this.logElementEvent('💀 ERROR', element);
-      element.src =
-        'https://via.placeholder.com/440x560/?text=Error+Placeholder';
-    },
-    callback_finish() {
-      this.logElementEvent('✔️ FINISHED', document.documentElement);
-    },
-    callback_cancel(element) {
-      this.logElementEvent('🔥 CANCEL', element);
-    }, */
   },
 };
 </script>
@@ -487,15 +414,9 @@ export default {
       left: 50%;
 
       width: 100%;
-      // height: 100%;
       height: auto;
-
       max-width: 600px;
-
       transform: translate(-50%, 0);
-    }
-
-    @include mq(xl) {
     }
   }
 }

@@ -57,17 +57,12 @@ export default {
     gsap.registerPlugin(ScrollTrigger);
     const SalesSectionEl = document.querySelector('section.sales');
     const cubeOrangeEl = SalesSectionEl.querySelector('.sales__cube--orange');
-    // const CubeOrangeEl = SalesSectionEl.querySelector('.sales__cube--orange');
     const cubeYellowEl = SalesSectionEl.querySelector('.sales__cube--yellow');
-
-    // eslint-disable-next-line no-unused-vars
-    const that = this;
 
     const tlCube = gsap.timeline({
       scrollTrigger: {
         trigger: SalesSectionEl,
         start: 'top 40%',
-        // markers: true,
 
         toggleActions: 'play reverse play reset',
       },
@@ -75,16 +70,6 @@ export default {
     });
 
     tlCube
-      /* .set(StripeOrangeEl, {
-        x: 150,
-        y: -150,
-        duration: 0.35,
-      })
-      .set(StripeYellowEl, {
-        x: -150,
-        y: 150,
-        duration: 0.35,
-      }) */
       .to(cubeOrangeEl, {
         xPercent: -355,
         yPercent: 355,

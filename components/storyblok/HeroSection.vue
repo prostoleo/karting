@@ -19,8 +19,6 @@
         <!-- <span>{{ richtext('qwerty') }}</span> -->
 
         <a ref="heroBtn" href="#quiz-section" class="hero__btn hero-cta-btn">
-          <!-- @mouseenter="animateBtnForward" -->
-          <!-- @mouseleave="animateBtnBackward" -->
           <span class="">{{ story.cta }}</span>
           <ion-icon
             class="hero-cta__kart"
@@ -49,7 +47,6 @@
       </div>
     </div>
     <div class="right-col">
-      <!-- :srcset="`${story.hero_bg_img.filename}/m/450x0 450vw, ${story.hero_bg_img.filename}/m/650x0 650vw, ${story.hero_bg_img.filename}/m/0x400 650vw`" -->
       <mq-layout :mq="['sm', '2sm', 'med']">
         <img
           class="right-col__img"
@@ -58,13 +55,6 @@
           :alt="story.hero_bg_img.alt"
         />
       </mq-layout>
-      <!-- <mq-layout :mq="['2sm', 'med']">
-        <img
-          class="right-col__img"
-          :src="`${story.hero_bg_img.filename}/m/0x300`"
-          :alt="story.hero_bg_img.alt"
-        />
-      </mq-layout> -->
       <mq-layout mq="lg" style="height: 100%">
         <img
           class="right-col__img"
@@ -102,13 +92,9 @@
 </template>
 
 <script>
-/* eslint-disable no-unused-vars */
-// eslint-disable-next-line no-unused-vars
 import { useStoryblokBridge } from '@storyblok/nuxt';
 import { gsap } from 'gsap';
 import { richtext } from '~/utils/storyblok/storyblok.js';
-
-// import
 
 export default {
   props: {
@@ -128,37 +114,7 @@ export default {
     };
   },
 
-  computed: {
-    /* srcHeroBgImg() {
-      const sectionHeroEl = document.querySelector('section.hero');
-
-      // const sectionHeroEl = this.$refs.sectionHero;
-      console.log('sectionHeroEl: ', sectionHeroEl);
-
-      if (sectionHeroEl) {
-        console.log('sectionHeroEl.offsetWidth: ', sectionHeroEl.offsetWidth);
-        console.log('sectionHeroEl.offsetHeight: ', sectionHeroEl.offsetHeight);
-        let path = null;
-
-        switch (this.$mq) {
-          case 'sm':
-          case '2sm':
-          case 'med':
-          case 'lg':
-            path = `${this.story.hero_bg_img.filename}/m/${sectionHeroEl.offsetWidth}x0`;
-
-            break;
-
-          default:
-            path = `${this.story.hero_bg_img.filename}/m/0x${sectionHeroEl.offsetHeight}`;
-            break;
-        }
-        return path;
-      } else {
-        return `${this.story.hero_bg_img.filename}/m/0x500`;
-      }
-    }, */
-  },
+  computed: {},
 
   mounted() {
     //* для обновления контента от storyblok
@@ -168,8 +124,6 @@ export default {
 
     const tlButton = gsap.timeline({ paused: true });
     const heroBtnEl = document.querySelector('.hero-cta-btn');
-    // console.log('heroBtnEl: ', heroBtnEl);
-    // console.log('heroBtnEl: ', heroBtnEl);
 
     tlButton
       .to(heroBtnEl, {
@@ -185,13 +139,11 @@ export default {
 
     //* для анимации карта
     if (this.$mq.match(/med|lg|xl|2xl|3xl|4xl/gm)) {
-      // const tlKart = gsap.timeline({ paused: true });
       const tlKart = gsap.timeline({});
       const kartIconEl = heroBtnEl.querySelector('.hero-cta__kart');
 
       tlKart
         .set(kartIconEl, {
-          // opacity: 0,
           x: -100,
           yPercent: -50,
           scaleX: -1,
@@ -206,13 +158,11 @@ export default {
       this.tlKart = tlKart;
 
       //* для анимации карта2
-      // const tlKart2 = gsap.timeline({ paused: true });
       const tlKart2 = gsap.timeline({});
       const kartIconEl2 = heroBtnEl.querySelector('.hero-cta__kart2');
 
       tlKart2
         .set(kartIconEl2, {
-          // opacity: 0,
           x: 100,
           yPercent: -50,
           scaleX: 1,
@@ -241,8 +191,6 @@ export default {
     animateBtnBackward() {
       this.tlKart.restart();
       this.tlKart2.restart();
-      // this.tlKart.pause();
-      // this.tlKart2.pause();
 
       this.tlButton.reverse();
     },
@@ -280,12 +228,6 @@ export default {
 }
 
 section {
-  /* display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-
-  gap: 48px; */
-
   padding-top: 5rem;
   color: white;
   background: $redMy-900;
@@ -341,7 +283,7 @@ section {
     .hero__container {
       @include mq(lg) {
         margin: 0;
-        width: 100%;
+        width: 100% !important;
       }
     }
   }
@@ -353,12 +295,6 @@ section {
     max-height: var(--max-h);
 
     margin-top: 48px;
-
-    /* display: none;
-
-    @include mq(med) {
-      display: block;
-    } */
 
     @include mq(lg) {
       margin-top: 0;
@@ -476,6 +412,7 @@ section {
 
       position: absolute;
       right: calc(var(--col-gap-minus) - var(--flag-width-half));
+      // right: calc(-3rem - 110px);
       top: 30%;
       max-width: var(--flag-width);
       z-index: 5;

@@ -17,7 +17,7 @@ export default {
         opacity: 0,
         yPercent: 50,
       })
-      .set('.nav__item button', {
+      .set(ctaHeader, {
         opacity: 0,
         yPercent: 75,
       })
@@ -48,17 +48,7 @@ export default {
     this.tlNav = tlNav;
 
     window.addEventListener('resize', () => {
-      // xl: 1200,
-      // '2xl': 1400,
-      // '3xl': 1600,
-      // '4xl': 1800,
-      /* const lgScreenCondition = this.$mq === 'lg';
-      const xlScreenCondition = this.$mq === 'xl';
-      const xl2ScreenCondition = this.$mq === '2xl';
-      const xl3ScreenCondition = this.$mq === '3xl';
-      const xl4ScreenCondition = this.$mq === '4xl'; */
-
-      if (this.$mq === 'lg+') {
+      if (this.$mq.match(/lg|xl|2xl|3xl|4xl/gm)) {
         this.tlNav.kill();
       }
     });
@@ -391,7 +381,7 @@ button.header__burger {
 
       &:hover,
       &:focus {
-        color: $redMy-500;
+        color: $redMy-500 !important;
       }
 
       span {

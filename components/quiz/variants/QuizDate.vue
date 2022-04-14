@@ -28,11 +28,9 @@ export default {
     const min = new Date();
     min.setHours(10);
     min.setMinutes(0);
-    console.log('min: ', min);
     const max = new Date();
     max.setHours(22);
     max.setMinutes(0);
-    console.log('max: ', max);
 
     const minDate = new Date();
 
@@ -74,7 +72,6 @@ export default {
 
     calcMaxDate() {
       const future = new Date(Date.now() + this.daysToMiliseconds(90));
-      console.log('future: ', future);
 
       return future;
     },

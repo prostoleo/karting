@@ -1,6 +1,4 @@
 // eslint-disable-next-line import/default
-/* import quiz from './assets/quiz/assets/index.b944bb25';
-console.log('quiz: ', quiz); */
 
 export default {
   // Target: https://go.nuxtjs.dev/config-target
@@ -92,40 +90,8 @@ export default {
         defer: true,
         src: 'https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js',
       },
-      /* {
-        type: 'module',
-        defer: true,
-        src: 'https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js',
-      },
-      {
-        nomodule: true,
-        defer: true,
-        src: 'https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js',
-      }, */
-      /* < src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.13.4/js/uikit.min.js" integrity="sha512-o8CK0J43tUy+UMv1pgLI3neZyc8/gH4qqREvpBMb1geAv3bcKnJIdRvxUMGZQK+4gf6qixaK6NiNwW2Esa9BZg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> */
-      /* {
-        src: 'https://cdnjs.cloudflare.com/ajax/libs/uikit/3.13.4/js/uikit.min.js',
-        integrity:
-          'sha512-o8CK0J43tUy+UMv1pgLI3neZyc8/gH4qqREvpBMb1geAv3bcKnJIdRvxUMGZQK+4gf6qixaK6NiNwW2Esa9BZg==',
-        crossorigin: 'anonymous',
-        referrerpolicy: 'no-referrer',
-      }, */
-      /* {
-        type: 'module',
-        defer: true,
-        src: 'https://unpkg.com/@lottiefiles/lottie-player@1.5.6/dist/lottie-player.js',
-      }, */
-      /* {
-        type: 'module',
-        crossorigin: true,
-        src: 
-        
-      }, */
     ],
   },
-
-  // Global CSS: https://go.nuxtjs.dev/config-css
-  // css: ['~/assets/fonts/fonts.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
@@ -133,11 +99,6 @@ export default {
     '~/plugins/vanilla-lazyload.js',
     // '~/plugins/uikit.js',
   ],
-  // '~/plugins/quiz.js'
-  // '~/plugins/uikit.js'
-  // * worker for lottie player
-  // '~/plugins/workers.js'
-  // '~/plugins/lottie-vue-player.client.js'
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: ['~/components', '~/components/base', '~/components/storyblok'],
@@ -146,8 +107,8 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
+    '@nuxtjs/style-resources',
     'nuxt-windicss',
-    'nuxt-compress',
     [
       '@storyblok/nuxt/module',
       {
@@ -157,81 +118,37 @@ export default {
         useApiClient: true,
       },
     ],
-    /* [
-      '@pinia/nuxt',
-      {
-        disableVuex: true,
-      },
-    ], */
   ],
 
   styleResources: {
-    scss: ['~/assets/scss/main.scss'],
+    scss: [
+      '~/assets/scss/main.scss',
+      /* '~/assets/scss/abstract/colors.scss',
+      '~/assets/scss/abstract/mixins.scss',
+      '~/assets/scss/components/components.scss', */
+    ],
+    /* sass: [
+      // '~/assets/scss/main.scss',
+      '~/assets/scss/abstract/colors.scss',
+      '~/assets/scss/abstract/mixins.scss',
+      '~/assets/scss/components/components.scss',
+    ],
+    hoistUseStatements: true, */
   },
+
+  // Global CSS: https://go.nuxtjs.dev/config-css
+  css: [
+    // '~/assets/fonts/fonts.css',
+    // '~/assets/scss/main.scss',
+  ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
     // '@nuxtjs/critters',
-    '@nuxtjs/style-resources',
+
     'nuxt-mq',
-    // 'nuxt-precompress',
-    /* [
-      'nuxt-compress',
-      {
-        gzip: {
-          threshold: 8192,
-        },
-        brotli: {
-          threshold: 8192,
-        },
-      },
-    ], */
-    /* [
-      'nuxt-buefy',
-      {
-        // buefy options
-        materialDesignIcons: false,
-      },
-    ], */
   ],
-
-  /* nuxtPrecompress: {
-    enabled: true, // Enable in production
-    report: false, // set true to turn one console messages during module init
-    test: /\.(js|css|html|txt|xml|svg)$/, // files to compress on build
-    // Serving options
-    middleware: {
-      // You can disable middleware if you serve static files using nginx...
-      enabled: true,
-      // Enable if you have .gz or .br files in /static/ folder
-      enabledStatic: true,
-      // Priority of content-encodings, first matched with request Accept-Encoding will me served
-      encodingsPriority: ['br', 'gzip'],
-    },
-
-    // build time compression settings
-    gzip: {
-      // should compress to gzip?
-      enabled: true,
-      // compression config
-      // https://www.npmjs.com/package/compression-webpack-plugin
-      filename: '[path].gz[query]', // middleware will look for this filename
-      threshold: 10240,
-      minRatio: 0.8,
-      compressionOptions: { level: 9 },
-    },
-    brotli: {
-      // should compress to brotli?
-      enabled: true,
-      // compression config
-      // https://www.npmjs.com/package/compression-webpack-plugin
-      filename: '[path].br[query]', // middleware will look for this filename
-      compressionOptions: { level: 11 },
-      threshold: 10240,
-      minRatio: 0.8,
-    },
-  }, */
 
   mq: {
     defaultBreakpoint: 'sm',
@@ -262,12 +179,6 @@ export default {
   },
 
   loading: '@/components/base/BaseLoader.vue',
-
-  /* loadingIndicator: {
-    name: 'fading-circle',
-    color: '#E40D04',
-    background: 'black',
-  }, */
 
   server: {
     host: '0.0.0.0', // default: localhost

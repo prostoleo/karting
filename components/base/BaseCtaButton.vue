@@ -13,14 +13,12 @@ button {
   display: inline-block;
 
   padding: 1rem 36px;
-  // font: unset !important;
   font-family: 'Arimo', sans-serif;
   font-weight: 700;
   line-height: 100%;
 
   color: white;
   background-color: $redMy-500;
-  // background: red;
 
   position: relative;
   overflow: hidden;

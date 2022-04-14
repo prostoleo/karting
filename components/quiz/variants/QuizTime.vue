@@ -23,11 +23,9 @@ export default {
     const min = new Date();
     min.setHours(10);
     min.setMinutes(0);
-    console.log('min: ', min);
     const max = new Date();
     max.setHours(21);
     max.setMinutes(30);
-    console.log('max: ', max);
 
     return {
       selected: this.getCurDataOption,
@@ -48,10 +46,6 @@ export default {
     },
   },
 
-  mounted() {
-    // window.$nuxt.$buefy.config.setOptions(customIconConfig);
-  },
-
   methods: {
     clearDate() {
       this.selected = '';
@@ -62,16 +56,10 @@ export default {
 </script>
 
 <style lang="scss">
-//todo import sass datepicker
-// @import '@/assets/scss/buefy/index';
-
 .timepicker .dropdown-content .control .select {
   margin: 0;
 
   select {
-    // font-weight: 600;
-    // padding-right: calc(0.75em - 1px);
-    // border: 0;
     display: inline-flex;
     align-items: center;
     justify-content: center;

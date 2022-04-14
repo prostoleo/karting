@@ -55,7 +55,26 @@ picture {
   display: block;
 }
 
-img:not([src]):not([srcset]) {
+/* vanilla-lazyload */
+img.lazy,
+iframe.lazy {
+  opacity: 0;
+}
+img:not(.initial),
+iframe:not(.initial) {
+  transition: opacity 1s;
+}
+img.initial,
+img.loaded,
+img.error,
+iframe.initial,
+iframe.loaded,
+iframe.error {
+  opacity: 1;
+}
+
+img:not([src]),
+iframe:not([src]) {
   visibility: hidden;
 }
 

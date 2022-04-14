@@ -1,13 +1,11 @@
 <template>
   <section id="advantages" v-editable="story" class="advantages">
-    <!-- <pre>{{ story }}</pre> -->
     <div class="advantages__content content-advantages">
       <div class="container content-advantages__container">
         <h2 class="content-advantages__title">{{ story.title }}</h2>
 
         <ul class="content-advantages__wrapper">
           <li v-for="slide in story.slides" :key="slide._uid">
-            <!-- class="content-advantages__card card" -->
             <component
               :is="slide.component"
               v-if="slide.component"
@@ -50,17 +48,7 @@ export default {
     };
   },
 
-  computed: {
-    /* srcAdvantagesBg() {
-      const advantagesSectionEl = this.$refs.advantagesSection;
-      // `${story.bg_img[0].filename}/m/`
-      if (advantagesSectionEl) {
-        return `${this.story.bg_img[0].filename}/m/0x${advantagesSectionEl.offsetHeight}`;
-      }
-
-      return `${this.story.bg_img[0].filename}/m/`;
-    }, */
-  },
+  computed: {},
 
   mounted() {
     useStoryblokBridge(this.story._uid, (newStory) => (this.story = newStory));
@@ -73,9 +61,6 @@ export default {
   background: $redMy-900;
   position: relative;
   overflow: hidden;
-
-  // ! потом убрать
-  border-top: 1px solid white;
 
   @extend %tpl-section;
 
@@ -91,19 +76,12 @@ export default {
 
     z-index: 0;
 
-    /* display: none;
-
-    @include mq(med) {
-      display: block;
-    } */
-
     @include mq(lg) {
       max-width: 600px;
 
       top: unset;
       left: unset;
       right: -5vw;
-      // left: -2vw;
       bottom: 0;
     }
 

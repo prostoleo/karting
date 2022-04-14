@@ -6,8 +6,6 @@
         :src="`${slide.icon[0].filename}`"
         class="card__icon-img"
       ></ion-icon>
-      <!-- :alt="slide.icon[0].alt" -->
-      <!-- style="color: red" -->
     </div>
     <h3 class="card__title">{{ slide.title }}</h3>
     <div class="card__description" v-html="richtext(slide.description)"></div>
@@ -41,7 +39,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// @import 'https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css';
 .card {
   height: 100%;
 

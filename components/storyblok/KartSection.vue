@@ -534,10 +534,6 @@ export default {
 
   computed: {
     initialIndexSlider() {
-      // console.log(
-      //   'Math.round(this.story.slides.length): ',
-      //   Math.round(this.story.slides.length)
-      // );
       return Math.round(this.story.slides.length / 2);
     },
   },
@@ -557,9 +553,7 @@ export default {
       callback_finish: this.callback_finish, */
     });
 
-    // console.log('document: ', document);
     const glideEl = document.querySelector('.glide');
-    // console.log('glideEl: ', glideEl);
 
     // eslint-disable-next-line no-unused-vars
     const gl = new Glide(glideEl, {
@@ -579,44 +573,10 @@ export default {
       },
     }).mount({ Controls, Breakpoints, Swipe });
   },
-
-  /* logElementEvent(eventName, element) {
-    console.log(Date.now(), eventName, element.getAttribute('data-src'));
-  },
-
-  callback_enter(element) {
-    this.logElementEvent('🔑 ENTERED', element);
-  },
-  callback_exit(element) {
-    this.logElementEvent('🚪 EXITED', element);
-  },
-  callback_loading(element) {
-    this.logElementEvent('⌚ LOADING', element);
-  },
-  callback_loaded(element) {
-    this.logElementEvent('👍 LOADED', element);
-  },
-  callback_error(element) {
-    this.logElementEvent('💀 ERROR', element);
-    element.src = 'https://via.placeholder.com/440x560/?text=Error+Placeholder';
-  },
-  callback_finish() {
-    this.logElementEvent('✔️ FINISHED', document.documentElement);
-  },
-  callback_cancel(element) {
-    this.logElementEvent('🔥 CANCEL', element);
-  }, */
 };
 </script>
 
 <style lang="scss" scoped>
-/* .uk-dotnav {
-  margin-top: 25px;
-
-  display: flex;
-  justify-content: center;
-} */
-
 .glide {
   position: relative;
 
@@ -775,11 +735,6 @@ export default {
   // .slider__list
 
   &__list {
-    // display: flex;
-    // gap: 20px;
-    // padding: 20px 5px !important;
-    // overflow-x: hidden;
-
     display: flex;
     gap: 10px;
   }
@@ -788,8 +743,6 @@ export default {
 
   &__item {
     width: 100%;
-    // max-width: 270px;
-    // margin: 5px 10px;
   }
 }
 
@@ -797,16 +750,6 @@ export default {
   background: $redMy-800;
   box-shadow: $shadowMy;
   margin: 20px 0;
-
-  // margin-left: 10px;
-  // margin-right: 10px;
-
-  /* &:first-of-type {
-    margin-left: 0;
-  }
-  &:last-of-type {
-    margin-right: 0;
-  } */
 
   &:hover,
   &:focus {

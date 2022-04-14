@@ -94,24 +94,16 @@ export default {
     // // This what would we do in real project
     const version =
       context.query._storyblok || context.isDev ? 'draft' : 'published';
-    // const fullSlug = (context.route.path == '/' || context.route.path == '') ? 'home' : context.route.path
-    // console.log('context.app.$storyapi: ', context.app.$storyapi);
     // Load the JSON from the API - loadig the home content (index page)
     let stories;
     let response;
-    // console.log('context.app.$storyapi: ', context.app.$storyapi);
     try {
       // response = await context.app.$storyapi.get('cdn/stor  ies', {
       response = await context.app.$storyapi.get('cdn/stories', {
         version,
         starts_with: 'home/',
       });
-      // console.log('response: ', response);
-      // const result = await response.json();
-      // console.log('result: ', result);
       stories = response.data.stories;
-
-      // console.log('stories: ', stories);
     } catch (error) {
       if (!response.response) {
         console.error(response);
@@ -127,7 +119,6 @@ export default {
         });
       }
     }
-    // console.log('content: ', content)
     return {
       stories,
     };
@@ -152,39 +143,12 @@ export default {
         };
       });
 
-      // console.log('infoToPass: ', infoToPass);
-
       return infoToPass;
     },
   },
 
-  created() {
-    // console.log('this.$buefy: ', this.$buefy);
-    // this.$buefy.config.setOptions(customIconConfig);
-  },
   mounted() {
     this.$store.commit('setKartsOptions', this.passingKarts);
-
-    /* this.$nextTick(() => {
-      // this.$nuxt.$loading.start();
-      // console.log('this.$buefy: ', this.$buefy);
-      this.$buefy.config.setOptions(customIconConfig);
-    }); */
-    //* nuxtReady - https://github.com/nuxt/nuxt.js/issues/1154
-    // eslint-disable-next-line nuxt/no-env-in-hooks
-    /* if (process.browser) {
-      window.onNuxtReady((app) => {
-        // console.log('Nuxt ready!');
-        setTimeout(() => this.$nuxt.$loading.finish(), 100);
-      });
-    } */
-  },
-
-  methods: {
-    /* noti() {
-      console.log('zzz');
-      this.$uikit.notification({ message: 'Notification message' });
-    }, */
   },
 };
 </script>

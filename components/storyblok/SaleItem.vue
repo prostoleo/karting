@@ -62,9 +62,9 @@ export default {
 }
 </style>
 
-<style>
+<style lang="scss">
 span.redMy-500 {
   font-weight: bold;
-  color: red;
+  color: $redMy-500;
 }
 </style>

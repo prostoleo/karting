@@ -61,35 +61,12 @@
 <script>
 import LazyLoad from 'vanilla-lazyload';
 import maskPhone from '@/assets/form/mask-phone.js';
-// import { mapGetters } from 'vuex';
-// import '@/assets/quiz/assets/index.b944bb25';
-// import '@/assets/quiz/assets/vendor.d6682b4f';
-/* <div class="quiz-section__header header">
-        <h2 class="header__title">{{ story.title }}</h2>
-        <!-- /.header__title -->
-        <h4 class="header__subtitle">
-          {{ story.subtitle }}
-        </h4>
-        <!-- /.header__subtitle -->
-      </div>
-      <!-- /.quiz-section__header header -->
-      <div id="quiz" class="quiz-section__content"></div>
-      <div class="quiz-section__kart">
-        <img
-          :src="`${story.img.filename}/m/`"
-          :alt="story.img.alt"
-          class="quiz-section__kart-img"
-        />
-      </div>
-      <!-- /.quiz-section__kart --> */
 
 import CustomProgress from '@/components/quiz/CustomProgress.vue';
 import QuizWrapper from '@/components/quiz/QuizWrapper.vue';
 import { richtext } from '~/utils/storyblok/storyblok';
-// import quiz from '@/assets/quiz/assets/index.b944bb25';
 
 export default {
-  // eslint-disable-next-line vue/no-unused-components
   components: { CustomProgress, QuizWrapper },
   props: {
     blok: {
@@ -105,7 +82,6 @@ export default {
   },
 
   computed: {
-    // ...mapGetters(['getActiveIndex']),
     getActiveIndex() {
       return this.$store.getters.getActiveIndex;
     },
@@ -115,7 +91,6 @@ export default {
     //* для маски телефона
     maskPhone();
 
-    // const kartImgEl = this.$refs.kartImg;
     //* lazyload
     // eslint-disable-next-line no-unused-vars
     const ll = new LazyLoad({});

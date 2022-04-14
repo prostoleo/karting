@@ -8,31 +8,12 @@
       class="custom-panel faq__item-content"
       v-html="richtext(story.details)"
     ></div>
-    <!-- <a class="uk-accordion-title faq__item-title" href="#">
-      <ion-icon src="/tire.svg"></ion-icon>
-      <h3>{{ story.summary }}</h3>
-    </a>
-    <div
-      class="uk-accordion-content faq__item-content"
-      v-html="richtext(story.details)"
-    ></div> -->
   </li>
 </template>
 
 <script>
 import { useStoryblokBridge } from '@storyblok/nuxt';
 import { richtext } from '~/utils/storyblok/storyblok.js';
-
-/* acc[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    if (panel.style.maxHeight) {
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    }
-  });
-} */
 
 export default {
   props: {
@@ -67,7 +48,6 @@ export default {
         );
         const PaddingInnerCompSt =
           FaqStyles.getPropertyValue('--padding-inner');
-        // console.log('PaddingInnerCompSt: ', PaddingInnerCompSt);
 
         panel.style.maxHeight = `${
           panel.scrollHeight + parseInt(PaddingInnerCompSt) * 2
@@ -106,12 +86,6 @@ export default {
       max-width: unset;
     }
 
-    /* &.uk-open {
-      ion-icon {
-        transform: rotate(90deg);
-        transition: transform var(--transition-dur) ease-in;
-      }
-    } */
     &.active {
       ion-icon {
         transform: rotate(90deg);

@@ -58,7 +58,6 @@ export default {
 
   methods: {
     toNextQuestion() {
-      // console.log('zzz');
       if (!this.getCurDataOption) {
         let str = '';
 

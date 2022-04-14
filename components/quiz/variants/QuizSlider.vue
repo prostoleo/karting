@@ -104,19 +104,13 @@ export default {
   },
 
   mounted() {
-    // window.$nuxt.$buefy.config.setOptions(customIconConfig);
-    console.log('this.getKartsOptions: ', this.getKartsOptions);
-
     //* lazyload of images
     // eslint-disable-next-line no-unused-vars
     const ll = new LazyLoad({});
 
-    // console.log('document: ', document);
     const glideEl = document.querySelector(
       `#step-${this.getActiveIndex} .glide`
     );
-    // console.log('glideEl: ', glideEl);
-    // console.log('glideEl: ', glideEl);
 
     // eslint-disable-next-line no-unused-vars
     const gl = new Glide(glideEl, {
@@ -135,7 +129,6 @@ export default {
         },
       },
     }).mount({ Controls, Breakpoints, Swipe });
-    // console.log('gl: ', gl);
   },
 
   methods: {
@@ -145,17 +138,6 @@ export default {
       if (!target) {
         return;
       }
-      console.log('target: ', target);
-
-      /* if (target.classList.contains('chosen')) {
-        target.classList.remove('chosen');
-        this.$store.commit('resetChosenOptionOnActiveIndex');
-      } else {
-        this.unselectChosenSlides();
-        this.$store.commit('resetChosenOptionOnActiveIndex');
-        target.classList.add('chosen');
-        this.$store.commit('changeChosenOptionOnActiveIndex');
-      } */
 
       // если type === 'slider-radio'
       if (this.type === 'slider-radio') {

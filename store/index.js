@@ -102,14 +102,12 @@ export const getters = {
     const percent = Math.round(
       (getters.getActiveIndex / getters.getTotalQuestions) * 100
     );
-    // console.log('percent: ', percent);
 
     return percent > 100 ? 100 : percent;
   },
 
   getCurData(state, getters) {
     const curData = state.data[getters.getActiveIndex];
-    // console.log('curData: ', curData);
 
     return curData ?? null;
   },
@@ -139,11 +137,6 @@ export const getters = {
 
   getDataForQuizSubmit: (state) => {
     const newObj = Object.values(state.data).reduce((acc, val) => {
-      // console.log('val: ', val);
-      /* typeof val.chosenOption === 'string'
-        ? (acc[val.title] = val.chosenOption)
-        : (acc[val.title] = val.chosenOption.join(';')); */
-
       if (typeof val.chosenOption === 'string') {
         acc[val.title] = val.chosenOption;
         return acc;
@@ -183,9 +176,7 @@ export const mutations = {
   },
 
   changeChosenOptionOnActiveIndex(state, data) {
-    console.log('data: ', data);
     const chosenOption = state.data[state.activeIndex].chosenOption;
-    // console.log('data: ', data);
 
     if (Array.isArray(chosenOption)) {
       state.data[state.activeIndex].chosenOption.push(data);

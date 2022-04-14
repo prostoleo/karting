@@ -1,6 +1,6 @@
 <template>
   <section id="questions" v-editable="story" class="faq-section">
-    <div class="container faq-section__container faq-section__content content">
+    <div class="container faq-section__container faq-section__content">
       <h2 class="content__title">{{ story.title }}</h2>
       <div class="content__faq faq">
         <ul uk-accordion="multiple: true" class="faq__list">

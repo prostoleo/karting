@@ -16,7 +16,6 @@ export const dynamicRoutes = async () => {
     starts_with: 'home/',
     // resolve_relations: 'Post.direction_info',
   }).then((res) => res.data);
-  console.log('results: ', results);
 
   const routes = results.stories.map((story) => {
     return {
@@ -29,6 +28,3 @@ export const dynamicRoutes = async () => {
 
   return routesTotal;
 };
-
-// const test = dynamicRoutes();
-// console.log('test: ', test);
