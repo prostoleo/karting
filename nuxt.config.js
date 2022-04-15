@@ -76,6 +76,7 @@ export default {
       {
         rel: 'preload',
         href: 'https://assets10.lottiefiles.com/packages/lf20_clmd2mj6.json',
+        as: 'fetch',
       },
     ],
     style: [],
@@ -89,6 +90,11 @@ export default {
         nomodule: true,
         defer: true,
         src: 'https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js',
+      },
+      {
+        type: 'module',
+        defer: true,
+        src: 'https://unpkg.com/@lottiefiles/lottie-player@1.5.6/dist/lottie-player.js',
       },
     ],
   },
@@ -122,10 +128,10 @@ export default {
 
   styleResources: {
     scss: [
-      '~/assets/scss/main.scss',
-      /* '~/assets/scss/abstract/colors.scss',
-      '~/assets/scss/abstract/mixins.scss',
-      '~/assets/scss/components/components.scss', */
+      // '~/assets/scss/main.scss',
+      './assets/scss/abstract/_colors.scss',
+      './assets/scss/abstract/_mixins.scss',
+      './assets/scss/components/_components.scss',
     ],
     /* sass: [
       // '~/assets/scss/main.scss',
@@ -139,7 +145,7 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     // '~/assets/fonts/fonts.css',
-    // '~/assets/scss/main.scss',
+    '~/assets/scss/main.scss',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules

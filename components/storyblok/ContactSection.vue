@@ -85,6 +85,7 @@ export default {
 
   @include mq(xl) {
     grid-auto-flow: column;
+    --section-pt: 0;
   }
 
   // .contact__container
@@ -100,6 +101,10 @@ export default {
 .container {
 }
 .content {
+  @include mq(xl) {
+    padding-top: 50px;
+  }
+
   // .content__title
 
   &__title {

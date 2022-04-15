@@ -58,6 +58,8 @@ export default {
     const FaqSectionEl = document.querySelector('section.faq-section');
     const KartIconEl = FaqSectionEl.querySelector('.faq__icon');
 
+    const that = this;
+
     if (KartIconEl) {
       const tlKartIcon = gsap.timeline({
         scrollTrigger: {
@@ -69,10 +71,10 @@ export default {
       tlKartIcon.fromTo(
         KartIconEl,
         {
-          yPercent: -550,
+          yPercent: that.$mq.includes('xl') ? -300 : -550,
         },
         {
-          yPercent: 320,
+          yPercent: that.$mq.includes('xl') ? 270 : 320,
         }
       );
     }
@@ -84,7 +86,7 @@ export default {
 .faq-section {
   background: $redMy-800;
   overflow: hidden;
-  // min-height: 550px;
+  min-height: 550px;
 
   @extend %tpl-section;
 

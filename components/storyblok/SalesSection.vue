@@ -69,17 +69,65 @@ export default {
       ease: 'Power3.easeIn',
     });
 
+    const that = this;
+
     tlCube
       .to(cubeOrangeEl, {
-        xPercent: -355,
-        yPercent: 355,
+        xPercent: that.$mq.includes('xl') ? -375 : -355,
+        yPercent: that.$mq.includes('xl') ? 375 : 355,
         duration: 0.55,
       })
       .to(
         cubeYellowEl,
         {
-          xPercent: 350,
-          yPercent: -350,
+          /* xPercent: 350,
+          yPercent: -350, */
+          xPercent: that.$mq.includes('xl') ? 370 : 350,
+          /* xPercent: () => {
+            let val = null;
+
+            switch (that.$mq) {
+              case 'xl':
+              case '2xl':
+                val = -370;
+
+                break;
+              case '3xl':
+              case '4xl':
+                val = -360;
+
+                break;
+
+              default:
+                val = -350;
+                break;
+            }
+
+            return val;
+          }, */
+          /* yPercent: () => {
+            let val = null;
+
+            switch (that.$mq) {
+              case 'xl':
+              case '2xl':
+                val = 370;
+
+                break;
+              case '3xl':
+              case '4xl':
+                val = 360;
+
+                break;
+
+              default:
+                val = 350;
+                break;
+            }
+
+            return val;
+          }, */
+          yPercent: that.$mq.includes('xl') ? -370 : -350,
           duration: 0.55,
         },
         '<0.15'
@@ -132,35 +180,6 @@ export default {
     }
   }
 
-  // .sales__stripe
-
-  &__stripe {
-    --stripe-h: 5px;
-    position: absolute;
-    min-width: 360px;
-    width: 50vmin;
-    max-width: 500px;
-    height: var(--stripe-h);
-    background: white;
-    top: 0%;
-    left: 0%;
-
-    transform-origin: center center;
-    // transform: rotate(-45deg) translateX(-17%) translateY(-70px);
-
-    &--orange {
-      background: $orangeMy;
-      transform: rotate(-45deg) translateX(160px) translateY(-150px);
-    }
-
-    &--yellow {
-      background: $yellowMy;
-      top: calc(0% + var(--stripe-h));
-      left: calc(0% + var(--stripe-h));
-      transform: rotate(-45deg) translateX(-520px) translateY(-150px);
-    }
-  }
-
   &__cube {
     width: 200px;
     height: 200px;
@@ -196,6 +215,10 @@ export default {
       );
 
       transform: translate(-150%, 150%);
+
+      @include mq(3xl) {
+        transform: translate(-225%, 225%);
+      }
     }
 
     /* &::before {

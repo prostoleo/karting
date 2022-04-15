@@ -9,7 +9,6 @@
           <div class="content__block block-content">
             <div class="block-content__steps steps">
               <svg
-                v-if="showSvg"
                 id="road-icon"
                 class="steps__svg"
                 width="597"
@@ -46,17 +45,15 @@
               <!-- /.steps__item -->
             </div>
 
-            <mq-layout mq="lg+" style="height: 100%">
-              <lottie-player
-                id="lottiePlayer"
-                ref="lottiePlayer"
-                class="block-content__lottie"
-                src="https://assets10.lottiefiles.com/packages/lf20_clmd2mj6.json"
-                background="transparent"
-                speed="0.65"
-                style="width: 300px; height: 300px"
-              ></lottie-player>
-            </mq-layout>
+            <lottie-player
+              id="lottiePlayer"
+              ref="lottiePlayer"
+              class="block-content__lottie"
+              src="https://assets10.lottiefiles.com/packages/lf20_clmd2mj6.json"
+              background="transparent"
+              speed="0.65"
+              style="width: 300px; height: 300px"
+            ></lottie-player>
           </div>
         </div>
       </div>
@@ -100,14 +97,9 @@ import { useStoryblokBridge } from '@storyblok/nuxt';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-import LottiePlayer from '@lottiefiles/lottie-player';
 import { richtext } from '~/utils/storyblok/storyblok.js';
 
 export default {
-  components: {
-    LottiePlayer,
-  },
-
   props: {
     blok: {
       type: Object,
@@ -127,12 +119,8 @@ export default {
   },
 
   computed: {
-    showSvg() {
-      if (this.$mq.includes('xl')) {
-        return true;
-      } else {
-        return false;
-      }
+    mqMoreThan3xl() {
+      return this.$mq.match(/3xl|4xl/gm);
     },
   },
 
@@ -182,7 +170,7 @@ export default {
     const stepsSvgEl = document.querySelector('.steps__svg');
     // const svgEl = stepsSvgEl.querySelector('.icon-inner');
     //* target element for Intersection
-    const sectionEl = document.getElementById('steps');
+    const sectionEl = document.querySelector('#steps .content__text');
 
     if (stepsSvgEl && sectionEl) {
       const pathsEls = Array.from(stepsSvgEl.querySelectorAll('path'));
@@ -225,14 +213,20 @@ export default {
       //* intersectionObserver
       const options = {
         root: null,
-        rootMargin: '-5%',
+        rootMargin: '-5% 0% 0% 0%',
         threshold: getThresholdArray(0.1, 1, 5),
       };
 
       const handlerObserver = (entries, observer) => {
         if (entries[0].isIntersecting && entries[0].intersectionRatio > 0) {
           pathsEls.forEach((pathEl, i) => {
-            const drawLength = entries[0].intersectionRatio * pathsLength[i];
+            let drawLength = null;
+
+            if (this.mqMoreThan3xl) {
+              drawLength = entries[0].intersectionRatio * pathsLength[i] * 1.1;
+            } else {
+              drawLength = entries[0].intersectionRatio * pathsLength[i];
+            }
 
             pathEl.style.strokeDashoffset = pathsLength[i] - drawLength;
           });
@@ -309,6 +303,8 @@ export default {
       object-position: 30% center;
 
       @include mq(lg) {
+        height: 101%;
+
         filter: grayscale(100%);
         transform: scale(1, 1);
         transition: transform 150ms ease-in, filter 150ms ease-in 150ms;

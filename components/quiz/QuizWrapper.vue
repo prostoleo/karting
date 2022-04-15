@@ -88,6 +88,7 @@ export default {
           message: str,
           position: 'is-top',
           type: 'is-danger',
+          pauseOnHover: true,
         });
 
         return;
