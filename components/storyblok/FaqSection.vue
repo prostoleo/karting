@@ -56,25 +56,27 @@ export default {
     //* kart icon animation
     gsap.registerPlugin(ScrollTrigger);
     const FaqSectionEl = document.querySelector('section.faq-section');
+    console.log('FaqSectionEl: ', FaqSectionEl);
     const KartIconEl = FaqSectionEl.querySelector('.faq__icon');
 
-    const that = this;
+    console.log(`this.$mq.includes('xl'): `, this.$mq.includes('xl'));
+    const startPos = this.$mq.includes('xl') ? 'top -30%' : 'top center';
 
     if (KartIconEl) {
       const tlKartIcon = gsap.timeline({
         scrollTrigger: {
           trigger: FaqSectionEl,
-          start: 'top center',
+          start: startPos,
           scrub: true,
         },
       });
       tlKartIcon.fromTo(
         KartIconEl,
         {
-          yPercent: that.$mq.includes('xl') ? -300 : -550,
+          yPercent: this.$mq.includes('xl') ? -250 : -550,
         },
         {
-          yPercent: that.$mq.includes('xl') ? 270 : 320,
+          yPercent: this.$mq.includes('xl') ? 270 : 320,
         }
       );
     }

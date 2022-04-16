@@ -132,6 +132,7 @@ export default {
 
     //* lazyload of lottieplayer
     const lottiePlayerEl = document.querySelector('#lottiePlayer');
+    // eslint-disable-next-line no-undef
 
     if (lottiePlayerEl) {
       this.lottieEl = lottiePlayerEl;
@@ -145,22 +146,27 @@ export default {
       gsap.timeline({
         scrollTrigger: {
           trigger: StepsSectionEl,
-          start: 'top 30%',
-          end: `+=${StepsSectionEl.offsetHeight * 1.5}`,
+          start: this.$mq.includes('xl') ? 'top 10%' : 'top 30%',
+          // end: `+=${StepsSectionEl.offsetHeight * 1.95}`,
+          end: this.$mq.includes('xl')
+            ? 'bottom top'
+            : `+=${StepsSectionEl.offsetHeight * 2.5}`,
 
           onEnter() {
+            // that.lottieEl.stop();
             that.lottieEl.play();
           },
           onEnterBack() {
+            that.lottieEl.stop();
             that.lottieEl.play();
           },
 
-          onLeave() {
+          /* onLeave() {
             that.lottieEl.stop();
           },
           onLeaveBack() {
             that.lottieEl.stop();
-          },
+          }, */
         },
       });
     }
