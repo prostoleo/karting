@@ -56,10 +56,10 @@ export default {
     //* kart icon animation
     gsap.registerPlugin(ScrollTrigger);
     const FaqSectionEl = document.querySelector('section.faq-section');
-    console.log('FaqSectionEl: ', FaqSectionEl);
+    // console.log('FaqSectionEl: ', FaqSectionEl);
     const KartIconEl = FaqSectionEl.querySelector('.faq__icon');
 
-    console.log(`this.$mq.includes('xl'): `, this.$mq.includes('xl'));
+    // console.log(`this.$mq.includes('xl'): `, this.$mq.includes('xl'));
     const startPos = this.$mq.includes('xl') ? 'top -30%' : 'top center';
 
     if (KartIconEl) {

@@ -1,4 +1,4 @@
-export default function foo() {
+export default function maskPhone() {
   Array.from(document.querySelectorAll('.tel')).forEach((input) => {
     function mask(event) {
       const { keyCode } = event;

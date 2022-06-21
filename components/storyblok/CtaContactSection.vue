@@ -96,6 +96,7 @@ import { useStoryblokBridge } from '@storyblok/nuxt';
 import { richtext } from '~/utils/storyblok/storyblok.js';
 
 import { SendMail } from '@/assets/sendMail/sendMail';
+import maskPhone from '~/assets/form/mask-phone';
 
 // const inputsArr = ['name', 'phone'];
 
@@ -144,6 +145,7 @@ export default {
   },
   mounted() {
     useStoryblokBridge(this.story._uid, (newStory) => (this.story = newStory));
+    maskPhone();
   },
   methods: {
     validateInput(type, $event) {
@@ -191,7 +193,13 @@ export default {
           throw new Error(' превышено время на запрос');
         }
 
-        if (response.toLowerCase() !== 'ok') {
+        /* if (response.toLowerCase() !== 'ok') {
+          throw new Error(
+            'произошла какая-то ошибка, попробуйте повторить позже'
+          );
+        } */
+
+        if (!response.status) {
           throw new Error(
             'произошла какая-то ошибка, попробуйте повторить позже'
           );

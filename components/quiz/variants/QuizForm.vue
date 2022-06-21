@@ -84,6 +84,7 @@ export default {
 
   mounted() {
     maskPhone();
+    // console.log('maskPhone: ', maskPhone);
   },
 
   methods: {
@@ -156,7 +157,13 @@ export default {
           throw new Error(' превышено время на запрос');
         }
 
-        if (response.toLowerCase() !== 'ok') {
+        /* if (response.toLowerCase() !== 'ok') {
+          throw new Error(
+            'произошла какая-то ошибка, попробуйте повторить позже'
+          );
+        } */
+
+        if (!response.status) {
           throw new Error(
             'произошла какая-то ошибка, попробуйте повторить позже'
           );
