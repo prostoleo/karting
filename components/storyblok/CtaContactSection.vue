@@ -158,8 +158,20 @@ export default {
         this.formData.name.touched = true;
         return;
       }
-      if (type === 'phone') {
+      /* if (type === 'phone') {
+        
         if (this.formData.phone.value.length === 18) {
+          this.formData.phone.error = false;
+        } else {
+          this.formData.phone.error = true;
+        }
+        this.formData.phone.touched = true;
+      } */
+      if (type === 'phone') {
+        const regexp = /^[0-9" "\-+()]+$/gm;
+        const regExpTest = regexp.test(this.formData.phone.value);
+
+        if (regExpTest) {
           this.formData.phone.error = false;
         } else {
           this.formData.phone.error = true;
